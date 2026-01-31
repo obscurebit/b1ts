@@ -1,6 +1,6 @@
 site_name: Obscure Bit
 site_description: Daily curated obscure links and AI-generated sci-fi stories
-site_url: https://obscurebit.com/
+site_url: https://obscurebit.github.io/b1ts/
 
 theme:
   name: material
