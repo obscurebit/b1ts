@@ -31,12 +31,3 @@ description: Daily curated discoveries from the hidden corners of the web
     <span class="archive-item__arrow">→</span>
   </a>
 </div>
-    <div class="archive-item__content">
-      <span class="archive-item__date">January 30, 2026</span>
-      <h3 class="archive-item__title">Daily Discoveries</h3>
-      <p class="archive-item__excerpt">Curated obscure links from the hidden corners of the web...</p>
-    </div>
-    <span class="archive-item__category">6 Links</span>
-    <span class="archive-item__arrow">→</span>
-  </a>
-</div>
