@@ -207,20 +207,11 @@ def save_links(links: List[Dict]) -> Path:
 ---
 """
     
-    # Determine author name from API base
-    author_name = "AI"
-    if "nvidia" in API_BASE.lower():
-        author_name = "NVIDIA NIM"
-    elif "openai" in API_BASE.lower():
-        author_name = "OpenAI"
-    
     frontmatter = f"""---
 date: {today}
 title: "Obscure Links - {today.strftime('%B %d, %Y')}"
 description: "Today's curated obscure links from the hidden corners of the web"
-author: "{author_name}"
-generator: "{MODEL}"
-api_base: "{API_BASE}"
+author: "{API_BASE} / {MODEL}"
 ---
 
 """

@@ -13,9 +13,9 @@ import yaml
 from openai import OpenAI
 
 # Configuration
-API_BASE = os.environ.get("OPENAI_API_BASE", "https://api.openai.com/v1")
+API_BASE = os.environ.get("OPENAI_API_BASE", "https://integrate.api.nvidia.com/v1")
 API_KEY = os.environ.get("OPENAI_API_KEY")
-MODEL = os.environ.get("OPENAI_MODEL", "gpt-4o-mini")
+MODEL = os.environ.get("OPENAI_MODEL", "nvidia/llama-3.3-nemotron-super-49b-v1.5")
 
 # Paths to prompt files
 PROMPTS_DIR = Path(__file__).parent.parent / "prompts"
@@ -131,21 +131,12 @@ def save_story(title: str, story: str) -> Path:
     filename = f"{date_str}-{slug}.md"
     filepath = posts_dir / filename
     
-    # Determine author name from API base
-    author_name = "AI"
-    if "nvidia" in API_BASE.lower():
-        author_name = "NVIDIA NIM"
-    elif "openai" in API_BASE.lower():
-        author_name = "OpenAI"
-    
     # Create markdown file
     frontmatter = f"""---
 date: {date_str}
 title: "{title}"
 description: "A daily AI-generated story exploring speculative fiction"
-author: "{author_name}"
-generator: "{MODEL}"
-api_base: "{API_BASE}"
+author: "{API_BASE} / {MODEL}"
 ---
 
 """
