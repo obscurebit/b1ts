@@ -64,16 +64,16 @@ def get_latest_story() -> Optional[Dict]:
     }
 
 
-def get_latest_links() -> List[Dict]:
-    """Find and parse the latest links from links/posts/."""
+def get_latest_links() -> tuple[List[Dict], int]:
+    """Find and parse the latest links from links/posts/. Returns (links, total_count)."""
     posts_dir = Path("docs/links/posts")
     if not posts_dir.exists():
-        return []
+        return [], 0
     
     # Find most recent links file
     link_files = sorted(posts_dir.glob("*.md"), reverse=True)
     if not link_files:
-        return []
+        return [], 0
     
     latest = link_files[0]
     content = latest.read_text()
@@ -82,6 +82,7 @@ def get_latest_links() -> List[Dict]:
     
     # Parse link sections (## N. Title format)
     sections = re.split(r'^## \d+\.\s+', content, flags=re.MULTILINE)[1:]
+    total_count = len(sections)
     
     for section in sections[:3]:  # Get first 3 links
         lines = section.strip().split("\n")
@@ -104,10 +105,10 @@ def get_latest_links() -> List[Dict]:
         
         links.append({"title": title, "desc": desc, "url": url})
     
-    return links
+    return links, total_count
 
 
-def update_home_html(story: Optional[Dict], links: List[Dict], edition: int):
+def update_home_html(story: Optional[Dict], links: List[Dict], total_links: int, edition: int):
     """Update the home.html template with latest content."""
     home_path = Path("overrides/home.html")
     if not home_path.exists():
@@ -165,7 +166,7 @@ def update_home_html(story: Optional[Dict], links: List[Dict], edition: int):
       '''
         
         # Add "view all" link
-        remaining = max(0, len(links) - 3)
+        remaining = max(0, total_links - 3)
         links_html += f'''
       <a href="{{{{ 'links/' | url }}}}" class="ob-link ob-link--more">
         <span class="ob-link__more-text">View all links</span>
@@ -459,10 +460,10 @@ def main():
     else:
         print("No story found")
     
-    links = get_latest_links()
-    print(f"Found {len(links)} links")
+    links, total_links = get_latest_links()
+    print(f"Found {total_links} links")
     
-    if update_home_html(story, links, edition):
+    if update_home_html(story, links, total_links, edition):
         print("Success! Landing page updated.")
     else:
         print("Failed to update landing page.")
