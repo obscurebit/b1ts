@@ -2,6 +2,9 @@
 date: 2026-01-30
 title: "Obscure Links - January 30, 2026"
 description: "Today's curated obscure links from the hidden corners of the web"
+author: "NVIDIA NIM"
+generator: "nvidia/llama-3.3-nemotron-super-49b-v1.5"
+api_base: "https://integrate.api.nvidia.com/v1"
 ---
 
 # Obscure Links - January 30, 2026

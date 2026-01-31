@@ -27,18 +27,18 @@ SEED_PROMPTS_FILE = PROMPTS_DIR / "links_seeds.yaml"
 
 def load_system_prompt() -> str:
     """Load the system prompt from external file."""
-    if SYSTEM_PROMPT_FILE.exists():
-        return SYSTEM_PROMPT_FILE.read_text().strip()
-    
-    # Fallback default
-    return """You are a curator finding obscure but real links. Suggest 5-7 genuine URLs with titles, summaries, and why they're fascinating."""
+    if not SYSTEM_PROMPT_FILE.exists():
+        print(f"Error: System prompt file not found at {SYSTEM_PROMPT_FILE}")
+        sys.exit(1)
+    return SYSTEM_PROMPT_FILE.read_text().strip()
 
 
 def load_seed_config() -> dict:
     """Load seed prompts configuration from YAML file."""
-    if SEED_PROMPTS_FILE.exists():
-        return yaml.safe_load(SEED_PROMPTS_FILE.read_text()) or {}
-    return {}
+    if not SEED_PROMPTS_FILE.exists():
+        print(f"Error: Seed prompts file not found at {SEED_PROMPTS_FILE}")
+        sys.exit(1)
+    return yaml.safe_load(SEED_PROMPTS_FILE.read_text()) or {}
 
 
 def get_links_prompt() -> str:
@@ -60,12 +60,11 @@ Focus on content that feels like a hidden discovery - something readers wouldn't
 
 Remember: Only real, verifiable links from your training data. Prefer established sites."""
     
-    # Fall back to default categories
-    default_categories = config.get("default_categories", [
-        "forgotten internet history",
-        "obscure scientific discoveries",
-        "hidden wiki rabbit holes",
-    ])
+    # Use default categories from config
+    default_categories = config.get("default_categories", [])
+    if not default_categories:
+        print("Error: No default_categories found in seed prompts configuration")
+        sys.exit(1)
     
     category = default_categories[day_of_year % len(default_categories)]
     
@@ -208,12 +207,25 @@ def save_links(links: List[Dict]) -> Path:
 ---
 """
     
-    content = f"""---
-date: {date_str}
+    # Determine author name from API base
+    author_name = "AI"
+    if "nvidia" in API_BASE.lower():
+        author_name = "NVIDIA NIM"
+    elif "openai" in API_BASE.lower():
+        author_name = "OpenAI"
+    
+    frontmatter = f"""---
+date: {today}
 title: "Obscure Links - {today.strftime('%B %d, %Y')}"
 description: "Today's curated obscure links from the hidden corners of the web"
+author: "{author_name}"
+generator: "{MODEL}"
+api_base: "{API_BASE}"
 ---
 
+"""
+    
+    content = f"""{frontmatter}
 # Obscure Links - {today.strftime('%B %d, %Y')}
 
 Today's curated discoveries from the hidden corners of the web.

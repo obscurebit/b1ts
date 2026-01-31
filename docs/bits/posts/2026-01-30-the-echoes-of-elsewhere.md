@@ -1,7 +1,10 @@
 ---
 date: 2026-01-30
 title: "The Echoes of Elsewhere"
-description: "A daily Bit from Obscure Bit - AI-generated sci-fi story"
+description: "A daily AI-generated story exploring speculative fiction"
+author: "NVIDIA NIM"
+generator: "nvidia/llama-3.3-nemotron-super-49b-v1.5"
+api_base: "https://integrate.api.nvidia.com/v1"
 ---
 
 # The Echoes of Elsewhere

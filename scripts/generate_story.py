@@ -25,18 +25,18 @@ SEED_PROMPTS_FILE = PROMPTS_DIR / "seed_prompts.yaml"
 
 def load_system_prompt() -> str:
     """Load the system prompt from external file."""
-    if SYSTEM_PROMPT_FILE.exists():
-        return SYSTEM_PROMPT_FILE.read_text().strip()
-    
-    # Fallback default
-    return """You are a creative sci-fi short story writer. Write a short story (400-600 words) with a compelling hook, unexpected twist, and thought-provoking ending. Output format: title on first line, blank line, then story text."""
+    if not SYSTEM_PROMPT_FILE.exists():
+        print(f"Error: System prompt file not found at {SYSTEM_PROMPT_FILE}")
+        sys.exit(1)
+    return SYSTEM_PROMPT_FILE.read_text().strip()
 
 
 def load_seed_config() -> dict:
     """Load seed prompts configuration from YAML file."""
-    if SEED_PROMPTS_FILE.exists():
-        return yaml.safe_load(SEED_PROMPTS_FILE.read_text()) or {}
-    return {}
+    if not SEED_PROMPTS_FILE.exists():
+        print(f"Error: Seed prompts file not found at {SEED_PROMPTS_FILE}")
+        sys.exit(1)
+    return yaml.safe_load(SEED_PROMPTS_FILE.read_text()) or {}
 
 
 def get_story_prompt() -> str:
@@ -57,12 +57,11 @@ def get_story_prompt() -> str:
 Make it feel like discovering a hidden gem - something readers wouldn't find anywhere else.
 The story should feel complete but leave readers thinking."""
     
-    # Fall back to default themes
-    default_themes = config.get("default_themes", [
-        "quantum computing mysteries",
-        "forgotten AI experiments", 
-        "time-displaced messages",
-    ])
+    # Use default themes from config
+    default_themes = config.get("default_themes", [])
+    if not default_themes:
+        print("Error: No default_themes found in seed prompts configuration")
+        sys.exit(1)
     
     theme = default_themes[day_of_year % len(default_themes)]
     
@@ -132,14 +131,25 @@ def save_story(title: str, story: str) -> Path:
     filename = f"{date_str}-{slug}.md"
     filepath = posts_dir / filename
     
-    # Create markdown content
-    content = f"""---
+    # Determine author name from API base
+    author_name = "AI"
+    if "nvidia" in API_BASE.lower():
+        author_name = "NVIDIA NIM"
+    elif "openai" in API_BASE.lower():
+        author_name = "OpenAI"
+    
+    # Create markdown file
+    frontmatter = f"""---
 date: {date_str}
 title: "{title}"
-description: "A daily Bit from Obscure Bit - AI-generated sci-fi story"
+description: "A daily AI-generated story exploring speculative fiction"
+author: "{author_name}"
+generator: "{MODEL}"
+api_base: "{API_BASE}"
 ---
 
-# {title}
+"""
+    content = f"""{frontmatter}# {title}
 
 {story}
 
