@@ -30,32 +30,5 @@ description: Browse previous daily editions of Obscure Bit
     <span class="archive-item__category">Edition</span>
     <span class="archive-item__arrow">→</span>
   </a>
-</div>
-    <div class="archive-item__content">
-      <span class="archive-item__date">January 31, 2026</span>
-      <h3 class="archive-item__title">Edition #002</h3>
-      <p class="archive-item__excerpt">Daily curated story and links from this edition</p>
-    </div>
-    <span class="archive-item__category">Edition</span>
-    <span class="archive-item__arrow">→</span>
-  </a>
-  <a href="posts/2026-01-30-edition-001/" class="archive-item">
-    <div class="archive-item__number">001</div>
-    <div class="archive-item__content">
-      <span class="archive-item__date">January 30, 2026</span>
-      <h3 class="archive-item__title">Edition #001</h3>
-      <p class="archive-item__excerpt">Daily curated story and links from this edition</p>
-    </div>
-    <span class="archive-item__category">Edition</span>
-    <span class="archive-item__arrow">→</span>
-  </a>
-</div>
-    <div class="archive-item__content">
-      <span class="archive-item__date">January 30, 2026</span>
-      <h3 class="archive-item__title">Edition #001</h3>
-      <p class="archive-item__excerpt">Daily curated story and links from this edition</p>
-    </div>
-    <span class="archive-item__category">Edition</span>
-    <span class="archive-item__arrow">→</span>
-  </a>
+
 </div>

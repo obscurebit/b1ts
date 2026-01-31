@@ -256,10 +256,11 @@ def update_bits_index():
     # Read current content
     content = bits_index.read_text()
     
-    # Replace archive list - replace everything between opening and closing div tags
+    # Replace archive list - match from opening tag to the next closing div at the same level
+    pattern = r'(<div class="archive-list">)(.*?)(\n</div>)'
     content = re.sub(
-        r'(<div class="archive-list">).*?(</div>)',
-        f'\\g<1>\n{archive_html}\\g<2>',
+        pattern,
+        f'\\g<1>\n{archive_html}\\g<3>',
         content,
         flags=re.DOTALL
     )
@@ -321,10 +322,11 @@ def update_links_index():
     # Read current content
     content = links_index.read_text()
     
-    # Replace archive list - replace everything between opening and closing div tags
+    # Replace archive list - match from opening tag to the next closing div at the same level
+    pattern = r'(<div class="archive-list">)(.*?)(\n</div>)'
     content = re.sub(
-        r'(<div class="archive-list">).*?(</div>)',
-        f'\\g<1>\n{archive_html}\\g<2>',
+        pattern,
+        f'\\g<1>\n{archive_html}\\g<3>',
         content,
         flags=re.DOTALL
     )
@@ -435,10 +437,11 @@ def update_editions_index():
     # Read current content
     content = editions_index.read_text()
     
-    # Replace archive list - replace everything between opening and closing div tags
+    # Replace archive list - match from opening tag to the next closing div at the same level
+    pattern = r'(<div class="archive-list">)(.*?)(\n</div>)'
     content = re.sub(
-        r'(<div class="archive-list">).*?(</div>)',
-        f'\\g<1>\n{archive_html}\\g<2>',
+        pattern,
+        f'\\g<1>\n{archive_html}\\g<3>',
         content,
         flags=re.DOTALL
     )
