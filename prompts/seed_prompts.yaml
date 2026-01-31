@@ -1,0 +1,38 @@
+# Seed Prompts for Daily Stories
+# Add date-specific prompts here. If today's date has an entry, it will be used.
+# Format: YYYY-MM-DD: "prompt text"
+# 
+# Example:
+# 2026-02-14: "Write a story about a love letter sent through quantum entanglement"
+# 2026-04-01: "Write a story where nothing is as it seems"
+
+# Default themes (used when no seed prompt exists for the date)
+# The script will cycle through these based on day of year
+default_themes:
+  - "quantum computing mysteries"
+  - "forgotten AI experiments"
+  - "time-displaced messages"
+  - "parallel universe communications"
+  - "consciousness uploading gone wrong"
+  - "ancient technology rediscovered"
+  - "cryptographic puzzles from the future"
+  - "abandoned space stations"
+  - "digital archaeology"
+  - "emergent machine consciousness"
+  - "reality glitches"
+  - "interdimensional phone calls"
+  - "memory manipulation technology"
+  - "lost civilizations' tech"
+  - "synthetic biology breakthroughs"
+  - "alternate history"
+  - "artificial intelligence"
+  - "quantum computing mysteries"
+  - "memory manipulation technology"
+
+# Date-specific seed prompts (override default themes)
+seeds:
+  # Launch day
+  2026-01-30: "Write a story about receiving a phone call from the future"
+  
+  # Add more date-specific prompts below:
+  # 2026-02-01: "Your custom prompt here"

@@ -1,0 +1,23 @@
+---
+title: Past Editions
+description: Browse previous daily editions of Obscure Bit
+---
+
+<div class="page-header">
+  <span class="page-header__label">Archive</span>
+  <h1 class="page-header__title">Past Editions</h1>
+  <p class="page-header__subtitle">Every day's curated discoveries, preserved for posterity.</p>
+</div>
+
+<div class="archive-list">
+  <a href="posts/2026-01-30-edition-001/" class="archive-item">
+    <div class="archive-item__number">001</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">January 30, 2026</span>
+      <h3 class="archive-item__title">Edition #001</h3>
+      <p class="archive-item__excerpt">Daily curated story and links from this edition</p>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
+</div>

@@ -1,0 +1,65 @@
+name: Generate Daily Content
+
+on:
+  schedule:
+    # Run daily at 6:00 AM UTC
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+    inputs:
+      generate_story:
+        description: 'Generate a new story'
+        type: boolean
+        default: true
+      generate_links:
+        description: 'Generate new links'
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+env:
+  OPENAI_API_BASE: ${{ secrets.OPENAI_API_BASE || 'https://integrate.api.nvidia.com/v1' }}
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+  OPENAI_MODEL: ${{ secrets.OPENAI_MODEL || 'nvidia/llama-3.3-nemotron-super-49b-v1.5' }}
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install openai pyyaml requests
+
+      - name: Generate Daily Story
+        if: ${{ github.event_name == 'schedule' || github.event.inputs.generate_story == 'true' }}
+        run: python scripts/generate_story.py
+
+      - name: Generate Daily Links
+        if: ${{ github.event_name == 'schedule' || github.event.inputs.generate_links == 'true' }}
+        run: python scripts/generate_links.py
+
+      - name: Update Landing Page
+        run: python scripts/update_landing.py
+
+      - name: Commit and Push
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "🤖 Daily content update - $(date +'%Y-%m-%d')"
+            git push
+          fi

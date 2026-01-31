@@ -1,0 +1,69 @@
+site_name: Obscure Bit
+site_description: Daily curated obscure links and AI-generated sci-fi stories
+site_url: https://obscurebit.com/
+
+theme:
+  name: material
+  palette:
+    - scheme: slate
+      primary: deep purple
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    - scheme: default
+      primary: deep purple
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+  font:
+    text: Space Grotesk
+    code: JetBrains Mono
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+  logo: assets/images/logo.png
+  favicon: assets/images/favicon.png
+  custom_dir: overrides
+
+extra_css:
+  - stylesheets/extra.css
+  - stylesheets/home.css
+
+extra_javascript:
+  - javascripts/extra.js
+  - javascripts/home.js
+  - javascripts/post.js
+
+plugins:
+  - search
+
+nav:
+  - Home: index.md
+  - Bits: bits/index.md
+  - Links: links/index.md
+  - Editions: editions.md
+  - About: about.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.mark
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/obscurebit/b1ts
+  generator: false

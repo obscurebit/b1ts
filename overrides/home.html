@@ -1,0 +1,134 @@
+{% extends "main.html" %}
+
+{% block tabs %}
+{{ super() }}
+
+<!-- Hero Section - Editorial Style -->
+<section class="ob-hero">
+  <div class="ob-hero__noise"></div>
+  <div class="ob-hero__grid-overlay"></div>
+  
+  <div class="ob-hero__content">
+    <div class="ob-hero__eyebrow">
+      <span class="ob-hero__date">{{ now().strftime('%B %d, %Y') if now is defined else 'Daily Updates' }}</span>
+      <span class="ob-hero__divider">/</span>
+      <span class="ob-hero__edition">Edition #001</span>
+    </div>
+    
+    <h1 class="ob-hero__title">
+      <span class="ob-hero__title-line ob-hero__title-line--1">Obscure</span>
+      <span class="ob-hero__title-line ob-hero__title-line--2">Bit</span>
+    </h1>
+    
+    <p class="ob-hero__manifesto">
+      The algorithm shows you what it wants.<br>
+      <em>We show you what it hides.</em>
+    </p>
+    
+    <div class="ob-hero__stats">
+      <div class="ob-hero__stat">
+        <span class="ob-hero__stat-number">∞</span>
+        <span class="ob-hero__stat-label">Rabbit Holes</span>
+      </div>
+      <div class="ob-hero__stat">
+        <span class="ob-hero__stat-number">0</span>
+        <span class="ob-hero__stat-label">Boredom</span>
+      </div>
+      <div class="ob-hero__stat">
+        <span class="ob-hero__stat-number">1</span>
+        <span class="ob-hero__stat-label">New Story Daily</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="ob-hero__scroll-hint">
+    <div class="ob-hero__scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- Today's Feature - Magazine Layout -->
+<section class="ob-today">
+  <div class="ob-today__container">
+    <div class="ob-today__header">
+      <span class="ob-today__label">Today's Bit</span>
+      <div class="ob-today__line"></div>
+    </div>
+    
+    <a href="{{ 'bits/posts/2026-01-30-the-echoes-of-elsewhere/' | url }}" class="ob-today__story">
+      <div class="ob-today__story-meta">
+        <span class="ob-today__category">Sci-Fi / Time</span>
+        <span class="ob-today__reading-time">4 min read</span>
+      </div>
+      <h2 class="ob-today__story-title">The Echoes of Elsewhere</h2>
+      <p class="ob-today__story-excerpt">
+        The first call came at 3:07 a.m., which was odd because the phone had been disconnected for seventeen years.
+      </p>
+      <div class="ob-today__story-cta">
+        <span>Read the full story</span>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- Links Section - Asymmetric Grid -->
+<section class="ob-links">
+  <div class="ob-links__container">
+    <div class="ob-links__header">
+      <h2 class="ob-links__title">
+        <span class="ob-links__title-small">Today's</span>
+        Obscure Links
+      </h2>
+      <p class="ob-links__subtitle">Curated corners of the forgotten web</p>
+    </div>
+    
+    <div class="ob-links__grid">
+      <a href="https://en.wikipedia.org/wiki/Mary_Phelps_Jacob" target="_blank" rel="noopener" class="ob-link ob-link--featured">
+        <span class="ob-link__number">01</span>
+        <div class="ob-link__content">
+          <h3 class="ob-link__title">The Rebel Heiress Who Redefined Women's Underwear</h3>
+          <p class="ob-link__desc">In 1914, socialite Mary Phelps Jacob invented the modern brassiere after finding corsets restrictive...</p>
+        </div>
+        <span class="ob-link__arrow">↗</span>
+      </a>
+      
+      <a href="https://www.chem.uci.edu/~bgerber/Class%20151B/midgley.html" target="_blank" rel="noopener" class="ob-link">
+        <span class="ob-link__number">02</span>
+        <div class="ob-link__content">
+          <h3 class="ob-link__title">The Man Who Poisoned the Planet (and Saved It Too)</h3>
+          <p class="ob-link__desc">Thomas Midgley Jr. invented leaded gasoline and chlorofluorocarbons (CFCs), later recognized as envi...</p>
+        </div>
+        <span class="ob-link__arrow">↗</span>
+      </a>
+      
+      <a href="https://www.nih.gov/news-events/nih-news/in-remembrance-dr-patricia-bath" target="_blank" rel="noopener" class="ob-link">
+        <span class="ob-link__number">03</span>
+        <div class="ob-link__content">
+          <h3 class="ob-link__title">The Ophthalmologist Who Fought Blindness with Lasers</h3>
+          <p class="ob-link__desc">Dr. Patricia Bath, the first African American woman to receive a medical patent, invented the Laserp...</p>
+        </div>
+        <span class="ob-link__arrow">↗</span>
+      </a>
+      
+      <a href="{{ 'links/' | url }}" class="ob-link ob-link--more">
+        <span class="ob-link__more-text">View all links</span>
+        <span class="ob-link__more-count">+0 more today</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer CTA -->
+<section class="ob-footer-cta">
+  <div class="ob-footer-cta__container">
+    <p class="ob-footer-cta__text">Come back tomorrow for more.</p>
+    <a href="{{ 'about/' | url }}" class="ob-footer-cta__link">Learn about us →</a>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block content %}{% endblock %}
