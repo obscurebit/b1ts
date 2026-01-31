@@ -576,18 +576,18 @@
   align-items: center;
 }
 
+.ob-footer-cta__left {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .ob-footer-cta__text {
   font-family: var(--ob-font-display);
   font-size: 1.5rem;
   font-style: italic;
   color: var(--ob-text-primary);
   margin: 0;
-}
-
-.ob-footer-cta__links {
-  display: flex;
-  gap: 2rem;
-  align-items: center;
 }
 
 .ob-footer-cta__link {
@@ -645,11 +645,11 @@
     flex-direction: column;
     gap: 1.5rem;
     text-align: center;
+    align-items: center;
   }
   
-  .ob-footer-cta__links {
-    flex-direction: column;
-    gap: 1rem;
+  .ob-footer-cta__left {
+    align-items: center;
   }
   
   .ob-manifesto::before {
