@@ -220,15 +220,23 @@ def update_bits_index():
         
         # Extract first paragraph as excerpt
         excerpt = ""
-        lines = content.split("\n")
-        for line in lines:
-            if line.startswith("# "):
-                continue
-            if line.strip() and not line.startswith("---") and not line.startswith("<"):
-                excerpt = line.strip()[:150]
-                if len(line.strip()) > 150:
-                    excerpt += "..."
-                break
+        # Split content and find the actual story text after frontmatter and title
+        parts = content.split("---", 2)  # Split on frontmatter delimiters
+        if len(parts) >= 3:
+            # Get content after frontmatter
+            story_content = parts[2]
+            lines = story_content.split("\n")
+            past_title = False
+            for line in lines:
+                if line.startswith("# "):
+                    past_title = True
+                    continue
+                # Get first non-empty paragraph after title
+                if past_title and line.strip() and not line.startswith("<") and not line.startswith("##"):
+                    excerpt = line.strip()[:150]
+                    if len(line.strip()) > 150:
+                        excerpt += "..."
+                    break
         
         slug = story_file.stem
         
@@ -247,9 +255,9 @@ def update_bits_index():
     # Read current content
     content = bits_index.read_text()
     
-    # Replace archive list - find the comment and replace everything until closing div
+    # Replace archive list - replace everything between opening and closing div tags
     content = re.sub(
-        r'(<div class="archive-list">)\s*<!--.*?-->\s*(</div>)',
+        r'(<div class="archive-list">).*?(</div>)',
         f'\\g<1>\n{archive_html}\\g<2>',
         content,
         flags=re.DOTALL
@@ -312,9 +320,9 @@ def update_links_index():
     # Read current content
     content = links_index.read_text()
     
-    # Replace archive list - find the comment and replace everything until closing div
+    # Replace archive list - replace everything between opening and closing div tags
     content = re.sub(
-        r'(<div class="archive-list">)\s*<!--.*?-->\s*(</div>)',
+        r'(<div class="archive-list">).*?(</div>)',
         f'\\g<1>\n{archive_html}\\g<2>',
         content,
         flags=re.DOTALL
@@ -426,9 +434,9 @@ def update_editions_index():
     # Read current content
     content = editions_index.read_text()
     
-    # Replace archive list - find the comment and replace everything until closing div
+    # Replace archive list - replace everything between opening and closing div tags
     content = re.sub(
-        r'(<div class="archive-list">)\s*<!--.*?-->\s*(</div>)',
+        r'(<div class="archive-list">).*?(</div>)',
         f'\\g<1>\n{archive_html}\\g<2>',
         content,
         flags=re.DOTALL
