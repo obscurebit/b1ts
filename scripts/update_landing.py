@@ -351,6 +351,8 @@ def create_edition_snapshot(edition: int, story: Optional[Dict], links: List[Dic
     # Build content
     story_section = ""
     if story:
+        # Extract just the slug from the story URL path
+        story_slug = story['url'].split('/')[-2] if story['url'].endswith('/') else story['url'].split('/')[-1]
         story_section = f"""
 ## Today's Bit
 
@@ -358,7 +360,7 @@ def create_edition_snapshot(edition: int, story: Optional[Dict], links: List[Dic
 
 {story['excerpt']}
 
-[Read the full story →](../{story['url']})
+[Read the full story →](../../../bits/posts/{story_slug}/)
 """
     
     links_section = ""
@@ -369,7 +371,7 @@ def create_edition_snapshot(edition: int, story: Optional[Dict], links: List[Dic
 
 {links_list}
 
-[View all links →](../links/posts/{date_str}-daily-links/)
+[View all links →](../../../links/posts/{date_str}-daily-links/)
 """
     
     content = f"""---
