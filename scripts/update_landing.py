@@ -202,7 +202,7 @@ def update_bits_index():
     
     # Build archive list HTML
     archive_html = ""
-    for i, story_file in enumerate(story_files, 1):
+    for story_file in story_files:
         content = story_file.read_text()
         
         # Parse frontmatter
@@ -214,6 +214,9 @@ def update_bits_index():
             date_str = match.group(1)
             date_obj = datetime.strptime(date_str, "%Y-%m-%d")
             date_formatted = date_obj.strftime("%B %d, %Y")
+            # Calculate edition number from date
+            post_date = date_obj.date()
+            edition_num = (post_date - LAUNCH_DATE).days + 1
         
         # Extract first paragraph as excerpt
         excerpt = ""
@@ -230,7 +233,7 @@ def update_bits_index():
         slug = story_file.stem
         
         archive_html += f'''  <a href="posts/{slug}/" class="archive-item">
-    <div class="archive-item__number">{i:02d}</div>
+    <div class="archive-item__number">{edition_num:03d}</div>
     <div class="archive-item__content">
       <span class="archive-item__date">{date_formatted}</span>
       <h3 class="archive-item__title">{title}</h3>
@@ -273,7 +276,7 @@ def update_links_index():
     
     # Build archive list HTML
     archive_html = ""
-    for i, link_file in enumerate(link_files, 1):
+    for link_file in link_files:
         content = link_file.read_text()
         
         # Parse frontmatter
@@ -285,6 +288,9 @@ def update_links_index():
             date_str = match.group(1)
             date_obj = datetime.strptime(date_str, "%Y-%m-%d")
             date_formatted = date_obj.strftime("%B %d, %Y")
+            # Calculate edition number from date
+            post_date = date_obj.date()
+            edition_num = (post_date - LAUNCH_DATE).days + 1
         
         # Count links in the post
         link_count = len(re.findall(r'^## \d+\.', content, re.MULTILINE))
@@ -292,7 +298,7 @@ def update_links_index():
         slug = link_file.stem
         
         archive_html += f'''  <a href="posts/{slug}/" class="archive-item archive-item--links">
-    <div class="archive-item__number">{i:02d}</div>
+    <div class="archive-item__number">{edition_num:03d}</div>
     <div class="archive-item__content">
       <span class="archive-item__date">{date_formatted}</span>
       <h3 class="archive-item__title">Daily Discoveries</h3>
