@@ -620,7 +620,8 @@
   }
   
   .ob-hero__title-line--2 {
-    -webkit-text-stroke: 1px var(--ob-cream);
+    color: var(--ob-text-primary);
+    -webkit-text-stroke: 0;
   }
   
   .ob-today,

@@ -376,7 +376,7 @@ def create_edition_snapshot(edition: int, story: Optional[Dict], links: List[Dic
 
 {story['excerpt']}
 
-[Read the full story →](../../bits/posts/{story_slug}/)
+[Read the full story →](../../../bits/posts/{story_slug}/)
 """
     
     links_section = ""
@@ -387,7 +387,7 @@ def create_edition_snapshot(edition: int, story: Optional[Dict], links: List[Dic
 
 {links_list}
 
-[View all links →](../../links/posts/{date_str}-daily-links/)
+[View all links →](../../../links/posts/{date_str}-daily-links/)
 """
     
     # Get theme from story or links
