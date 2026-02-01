@@ -227,7 +227,7 @@ def publish_to_substack_api(story: dict, links: list, edition: int, draft: bool 
 
 
 def publish_to_substack(story: dict, links: list, edition: int, draft: bool = True):
-    """Publish post to Substack using Playwright UI automation (fallback)."""
+    """Publish post to Substack using Playwright UI automation."""
     sync_playwright = get_playwright()
     
     publication_url = os.environ.get("SUBSTACK_PUBLICATION_URL")
@@ -252,46 +252,72 @@ def publish_to_substack(story: dict, links: list, edition: int, draft: bool = Tr
         page.goto(f"{publication_url}/publish/post", timeout=120000)
         page.wait_for_load_state("domcontentloaded")
         
+        # Wait for page to fully load
+        page.wait_for_timeout(5000)
+        
+        # Take screenshot for debugging
+        page.screenshot(path="/tmp/substack-editor.png")
+        print("Screenshot saved to /tmp/substack-editor.png")
+        
         # Check if we're logged in
         if "sign-in" in page.url.lower():
             print("Error: Not logged in. Run --login to refresh session.")
             browser.close()
             sys.exit(1)
         
+        print(f"Current URL: {page.url}")
         print("Creating new post...")
         
-        # Wait for editor to load
-        page.wait_for_timeout(2000)
+        # Wait for editor to be ready - look for the title input area
+        page.wait_for_timeout(3000)
         
-        # Fill title
+        # Substack editor: click on title area and type
         print("Setting title...")
-        title_input = page.query_selector('[data-testid="post-title-input"], input[placeholder*="Title"], .post-title')
-        if title_input:
-            title_input.fill(title)
-        else:
-            # Try contenteditable
+        # Try multiple selectors for title
+        title_selectors = [
+            'div[data-testid="editor-title"]',
+            'textarea[placeholder*="Title"]',
+            'div[placeholder*="Title"]',
+            '.post-title',
+            'h1[contenteditable="true"]',
+            'div.pencraft.pc-display-flex h1',
+        ]
+        
+        title_set = False
+        for selector in title_selectors:
+            elem = page.query_selector(selector)
+            if elem:
+                print(f"  Found title element: {selector}")
+                elem.click()
+                page.wait_for_timeout(200)
+                page.keyboard.type(title)
+                title_set = True
+                break
+        
+        if not title_set:
+            # Fallback: just start typing (editor might focus title by default)
+            print("  Using keyboard fallback for title")
             page.keyboard.type(title)
         
         page.wait_for_timeout(500)
+        page.keyboard.press("Tab")  # Move to next field
         
-        # Fill subtitle
+        # Set subtitle
         print("Setting subtitle...")
-        subtitle_input = page.query_selector('[data-testid="post-subtitle-input"], input[placeholder*="subtitle"], .post-subtitle')
-        if subtitle_input:
-            subtitle_input.fill(subtitle)
+        page.wait_for_timeout(300)
+        page.keyboard.type(subtitle)
         
         page.wait_for_timeout(500)
+        page.keyboard.press("Tab")  # Move to body
         
-        # Fill body content
+        # Build and add content
         print("Adding content...")
-        
-        # Build content
         content_lines = [
-            f"*Edition #{edition:03d} • {date_str}*",
+            f"Edition #{edition:03d} • {date_str}",
             "",
             "---",
             "",
-            f"## 📖 Today's Bit",
+            f"## Today's Bit",
             "",
             f"### {story['title']}",
             "",
@@ -299,64 +325,85 @@ def publish_to_substack(story: dict, links: list, edition: int, draft: bool = Tr
             "",
             "---",
             "",
-            "## 🔗 Today's Obscure Links",
+            "## Today's Obscure Links",
             "",
             "Curated discoveries from the hidden corners of the web:",
             "",
         ]
         
         for link in links[:7]:
-            content_lines.append(f"[{link['title']}]({link['url']})")
+            content_lines.append(f"**{link['title']}**")
+            content_lines.append(link['url'])
             content_lines.append("")
         
         content_lines.extend([
             "---",
             "",
-            "*Come back tomorrow for more obscure discoveries.*",
+            "Come back tomorrow for more obscure discoveries.",
             "",
-            "[Visit Obscure Bit](https://obscurebit.com) for the full archive.",
+            "Visit https://obscurebit.com for the full archive.",
         ])
         
         content = "\n".join(content_lines)
         
-        # Find editor and paste content
-        editor = page.query_selector('[contenteditable="true"], .ProseMirror, .editor-content')
-        if editor:
-            editor.click()
-            page.wait_for_timeout(300)
-            # Use clipboard to paste markdown
-            page.keyboard.type(content, delay=1)
+        # Type content (using shorter delay for speed)
+        page.wait_for_timeout(500)
+        page.keyboard.type(content, delay=0)
         
-        page.wait_for_timeout(1000)
+        page.wait_for_timeout(2000)
         
-        if draft:
-            print("Saving as draft...")
-            # Look for save/draft button
-            save_btn = page.query_selector('button:has-text("Save draft"), button:has-text("Save")')
-            if save_btn:
-                save_btn.click()
-            page.wait_for_timeout(2000)
-            print(f"\n✅ Draft saved!")
-        else:
+        # Take screenshot after content
+        page.screenshot(path="/tmp/substack-with-content.png")
+        print("Screenshot saved to /tmp/substack-with-content.png")
+        
+        # Substack auto-saves, but we need to wait
+        print("Waiting for auto-save...")
+        page.wait_for_timeout(5000)
+        
+        if not draft:
             print("Publishing...")
-            # Look for publish button
-            publish_btn = page.query_selector('button:has-text("Publish"), button:has-text("Continue")')
-            if publish_btn:
-                publish_btn.click()
-            page.wait_for_timeout(2000)
+            # Look for Continue/Publish button
+            publish_selectors = [
+                'button:has-text("Continue")',
+                'button:has-text("Publish")',
+                'button[data-testid="publish-button"]',
+            ]
             
-            # Confirm publish if needed
-            confirm_btn = page.query_selector('button:has-text("Publish now"), button:has-text("Confirm")')
-            if confirm_btn:
-                confirm_btn.click()
+            for selector in publish_selectors:
+                btn = page.query_selector(selector)
+                if btn:
+                    print(f"  Clicking: {selector}")
+                    btn.click()
+                    break
             
             page.wait_for_timeout(3000)
+            
+            # Look for final publish confirmation
+            confirm_selectors = [
+                'button:has-text("Publish now")',
+                'button:has-text("Send")',
+            ]
+            
+            for selector in confirm_selectors:
+                btn = page.query_selector(selector)
+                if btn:
+                    print(f"  Clicking: {selector}")
+                    btn.click()
+                    break
+            
+            page.wait_for_timeout(5000)
             mark_edition_published(edition)
             print(f"\n✅ Published edition #{edition:03d}!")
+        else:
+            print(f"\n✅ Draft created (auto-saved)!")
         
         # Get the post URL
         current_url = page.url
         print(f"Post URL: {current_url}")
+        
+        # Final screenshot
+        page.screenshot(path="/tmp/substack-final.png")
+        print("Final screenshot saved to /tmp/substack-final.png")
         
         browser.close()
         return True
@@ -427,8 +474,8 @@ def main():
     title, subtitle, markdown_body = generate_substack_markdown(story, links, edition)
     save_substack_markdown(title, subtitle, markdown_body, edition)
     
-    # Publish using API (more reliable than UI automation)
-    publish_to_substack_api(story, links, edition, draft=args.draft)
+    # Publish using Playwright UI automation (bypasses Cloudflare)
+    publish_to_substack(story, links, edition, draft=args.draft)
 
 
 if __name__ == "__main__":
