@@ -158,8 +158,78 @@ def load_state():
     sys.exit(1)
 
 
+def get_cookies_from_state():
+    """Extract cookie string from Playwright state for API use."""
+    state = load_state()
+    cookies = state.get("cookies", [])
+    
+    # Convert to cookie string format: "name=value; name2=value2"
+    cookie_parts = []
+    for cookie in cookies:
+        if cookie.get("domain", "").endswith("substack.com"):
+            cookie_parts.append(f"{cookie['name']}={cookie['value']}")
+    
+    return "; ".join(cookie_parts)
+
+
+def publish_to_substack_api(story: dict, links: list, edition: int, draft: bool = True):
+    """Publish post to Substack using API with cookies from Playwright state."""
+    from substack import Api
+    
+    publication_url = os.environ.get("SUBSTACK_PUBLICATION_URL")
+    if not publication_url:
+        print("Error: SUBSTACK_PUBLICATION_URL not set")
+        sys.exit(1)
+    
+    cookie_string = get_cookies_from_state()
+    
+    print("Authenticating with Substack API...")
+    api = Api(
+        email=None,
+        password=None,
+        publication_url=publication_url,
+    )
+    api._cookies = cookie_string
+    
+    # Build post content using native blocks (from publish_substack.py)
+    from publish_substack import build_substack_content
+    
+    today = date.today()
+    date_str = today.strftime("%B %d, %Y")
+    title = f"Obscure Bit #{edition:03d}: {story['title']}"
+    subtitle = f"Daily discoveries from the hidden corners of the internet • {date_str}"
+    
+    body = build_substack_content(story, links, edition)
+    
+    print("Creating post...")
+    draft_response = api.create_draft(
+        title=title,
+        subtitle=subtitle,
+        body=body,
+    )
+    
+    draft_id = draft_response.get("id")
+    if not draft_id:
+        print("Error: Failed to create draft")
+        print(f"Response: {draft_response}")
+        sys.exit(1)
+    
+    if draft:
+        print(f"\n✅ Draft saved!")
+        print(f"   {publication_url}/publish/post/{draft_id}")
+    else:
+        print("Publishing...")
+        api.prepublish_draft(draft_id)
+        api.publish_draft(draft_id)
+        mark_edition_published(edition)
+        print(f"\n✅ Published!")
+        print(f"   Edition #{edition:03d} marked as published")
+    
+    return True
+
+
 def publish_to_substack(story: dict, links: list, edition: int, draft: bool = True):
-    """Publish post to Substack using Playwright."""
+    """Publish post to Substack using Playwright UI automation (fallback)."""
     sync_playwright = get_playwright()
     
     publication_url = os.environ.get("SUBSTACK_PUBLICATION_URL")
@@ -359,8 +429,8 @@ def main():
     title, subtitle, markdown_body = generate_substack_markdown(story, links, edition)
     save_substack_markdown(title, subtitle, markdown_body, edition)
     
-    # Publish
-    publish_to_substack(story, links, edition, draft=args.draft)
+    # Publish using API (more reliable than UI automation)
+    publish_to_substack_api(story, links, edition, draft=args.draft)
 
 
 if __name__ == "__main__":
