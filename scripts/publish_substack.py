@@ -11,6 +11,8 @@ Usage:
   python publish_substack.py                  # Generate markdown only (for CI)
   python publish_substack.py --publish        # Generate and publish immediately
   python publish_substack.py --draft          # Generate and save as Substack draft
+  python publish_substack.py --edition 1 --draft  # Publish specific edition as draft
+  python publish_substack.py --edition 1 --publish --force  # Force republish
 
 Requires environment variables for --publish or --draft:
 
@@ -30,7 +32,7 @@ import sys
 import re
 import argparse
 import json
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 
 from substack import Api
@@ -65,6 +67,27 @@ def mark_edition_published(edition: int):
     published_file.write_text(f"Edition #{edition:03d} published on {date.today()}\n")
 
 
+def get_story_by_edition(edition: int) -> dict:
+    """Get story content for a specific edition number."""
+    launch_date = date(2026, 1, 30)
+    target_date = launch_date + timedelta(days=edition - 1)
+    
+    stories_dir = Path("docs/bits/posts")
+    if not stories_dir.exists():
+        return None
+    
+    # Look for story file matching the target date
+    date_prefix = target_date.strftime("%Y-%m-%d")
+    matching_files = list(stories_dir.glob(f"{date_prefix}-*.md"))
+    
+    if not matching_files:
+        return None
+    
+    story_file = matching_files[0]
+    content = story_file.read_text()
+    return _parse_story_content(content, story_file.name)
+
+
 def get_latest_story() -> dict:
     """Get the latest story content."""
     stories_dir = Path("docs/bits/posts")
@@ -77,6 +100,11 @@ def get_latest_story() -> dict:
     
     latest = story_files[0]
     content = latest.read_text()
+    return _parse_story_content(content, latest.name)
+
+
+def _parse_story_content(content: str, filename: str) -> dict:
+    """Parse story content from markdown."""
     
     # Parse frontmatter
     lines = content.split("\n")
@@ -109,8 +137,29 @@ def get_latest_story() -> dict:
     return {
         "title": title,
         "body": body,
-        "filename": latest.name,
+        "filename": filename,
     }
+
+
+def get_links_by_edition(edition: int) -> list:
+    """Get links for a specific edition number."""
+    launch_date = date(2026, 1, 30)
+    target_date = launch_date + timedelta(days=edition - 1)
+    
+    links_dir = Path("docs/links/posts")
+    if not links_dir.exists():
+        return []
+    
+    # Look for links file matching the target date
+    date_prefix = target_date.strftime("%Y-%m-%d")
+    matching_files = list(links_dir.glob(f"{date_prefix}-*.md"))
+    
+    if not matching_files:
+        return []
+    
+    links_file = matching_files[0]
+    content = links_file.read_text()
+    return _parse_links_content(content)
 
 
 def get_latest_links() -> list:
@@ -125,8 +174,11 @@ def get_latest_links() -> list:
     
     latest = link_files[0]
     content = latest.read_text()
-    
-    # Parse links from markdown
+    return _parse_links_content(content)
+
+
+def _parse_links_content(content: str) -> list:
+    """Parse links from markdown content."""
     # Format: ## 1. Title Here ... <a href="URL">
     links = []
     lines = content.split("\n")
@@ -374,15 +426,22 @@ def main():
     parser = argparse.ArgumentParser(description="Generate and publish Obscure Bit to Substack")
     parser.add_argument("--publish", action="store_true", help="Publish immediately to Substack")
     parser.add_argument("--draft", action="store_true", help="Save as Substack draft (for review)")
+    parser.add_argument("--edition", type=int, help="Specific edition number to publish (default: latest)")
+    parser.add_argument("--force", action="store_true", help="Force republish even if already published")
     args = parser.parse_args()
     
-    # Get content
-    edition = get_edition_number()
-    story = get_latest_story()
-    links = get_latest_links()
+    # Get content for specific edition or latest
+    if args.edition:
+        edition = args.edition
+        story = get_story_by_edition(edition)
+        links = get_links_by_edition(edition)
+    else:
+        edition = get_edition_number()
+        story = get_latest_story()
+        links = get_latest_links()
     
     if not story:
-        print("Error: No story found")
+        print(f"Error: No story found for edition #{edition:03d}")
         sys.exit(1)
     
     if not links:
@@ -394,11 +453,10 @@ def main():
     print(f"Links: {len(links)} links")
     
     # Check if already published
-    if is_edition_published(edition):
+    if is_edition_published(edition) and not args.force:
         print(f"\nEdition #{edition:03d} already published to Substack. Skipping.")
-        if args.publish:
-            print("Use --force to republish (not recommended)")
-            sys.exit(0)
+        print("Use --force to republish")
+        sys.exit(0)
     
     print()
     

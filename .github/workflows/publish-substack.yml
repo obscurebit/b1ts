@@ -1,0 +1,79 @@
+name: Publish to Substack
+
+on:
+  workflow_dispatch:
+    inputs:
+      edition:
+        description: 'Edition number to publish (e.g., 1, 2, 3)'
+        required: true
+        type: number
+      mode:
+        description: 'Publish mode'
+        required: true
+        type: choice
+        options:
+          - draft
+          - publish
+        default: draft
+      force:
+        description: 'Force republish even if already published'
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+env:
+  SUBSTACK_EMAIL: ${{ secrets.SUBSTACK_EMAIL }}
+  SUBSTACK_PASSWORD: ${{ secrets.SUBSTACK_PASSWORD }}
+  SUBSTACK_COOKIES: ${{ secrets.SUBSTACK_COOKIES }}
+  SUBSTACK_PUBLICATION_URL: ${{ secrets.SUBSTACK_PUBLICATION_URL }}
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install openai pyyaml requests python-substack
+
+      - name: Publish Edition to Substack
+        run: |
+          ARGS="--edition ${{ github.event.inputs.edition }}"
+          
+          if [ "${{ github.event.inputs.mode }}" = "publish" ]; then
+            ARGS="$ARGS --publish"
+          else
+            ARGS="$ARGS --draft"
+          fi
+          
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then
+            ARGS="$ARGS --force"
+          fi
+          
+          echo "Running: python scripts/publish_substack.py $ARGS"
+          python scripts/publish_substack.py $ARGS
+
+      - name: Commit published marker
+        if: ${{ github.event.inputs.mode == 'publish' }}
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "📰 Published edition #${{ github.event.inputs.edition }} to Substack"
+            git push
+          fi
