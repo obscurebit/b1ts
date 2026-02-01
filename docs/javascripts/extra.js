@@ -6,25 +6,47 @@ function shareContent(url, title) {
     navigator.share({
       title: title,
       url: url
-    }).catch(console.error);
+    }).catch(() => {
+      copyToClipboard(url);
+    });
   } else {
     copyToClipboard(url);
   }
 }
 
 function copyToClipboard(text) {
-  navigator.clipboard.writeText(text).then(() => {
-    showToast('Link copied!');
-  }).catch(() => {
-    // Fallback for older browsers
-    const textarea = document.createElement('textarea');
-    textarea.value = text;
-    document.body.appendChild(textarea);
-    textarea.select();
-    document.execCommand('copy');
-    document.body.removeChild(textarea);
-    showToast('Link copied!');
-  });
+  // Try modern clipboard API first
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(() => {
+      showToast('Link copied!');
+    }).catch(() => {
+      fallbackCopy(text);
+    });
+  } else {
+    fallbackCopy(text);
+  }
+}
+
+function fallbackCopy(text) {
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.style.position = 'fixed'; // Prevent scrolling to bottom
+  document.body.appendChild(textarea);
+  textarea.focus();
+  textarea.select();
+  
+  try {
+    const successful = document.execCommand('copy');
+    if (successful) {
+      showToast('Link copied!');
+    } else {
+      showToast('Copy failed');
+    }
+  } catch (err) {
+    showToast('Copy failed');
+  }
+  
+  document.body.removeChild(textarea);
 }
 
 function showToast(message) {
@@ -56,16 +78,14 @@ function toggleStory(button) {
 
 // Initialize share buttons on page load
 document.addEventListener('DOMContentLoaded', function() {
-  // Add share buttons to content cards
-  document.querySelectorAll('.content-card').forEach(card => {
-    const shareBtn = card.querySelector('.share-btn');
-    if (shareBtn) {
-      shareBtn.addEventListener('click', function() {
-        const url = this.dataset.url || window.location.href;
-        const title = this.dataset.title || document.title;
-        shareContent(url, title);
-      });
-    }
+  // Add event listeners to ALL share buttons
+  document.querySelectorAll('.share-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const url = this.dataset.url || window.location.href;
+      const title = this.dataset.title || document.title;
+      shareContent(url, title);
+    });
   });
 
   // Initialize expand buttons
