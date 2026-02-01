@@ -2,7 +2,7 @@
 
 ## Overview
 
-Obscure Bit is an automated content generation system that creates and publishes daily tech stories, links, and newsletter editions. The system runs on GitHub Actions and publishes to GitHub Pages and Substack.
+Obscure Bit is an automated content generation system that creates and publishes daily tech stories, links, and newsletter editions. The system runs on GitHub Actions for content generation and publishes to GitHub Pages. Substack publishing requires local execution due to Cloudflare restrictions.
 
 ## Architecture
 
@@ -11,7 +11,10 @@ graph TB
     subgraph "GitHub Actions (Daily 6AM UTC)"
         A[Generate Content] --> B[Update Landing Pages]
         B --> C[Commit & Push]
-        C --> D[Create Substack Draft]
+    end
+    
+    subgraph "Local Machine (Manual)"
+        D[Publish to Substack]
     end
     
     subgraph "Content Sources"
@@ -105,28 +108,39 @@ sequenceDiagram
     GA->>GH: Commit changes
     GA->>GH: Push to main
     
-    GA->>SS: Create newsletter draft
-    SS-->>GA: Draft ID
-    Note over GA: Draft saved for manual review
+    Note over GA: Content ready for local Substack publish
 ```
 
-### 2. Manual Publishing Flow
+### 2. Local Substack Publishing (Manual)
+
+**Note:** Substack uses Cloudflare protection that blocks GitHub Actions datacenter IPs. Publishing must be done locally.
 
 ```mermaid
 sequenceDiagram
-    participant User as User
+    participant User as Local Machine
+    participant PW as Playwright Browser
     participant SS as Substack
-    participant GH as GitHub Repo
     
-    User->>SS: Review draft
-    User->>SS: Publish draft
+    User->>PW: python scripts/substack_playwright.py --edition N --draft
+    PW->>SS: Open editor (bypasses Cloudflare)
+    PW->>SS: Fill title, subtitle, content
+    SS->>SS: Auto-save draft
     
-    User->>GH: python scripts/publish_substack.py --publish
-    GH->>SS: Publish to Substack
-    SS-->>GH: Published
-    GH->>GH: Mark edition as published
+    User->>SS: Review draft in browser
+    User->>SS: Click Publish
     
-    Note over User: Edition won't be published again
+    Note over User: Or use --publish flag to publish directly
+```
+
+#### Local Setup
+```bash
+# One-time: Install Playwright and login
+pip3 install playwright
+python3 -m playwright install chromium
+python3 scripts/substack_playwright.py --login
+
+# Daily: Publish edition
+python3 scripts/substack_playwright.py --edition 3 --draft
 ```
 
 ### 3. Content Update Flow
@@ -179,8 +193,7 @@ b1ts/
 OPENAI_API_KEY:          # OpenAI API access
 OPENAI_API_BASE:         # API endpoint (NVIDIA)
 OPENAI_MODEL:            # Model name
-SUBSTACK_COOKIES:        # Browser cookies (JSON)
-SUBSTACK_PUBLICATION_URL: # https://obscurebit.substack.com
+# Note: Substack secrets removed - Cloudflare blocks CI
 ```
 
 ### Local Development
@@ -218,7 +231,9 @@ stateDiagram-v2
 - Continue with other content types
 
 ### Substack Failures
-- Cookie authentication bypasses captchas
+- Cloudflare blocks GitHub Actions IPs (use local publishing)
+- Playwright browser automation bypasses Cloudflare locally
+- Browser state saved in ~/.playwright_state.json
 - Draft creation is non-destructive
 - Duplicate prevention protects against retries
 
