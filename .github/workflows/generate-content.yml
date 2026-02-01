@@ -72,13 +72,6 @@ jobs:
             echo "Changes pushed - GitHub Pages will deploy automatically"
           fi
 
-      - name: Create Substack Draft
-        if: ${{ env.SUBSTACK_PUBLICATION_URL != '' }}
-        run: |
-          if [ -n "$SUBSTACK_COOKIES" ]; then
-            python scripts/publish_substack.py --draft
-          elif [ -n "$SUBSTACK_EMAIL" ] && [ -n "$SUBSTACK_PASSWORD" ]; then
-            python scripts/publish_substack.py --draft
-          else
-            echo "No Substack credentials configured"
-          fi
+      # NOTE: Substack publishing must be done locally due to Cloudflare IP restrictions
+      # The cookies are tied to the user's browser IP and won't work from GitHub Actions
+      # To publish: python scripts/publish_substack.py --edition N --draft (locally)
