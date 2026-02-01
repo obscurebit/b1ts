@@ -83,29 +83,50 @@ python scripts/generate_links.py
 python scripts/update_landing.py
 ```
 
-### Substack Publishing (Local Only)
+### Substack Publishing
 
-Substack uses Cloudflare protection that blocks GitHub Actions datacenter IPs. Publishing must be done locally.
+Substack uses Cloudflare protection that blocks automated requests. We use a two-script approach:
+
+#### 1. Cookie Extraction (One-time setup)
 
 ```bash
-# One-time setup
+# Install Playwright (one-time)
 pip3 install playwright
 python3 -m playwright install chromium
 
-# Login to Substack (opens browser, saves session)
+# Login and extract cookies (opens browser)
 python3 scripts/substack_playwright.py --login
 
-# Create draft for edition
-python3 scripts/substack_playwright.py --edition 3 --draft
-
-# Publish directly
-python3 scripts/substack_playwright.py --edition 3 --publish
-
-# Force republish
-python3 scripts/substack_playwright.py --edition 3 --publish --force
+# Export cookies for GitHub Actions (optional)
+python3 scripts/substack_playwright.py --export-cookies
 ```
 
-Browser state is saved to `~/.playwright_state.json`.
+Cookies are saved to `~/.substack_cookies.json`.
+
+#### 2. Publishing with API
+
+```bash
+# Set environment variables
+export SUBSTACK_PUBLICATION_URL="https://obscurebit.substack.com"
+export SUBSTACK_COOKIES_PATH="$HOME/.substack_cookies.json"
+
+# Create draft for edition
+python3 scripts/publish_substack.py --edition 3 --draft
+
+# Publish directly
+python3 scripts/publish_substack.py --edition 3 --publish
+
+# Force republish
+python3 scripts/publish_substack.py --edition 3 --publish --force
+```
+
+#### Alternative: Manual Cookie Export
+
+1. Log in to substack.com in your browser
+2. Open Developer Tools → Application → Cookies → substack.com
+3. Click "Export all as JSON" or copy manually
+4. Save to file: `~/.substack_cookies.json`
+5. Set env: `export SUBSTACK_COOKIES_PATH="$HOME/.substack_cookies.json"`
 
 ## Project Structure
 
@@ -125,7 +146,8 @@ b1ts/
 │   ├── generate_story.py       # AI story generation
 │   ├── generate_links.py       # AI links generation
 │   ├── update_landing.py       # Landing page updater
-│   └── substack_playwright.py  # Substack publishing (local only)
+│   ├── publish_substack.py     # Substack publishing via API
+│   └── substack_playwright.py  # Cookie extraction helper
 ├── prompts/
 │   ├── story_system.md         # Story generation system prompt
 │   ├── links_system.md         # Links generation system prompt
@@ -166,21 +188,61 @@ Editions are numbered from launch date (2026-01-30):
 
 The `get_edition_number()` function in scripts calculates this.
 
+## Unified Theming System
+
+All daily content shares a cohesive theme through `prompts/themes.yaml`:
+
+### Theme Structure
+```yaml
+themes:
+  - name: "quantum mysteries"
+    story: "quantum computing paradoxes"
+    links: "quantum physics papers"
+  - name: "biological computing"
+    story: "DNA-based data storage"
+    links: "synthetic biology research"
+```
+
+### Theme Selection
+- 18 rotating themes (day of year % 18)
+- Date-specific overrides for special editions
+- Theme included in frontmatter of all content
+
+### Implementation
+- `generate_story.py` uses theme's `story` direction
+- `generate_links.py` uses theme's `links` direction
+- Theme displayed on landing page and archive pages
+- Edition snapshots include theme metadata
+
 ## Substack Integration
 
-### Why Local Only?
+### Architecture
 
-Cloudflare blocks GitHub Actions IPs. We tested:
-- API calls with cookies → 403 blocked
-- Playwright browser automation → Challenge never passes
-- 60+ second waits → Still blocked
+We use a two-script approach to bypass Cloudflare protection:
 
-### How It Works
+1. **`substack_playwright.py`** - Extracts cookies via browser automation
+2. **`publish_substack.py`** - Uses those cookies for clean API publishing
 
-1. Run `--login` locally to authenticate via browser
-2. Session saved to `~/.playwright_state.json`
-3. Run `--edition N --draft` to create drafts
-4. Playwright opens headless browser, types content, auto-saves
+### Cookie Authentication
+
+The system supports two cookie methods:
+
+**File-based (recommended for local):**
+```bash
+export SUBSTACK_COOKIES_PATH="$HOME/.substack_cookies.json"
+```
+
+**Environment variable (for CI):**
+```bash
+export SUBSTACK_COOKIES='[{"name":"session", "value":"..."}]'
+```
+
+### Publishing Flow
+
+1. Extract cookies once with Playwright (bypasses Cloudflare)
+2. Use cookies with Substack API (clean, reliable)
+3. API creates draft → prepublish → publish
+4. Marker file prevents duplicate publishing
 
 ### Published Markers
 
@@ -189,7 +251,7 @@ After publishing, a marker file is created:
 docs/substack/edition-003-published.txt
 ```
 
-This prevents duplicate publishing.
+This prevents duplicate publishing. Use `--force` to override.
 
 ## Tech Stack
 
@@ -197,7 +259,7 @@ This prevents duplicate publishing.
 - **AI**: NVIDIA NIM API (Llama 3.3 Nemotron)
 - **Hosting**: GitHub Pages
 - **CI**: GitHub Actions
-- **Substack**: Playwright (local only)
+- **Substack**: Playwright + API (cookie-based auth)
 
 ## See Also
 
