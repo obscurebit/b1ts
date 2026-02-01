@@ -44,7 +44,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install openai pyyaml requests playwright
+          pip install openai pyyaml requests playwright python-substack
           playwright install chromium
 
       - name: Publish Edition to Substack
