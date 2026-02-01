@@ -66,12 +66,13 @@ def login_and_save_state(email: str, password: str, publication_url: str):
         browser = p.chromium.launch(headless=False)  # Show browser for login
         context = browser.new_context()
         page = context.new_page()
+        page.set_default_timeout(120000)  # 2 minute timeout
         
         print("Opening Substack login page...")
-        page.goto("https://substack.com/sign-in")
+        page.goto("https://substack.com/sign-in", timeout=120000)
         
-        # Wait for page to load
-        page.wait_for_load_state("networkidle")
+        # Wait for page to load (use domcontentloaded instead of networkidle)
+        page.wait_for_load_state("domcontentloaded")
         
         # Fill email
         print("Entering email...")
