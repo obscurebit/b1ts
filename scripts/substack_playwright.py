@@ -185,11 +185,9 @@ def publish_to_substack_api(story: dict, links: list, edition: int, draft: bool 
     
     print("Authenticating with Substack API...")
     api = Api(
-        email=None,
-        password=None,
+        cookies_string=cookie_string,
         publication_url=publication_url,
     )
-    api._cookies = cookie_string
     
     # Build post content using native blocks (from publish_substack.py)
     from publish_substack import build_substack_content
