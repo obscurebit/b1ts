@@ -178,10 +178,11 @@ def publish_to_substack(story: dict, links: list, edition: int, draft: bool = Tr
         browser = p.chromium.launch(headless=True)
         context = browser.new_context(storage_state=state)
         page = context.new_page()
+        page.set_default_timeout(120000)  # 2 minute timeout
         
         print("Opening Substack editor...")
-        page.goto(f"{publication_url}/publish/post")
-        page.wait_for_load_state("networkidle")
+        page.goto(f"{publication_url}/publish/post", timeout=120000)
+        page.wait_for_load_state("domcontentloaded")
         
         # Check if we're logged in
         if "sign-in" in page.url.lower():
