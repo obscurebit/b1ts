@@ -64,6 +64,14 @@ jobs:
           echo "Running: python scripts/substack_playwright.py $ARGS"
           python scripts/substack_playwright.py $ARGS
 
+      - name: Upload debug screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: substack-screenshots
+          path: /tmp/substack-*.png
+          retention-days: 3
+
       - name: Commit published marker
         if: ${{ github.event.inputs.mode == 'publish' }}
         run: |
