@@ -22,6 +22,10 @@ env:
   OPENAI_API_BASE: ${{ secrets.OPENAI_API_BASE || 'https://integrate.api.nvidia.com/v1' }}
   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
   OPENAI_MODEL: ${{ secrets.OPENAI_MODEL || 'nvidia/llama-3.3-nemotron-super-49b-v1.5' }}
+  SUBSTACK_EMAIL: ${{ secrets.SUBSTACK_EMAIL }}
+  SUBSTACK_PASSWORD: ${{ secrets.SUBSTACK_PASSWORD }}
+  SUBSTACK_COOKIES: ${{ secrets.SUBSTACK_COOKIES }}
+  SUBSTACK_PUBLICATION_URL: ${{ secrets.SUBSTACK_PUBLICATION_URL }}
 
 jobs:
   generate:
@@ -39,7 +43,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install openai pyyaml requests
+          pip install openai pyyaml requests python-substack
 
       - name: Generate Daily Story
         if: ${{ github.event_name == 'schedule' || github.event.inputs.generate_story == 'true' }}
@@ -52,6 +56,9 @@ jobs:
       - name: Update Landing Page
         run: python scripts/update_landing.py
 
+      - name: Generate Substack Newsletter
+        run: python scripts/publish_substack.py
+
       - name: Commit and Push
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
@@ -62,4 +69,16 @@ jobs:
           else
             git commit -m "🤖 Daily content update - $(date +'%Y-%m-%d')"
             git push
+            echo "Changes pushed - GitHub Pages will deploy automatically"
+          fi
+
+      - name: Create Substack Draft
+        if: ${{ env.SUBSTACK_PUBLICATION_URL != '' }}
+        run: |
+          if [ -n "$SUBSTACK_COOKIES" ]; then
+            python scripts/publish_substack.py --draft
+          elif [ -n "$SUBSTACK_EMAIL" ] && [ -n "$SUBSTACK_PASSWORD" ]; then
+            python scripts/publish_substack.py --draft
+          else
+            echo "No Substack credentials configured"
           fi

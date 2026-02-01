@@ -31,6 +31,9 @@ Add these secrets to your repository (Settings → Secrets and variables → Act
 | `OPENAI_API_KEY` | Your NVIDIA NIM API key | ✅ Yes |
 | `OPENAI_API_BASE` | API base URL (default: `https://integrate.api.nvidia.com/v1`) | Optional |
 | `OPENAI_MODEL` | Model to use (default: `nvidia/llama-3.3-nemotron-super-49b-v1.5`) | Optional |
+| `SUBSTACK_EMAIL` | Your Substack account email | Optional |
+| `SUBSTACK_PASSWORD` | Your Substack account password | Optional |
+| `SUBSTACK_PUBLICATION_URL` | Your publication URL (e.g., `https://obscurebit.substack.com`) | Optional |
 
 ### 3. Enable GitHub Pages
 
@@ -38,7 +41,17 @@ Add these secrets to your repository (Settings → Secrets and variables → Act
 2. Set Source to "GitHub Actions"
 3. (Optional) Add custom domain and configure DNS
 
-### 4. Configure Custom Domain (Optional)
+### 4. Configure Substack Publishing (Optional)
+
+To automatically publish daily editions to Substack:
+
+1. Create a Substack publication at [substack.com](https://substack.com)
+2. Add the three Substack secrets to your GitHub repository (see table above)
+3. The daily workflow will automatically publish after content generation
+
+**Note:** Substack doesn't have an official API, so this uses their internal API with your credentials. Your password is stored securely as a GitHub Secret.
+
+### 5. Configure Custom Domain (Optional)
 
 If using a custom domain:
 
