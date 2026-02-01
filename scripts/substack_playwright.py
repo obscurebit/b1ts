@@ -252,8 +252,19 @@ def publish_to_substack(story: dict, links: list, edition: int, draft: bool = Tr
         page.goto(f"{publication_url}/publish/post", timeout=120000)
         page.wait_for_load_state("domcontentloaded")
         
-        # Wait for page to fully load
-        page.wait_for_timeout(5000)
+        # Wait for Cloudflare challenge to pass (up to 60 seconds)
+        print("Waiting for Cloudflare challenge...")
+        for i in range(12):  # 12 x 5 seconds = 60 seconds
+            page.wait_for_timeout(5000)
+            page_content = page.content()
+            
+            # Check if still on Cloudflare challenge
+            if "Verifying you are human" in page_content or "checking your browser" in page_content.lower():
+                print(f"  Still waiting... ({(i+1)*5}s)")
+                page.screenshot(path=f"/tmp/substack-cf-{i}.png")
+            else:
+                print(f"  Cloudflare passed after {(i+1)*5}s")
+                break
         
         # Take screenshot for debugging
         page.screenshot(path="/tmp/substack-editor.png")
@@ -262,6 +273,13 @@ def publish_to_substack(story: dict, links: list, edition: int, draft: bool = Tr
         # Check if we're logged in
         if "sign-in" in page.url.lower():
             print("Error: Not logged in. Run --login to refresh session.")
+            browser.close()
+            sys.exit(1)
+        
+        # Check if still stuck on Cloudflare
+        page_content = page.content()
+        if "Verifying you are human" in page_content:
+            print("Error: Cloudflare challenge did not pass after 60s")
             browser.close()
             sys.exit(1)
         
