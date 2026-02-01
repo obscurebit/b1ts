@@ -3,6 +3,7 @@ date: 2026-01-31
 title: "The Memory Weaver of Elarion"
 description: "A daily AI-generated story exploring speculative fiction"
 author: "https://integrate.api.nvidia.com/v1 / nvidia/llama-3.3-nemotron-super-49b-v1.5"
+theme: "forgotten technology"
 ---
 
 # The Memory Weaver of Elarion

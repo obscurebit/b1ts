@@ -25,26 +25,216 @@ Environment variables:
 
 import os
 import sys
+import re
 import json
 import base64
 import argparse
 from pathlib import Path
 from datetime import date, timedelta
 
-# Import content functions from publish_substack
-from publish_substack import (
-    get_edition_number,
-    get_story_by_edition,
-    get_links_by_edition,
-    get_latest_story,
-    get_latest_links,
-    is_edition_published,
-    mark_edition_published,
-    generate_substack_markdown,
-    save_substack_markdown,
-)
-
 STATE_FILE = Path.home() / ".substack_playwright_state.json"
+LAUNCH_DATE = date(2026, 1, 30)
+
+
+def get_edition_number() -> int:
+    """Calculate the current edition number based on launch date."""
+    today = date.today()
+    days_since_launch = (today - LAUNCH_DATE).days
+    return days_since_launch + 1
+
+
+def is_edition_published(edition: int) -> bool:
+    """Check if an edition has already been published to Substack."""
+    substack_dir = Path("docs/substack")
+    if not substack_dir.exists():
+        return False
+    published_file = substack_dir / f"edition-{edition:03d}-published.txt"
+    return published_file.exists()
+
+
+def mark_edition_published(edition: int):
+    """Mark an edition as published to Substack."""
+    substack_dir = Path("docs/substack")
+    substack_dir.mkdir(parents=True, exist_ok=True)
+    published_file = substack_dir / f"edition-{edition:03d}-published.txt"
+    published_file.write_text(f"Edition #{edition:03d} published on {date.today()}\n")
+
+
+def _parse_story_content(content: str, filename: str) -> dict:
+    """Parse story content from markdown."""
+    lines = content.split("\n")
+    in_frontmatter = False
+    title = ""
+    
+    for i, line in enumerate(lines):
+        if line.strip() == "---":
+            if not in_frontmatter:
+                in_frontmatter = True
+            else:
+                break
+        elif in_frontmatter and line.startswith("title:"):
+            title = line.split(":", 1)[1].strip().strip('"\'')
+    
+    body_start = content.find("\n", content.find("# ")) + 1
+    body = content[body_start:].strip()
+    
+    if "<button class=\"share-btn\"" in body:
+        body = re.sub(r'\n*---\n*<button class="share-btn".*?</button>\s*$', '', body, flags=re.DOTALL).strip()
+    
+    if body.startswith("#"):
+        body = "\n".join(body.split("\n")[1:]).strip()
+    
+    return {"title": title, "body": body, "filename": filename}
+
+
+def get_story_by_edition(edition: int) -> dict:
+    """Get story content for a specific edition number."""
+    target_date = LAUNCH_DATE + timedelta(days=edition - 1)
+    stories_dir = Path("docs/bits/posts")
+    if not stories_dir.exists():
+        return None
+    
+    date_prefix = target_date.strftime("%Y-%m-%d")
+    matching_files = list(stories_dir.glob(f"{date_prefix}-*.md"))
+    
+    if not matching_files:
+        return None
+    
+    story_file = matching_files[0]
+    content = story_file.read_text()
+    return _parse_story_content(content, story_file.name)
+
+
+def get_latest_story() -> dict:
+    """Get the latest story content."""
+    stories_dir = Path("docs/bits/posts")
+    if not stories_dir.exists():
+        return None
+    
+    story_files = sorted(stories_dir.glob("*.md"), reverse=True)
+    if not story_files:
+        return None
+    
+    latest = story_files[0]
+    content = latest.read_text()
+    return _parse_story_content(content, latest.name)
+
+
+def _parse_links_content(content: str) -> list:
+    """Parse links from markdown content."""
+    links = []
+    lines = content.split("\n")
+    current_title = None
+    
+    for line in lines:
+        if line.strip().startswith("## "):
+            title_match = re.match(r'##\s*(?:\d+\.\s*)?(.+)', line.strip())
+            if title_match:
+                current_title = title_match.group(1).strip()
+        elif current_title and '<a href="' in line:
+            url_match = re.search(r'<a href="([^"]+)"', line)
+            if url_match:
+                links.append({"title": current_title, "url": url_match.group(1)})
+                current_title = None
+    
+    return links
+
+
+def get_links_by_edition(edition: int) -> list:
+    """Get links for a specific edition number."""
+    target_date = LAUNCH_DATE + timedelta(days=edition - 1)
+    links_dir = Path("docs/links/posts")
+    if not links_dir.exists():
+        return []
+    
+    date_prefix = target_date.strftime("%Y-%m-%d")
+    matching_files = list(links_dir.glob(f"{date_prefix}-*.md"))
+    
+    if not matching_files:
+        return []
+    
+    links_file = matching_files[0]
+    content = links_file.read_text()
+    return _parse_links_content(content)
+
+
+def get_latest_links() -> list:
+    """Get the latest links."""
+    links_dir = Path("docs/links/posts")
+    if not links_dir.exists():
+        return []
+    
+    link_files = sorted(links_dir.glob("*.md"), reverse=True)
+    if not link_files:
+        return []
+    
+    latest = link_files[0]
+    content = latest.read_text()
+    return _parse_links_content(content)
+
+
+def generate_substack_markdown(story: dict, links: list, edition: int) -> tuple:
+    """Generate the markdown content for Substack. Returns (title, subtitle, markdown_body)."""
+    today = date.today()
+    date_str = today.strftime("%B %d, %Y")
+    
+    title = f"Obscure Bit #{edition:03d}: {story['title']}"
+    subtitle = f"Daily discoveries from the hidden corners of the internet • {date_str}"
+    
+    links_html = ""
+    for link in links[:7]:
+        links_html += f'<p><a href="{link["url"]}">{link["title"]}</a></p>\n'
+    
+    markdown_body = f"""*Edition #{edition:03d} • {date_str}*
+
+---
+
+## 📖 Today's Bit
+
+### {story['title']}
+
+{story['body']}
+
+---
+
+## 🔗 Today's Obscure Links
+
+Curated discoveries from the hidden corners of the web:
+
+{links_html}
+
+---
+
+*Come back tomorrow for more obscure discoveries.*
+
+[Visit Obscure Bit](https://obscurebit.com) for the full archive.
+"""
+    
+    return title, subtitle, markdown_body
+
+
+def save_substack_markdown(title: str, subtitle: str, body: str, edition: int) -> Path:
+    """Save the Substack markdown to a file for history."""
+    today = date.today()
+    date_str = today.strftime("%Y-%m-%d")
+    
+    substack_dir = Path("docs/substack")
+    substack_dir.mkdir(parents=True, exist_ok=True)
+    
+    filename = substack_dir / f"{date_str}-edition-{edition:03d}.md"
+    
+    content = f"""---
+title: "{title}"
+subtitle: "{subtitle}"
+date: {date_str}
+edition: {edition}
+---
+
+{body}"""
+    
+    filename.write_text(content)
+    print(f"✓ Saved: {filename}")
+    return filename
 
 
 def get_playwright():

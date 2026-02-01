@@ -1,8 +1,9 @@
 ---
-date: 2026-01-31 18:37:30.319172
+date: 2026-01-31
 title: "Obscure Links - January 31, 2026"
 description: "Today's curated obscure links from the hidden corners of the web"
 author: "https://integrate.api.nvidia.com/v1 / nvidia/llama-3.3-nemotron-super-49b-v1.5"
+theme: "forgotten technology"
 ---
 
 

@@ -10,12 +10,12 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
-  <a href="posts/2026-02-01-the-mycelium-codex/" class="archive-item">
+  <a href="posts/2026-02-01-the-bloom-protocol/" class="archive-item">
     <div class="archive-item__number">003</div>
     <div class="archive-item__content">
       <span class="archive-item__date">February 01, 2026</span>
-      <h3 class="archive-item__title">The Mycelium Codex</h3>
-      <p class="archive-item__excerpt">Dr. Lira Voss had spent her career unearthing dead languages, but the symbols etched into the cavern wall beneath New Amazon’s ice cap were alive. The...</p>
+      <h3 class="archive-item__title">The Bloom Protocol</h3>
+      <p class="archive-item__excerpt">Ji-Hoon adjusted the sterilization hood’s frayed elastic under his chin. The algae in the petri dish pulsed faintly, a bioluminescent shiver across it...</p>
     </div>
     <span class="archive-item__category">Story</span>
     <span class="archive-item__arrow">→</span>

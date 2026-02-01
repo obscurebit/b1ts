@@ -35,8 +35,11 @@ def get_latest_story() -> Optional[Dict]:
     
     # Parse frontmatter
     title = ""
+    theme = ""
     if match := re.search(r'^title:\s*["\']?(.+?)["\']?\s*$', content, re.MULTILINE):
         title = match.group(1)
+    if match := re.search(r'^theme:\s*["\']?(.+?)["\']?\s*$', content, re.MULTILINE):
+        theme = match.group(1)
     
     # Extract first paragraph after the title as excerpt
     lines = content.split("\n")
@@ -61,6 +64,7 @@ def get_latest_story() -> Optional[Dict]:
         "excerpt": excerpt,
         "url": url_path,
         "date": latest.stem[:10],
+        "theme": theme,
     }
 
 
@@ -123,6 +127,15 @@ def update_home_html(story: Optional[Dict], links: List[Dict], total_links: int,
         f'Edition #{edition:03d}',
         content
     )
+    
+    # Update theme category if we have a story with theme
+    if story and 'theme' in story:
+        theme_name = story['theme']
+        content = re.sub(
+            r'(<span class="ob-today__category">)[^<]+(</span>)',
+            f"\\g<1>{theme_name.title()}\\g<2>",
+            content
+        )
     
     # Update story section if we have a story
     if story:
@@ -292,6 +305,7 @@ def update_links_index():
         # Parse frontmatter
         title = ""
         date_str = ""
+        theme = ""
         if match := re.search(r'^title:\s*["\']?(.+?)["\']?\s*$', content, re.MULTILINE):
             title = match.group(1)
         if match := re.search(r'^date:\s*(\d{4}-\d{2}-\d{2})', content, re.MULTILINE):
@@ -301,6 +315,8 @@ def update_links_index():
             # Calculate edition number from date
             post_date = date_obj.date()
             edition_num = (post_date - LAUNCH_DATE).days + 1
+        if match := re.search(r'^theme:\s*["\']?(.+?)["\']?\s*$', content, re.MULTILINE):
+            theme = match.group(1)
         
         # Count links in the post
         link_count = len(re.findall(r'^## \d+\.', content, re.MULTILINE))
@@ -312,7 +328,7 @@ def update_links_index():
     <div class="archive-item__content">
       <span class="archive-item__date">{date_formatted}</span>
       <h3 class="archive-item__title">Daily Discoveries</h3>
-      <p class="archive-item__excerpt">Curated obscure links from the hidden corners of the web...</p>
+      <p class="archive-item__excerpt">Curated {theme if theme else 'obscure'} links from the hidden corners of the web...</p>
     </div>
     <span class="archive-item__category">{link_count} Links</span>
     <span class="archive-item__arrow">→</span>
@@ -360,7 +376,7 @@ def create_edition_snapshot(edition: int, story: Optional[Dict], links: List[Dic
 
 {story['excerpt']}
 
-[Read the full story →](../../../bits/posts/{story_slug}/)
+[Read the full story →](../../bits/posts/{story_slug}/)
 """
     
     links_section = ""
@@ -371,13 +387,17 @@ def create_edition_snapshot(edition: int, story: Optional[Dict], links: List[Dic
 
 {links_list}
 
-[View all links →](../../../links/posts/{date_str}-daily-links/)
+[View all links →](../../links/posts/{date_str}-daily-links/)
 """
+    
+    # Get theme from story or links
+    theme = story.get('theme', 'unknown') if story else 'unknown'
     
     content = f"""---
 title: "Edition #{edition:03d}"
 description: "Obscure Bit - {today.strftime('%B %d, %Y')}"
 date: {date_str}
+theme: "{theme}"
 ---
 
 # Edition #{edition:03d}

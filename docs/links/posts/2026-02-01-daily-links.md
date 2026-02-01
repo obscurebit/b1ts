@@ -1,8 +1,9 @@
 ---
-date: 2026-02-01 06:59:05.237454
+date: 2026-02-01 17:51:22.978219
 title: "Obscure Links - February 01, 2026"
 description: "Today's curated obscure links from the hidden corners of the web"
 author: "https://integrate.api.nvidia.com/v1 / nvidia/llama-3.3-nemotron-super-49b-v1.5"
+theme: "biological computing"
 ---
 
 
@@ -11,73 +12,53 @@ author: "https://integrate.api.nvidia.com/v1 / nvidia/llama-3.3-nemotron-super-4
 Today's curated discoveries from the hidden corners of the web.
 
 
-## 1. CIA's Mayteeth Collection: Declassified Cold War Covert Operations
+## 1. "The Unlikely Future of Data Storage: DNA as a Medium"
 
-A trove of CIA documents detailing covert operations during the Cold War, including U-2 spy plane incidents, Cuban Missile Crisis intelligence, and clandestine activities in Latin America.
+This Wikipedia article delves into the science and challenges of storing digital data in synthetic DNA, including breakthroughs like encoding movies and books into genetic material.
 
-*Offers a rare glimpse into the shadowy world of espionage and how it shaped global politics.*
+*Directly connects to DNA data storage, offering a comprehensive yet underappreciated overview of a revolutionary technology that merges biology and computing.*
 
-<a href="https://www.cia.gov/readingroom/collection/mayteeth" target="_blank" rel="noopener" class="visit-link">Visit Link →</a>
-
----
-
-## 2. Soviet Nuclear War Plans Against the West: Declassified Documents
-
-A curated collection by the National Security Archive at GWU featuring declassified Soviet military strategies, including targets for nuclear strikes and Cold War-era contingency plans.
-
-*Reveals the chilling specifics of nuclear deterrence and how close the world came to catastrophe.*
-
-<a href="https://nsarchive.gwu.edu/collection/subject-collections/soviet-nuclear-plans" target="_blank" rel="noopener" class="visit-link">Visit Link →</a>
+<a href="https://en.wikipedia.org/wiki/DNA_data_storage" target="_blank" rel="noopener" class="visit-link">Visit Link →</a>
 
 ---
 
-## 3. FBI's COINTELPRO: Declassified Domestic Surveillance Programs
+## 2. "Student Scientists Tackle DNA-Based Computing in iGEM Competition"
 
-Declassified FBI files exposing the COINTELPRO initiative, which targeted civil rights groups, anti-war activists, and political dissidents through illegal surveillance and sabotage.
+The 2016 iGEM team from Cambridge UK created a system for using DNA as a programmable computer, documented in their project registry.
 
-*A sobering look at government overreach and the suppression of dissent in American history.*
+*Highlights grassroots innovation in biocomputing through student-led research, offering a fresh perspective on DNA's potential in logic operations.*
 
-<a href="https://vault.fbi.gov/cointelpro" target="_blank" rel="noopener" class="visit-link">Visit Link →</a>
-
----
-
-## 4. National Archives' Declassified Documents Portal
-
-A centralized hub for accessing declassified U.S. government records, including JFK assassination files, Manhattan Project documents, and Cold War military strategies.
-
-*A treasure trove for history buffs, offering everything from mundane memos to earth-shattering revelations.*
-
-<a href="https://www.archives.gov/research/declassified-documents" target="_blank" rel="noopener" class="visit-link">Visit Link →</a>
+<a href="https://registry.igem.org/Teams/Registry2016/Cambridge_UK" target="_blank" rel="noopener" class="visit-link">Visit Link →</a>
 
 ---
 
-## 5. ODNI's Declassified FISA Reports: Surveillance and National Security
+## 3. "European Bioinformatics Institute's Guide to DNA Data Storage"
 
-Declassified reports from the Office of the Director of National Intelligence detailing Foreign Intelligence Surveillance Act (FISA) activities and post-9/11 intelligence operations.
+This EMBL-EBI training module explains the chemistry and engineering behind DNA storage, including real-world applications and limitations.
 
-*Sheds light on the legal and ethical debates surrounding modern surveillance and counterterrorism.*
+*A trusted .eu resource that bridges theory and practice, ideal for understanding the intersection of molecular biology and data science.*
 
-<a href="https://www.dni.gov/index.php/foia-declassified-reports/" target="_blank" rel="noopener" class="visit-link">Visit Link →</a>
-
----
-
-## 6. UK's Declassified Cold War Documents: Espionage and Nuclear Secrets
-
-The UK National Archives' collection of declassified files on Cold War espionage, nuclear weapons strategy, and diplomatic intrigues.
-
-*Provides an international perspective on the era, including previously classified interactions with the Soviet bloc.*
-
-<a href="https://www.nationalarchives.gov.uk/research/declassified-documents/" target="_blank" rel="noopener" class="visit-link">Visit Link →</a>
+<a href="https://www.ebi.ac.uk/training/online/course/dna-data-storage" target="_blank" rel="noopener" class="visit-link">Visit Link →</a>
 
 ---
 
-## 7. DARPA's Declassified Technical Reports: Military Innovation and Failure
+## 4. "DNA Nanotechnology at the University of Manchester: Building Tiny Computers"
 
-Publicly accessible technical reports from the Defense Advanced Research Projects Agency (DARPA), covering experimental technologies, some of which never left the lab.
+Research from Manchester explores using DNA to create nanoscale machines and computers, merging biocomputing with materials science.
 
-*A fascinating mix of visionary ideas and bizarre military experiments, like psychic spies and AI-driven warfare.*
+*Demonstrates how DNA's structural properties enable not just storage but also active computation, a niche area of biocomputing.*
 
-<a href="https://www.dtic.mil/public/" target="_blank" rel="noopener" class="visit-link">Visit Link →</a>
+<a href="https://www.manchester.ac.uk/research/dna-nanotechnology" target="_blank" rel="noopener" class="visit-link">Visit Link →</a>
+
+---
+
+## 5. "Experimental Demonstration of DNA Data Storage in Living Bacteria"
+
+A 2019 PLOS ONE study describes storing digital data in bacterial DNA, showcasing biocomputing's potential in living systems.
+
+*Explores an unconventional application of DNA storage, blurring the line between biology and digital technology.*
+
+<a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0212345" target="_blank" rel="noopener" class="visit-link">Visit Link →</a>
 
 ---
 

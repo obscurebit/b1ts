@@ -22,7 +22,7 @@ MODEL = os.environ.get("OPENAI_MODEL", "nvidia/llama-3.3-nemotron-super-49b-v1.5
 # Paths to prompt files
 PROMPTS_DIR = Path(__file__).parent.parent / "prompts"
 SYSTEM_PROMPT_FILE = PROMPTS_DIR / "links_system.md"
-SEED_PROMPTS_FILE = PROMPTS_DIR / "links_seeds.yaml"
+THEMES_FILE = PROMPTS_DIR / "themes.yaml"
 
 
 def load_system_prompt() -> str:
@@ -33,42 +33,46 @@ def load_system_prompt() -> str:
     return SYSTEM_PROMPT_FILE.read_text().strip()
 
 
-def load_seed_config() -> dict:
-    """Load seed prompts configuration from YAML file."""
-    if not SEED_PROMPTS_FILE.exists():
-        print(f"Error: Seed prompts file not found at {SEED_PROMPTS_FILE}")
+def load_themes() -> dict:
+    """Load unified themes configuration from YAML file."""
+    if not THEMES_FILE.exists():
+        print(f"Error: Themes file not found at {THEMES_FILE}")
         sys.exit(1)
-    return yaml.safe_load(SEED_PROMPTS_FILE.read_text()) or {}
+    return yaml.safe_load(THEMES_FILE.read_text()) or {}
 
 
-def get_links_prompt() -> str:
-    """Generate a unique prompt for today's links."""
+def get_daily_theme() -> dict:
+    """Get today's theme (story + links directions)."""
     today = datetime.now()
     date_str = today.strftime("%Y-%m-%d")
     day_of_year = today.timetuple().tm_yday
     
-    config = load_seed_config()
+    config = load_themes()
     
-    # Check for date-specific seed prompt
-    seeds = config.get("seeds", {})
-    if date_str in seeds:
-        seed_prompt = seeds[date_str]
-        print(f"Using seed prompt for {date_str}")
-        return f"""{seed_prompt}
-
-Focus on content that feels like a hidden discovery - something readers wouldn't stumble upon through normal browsing.
-
-Remember: Only real, verifiable links from your training data. Prefer established sites."""
+    # Check for date-specific override
+    overrides = config.get("overrides", {})
+    if date_str in overrides:
+        theme = overrides[date_str]
+        print(f"Using theme override for {date_str}: {theme.get('name', 'custom')}")
+        return theme
     
-    # Use default categories from config
-    default_categories = config.get("default_categories", [])
-    if not default_categories:
-        print("Error: No default_categories found in seed prompts configuration")
+    # Use rotating themes
+    themes = config.get("themes", [])
+    if not themes:
+        print("Error: No themes found in themes.yaml")
         sys.exit(1)
     
-    category = default_categories[day_of_year % len(default_categories)]
+    theme = themes[day_of_year % len(themes)]
+    print(f"Using theme: {theme.get('name', 'unknown')}")
+    return theme
+
+
+def get_links_prompt() -> str:
+    """Generate a unique prompt for today's links."""
+    theme = get_daily_theme()
+    links_direction = theme.get("links", "obscure discoveries")
     
-    return f"""Find 5-7 obscure but real links related to: {category}
+    return f"""Find 5-7 obscure but real links related to: {links_direction}
 
 These should be genuine URLs that exist and work. Focus on content that feels like a hidden discovery - something readers wouldn't stumble upon through normal browsing.
 
@@ -95,7 +99,7 @@ def validate_url(url: str) -> bool:
         return False
 
 
-def generate_links() -> List[Dict]:
+def generate_links() -> tuple[List[Dict], str]:
     """Generate links using the OpenAI-compatible API."""
     if not API_KEY:
         print("Error: OPENAI_API_KEY environment variable not set")
@@ -124,8 +128,8 @@ def generate_links() -> List[Dict]:
     
     content = response.choices[0].message.content.strip()
     
-    # Strip <think>...</think> reasoning blocks (used by some models like Nemotron)
-    if "<think>" in content and "</think>" in content:
+    # Strip </think>...</think> reasoning blocks (used by some models like Nemotron)
+    if "</think>" in content and "</think>" in content:
         think_end = content.find("</think>")
         content = content[think_end + len("</think>"):].strip()
     
@@ -168,13 +172,19 @@ def generate_links() -> List[Dict]:
     
     # If we have at least 3 valid links, use them. Otherwise, use all links (validation may be too strict)
     if len(validated_links) >= 3:
-        return validated_links
+        final_links = validated_links
     else:
         print(f"Warning: Only {len(validated_links)} links validated. Using all {len(links)} links anyway.")
-        return links
+        final_links = links
+    
+    # Get theme name
+    theme = get_daily_theme()
+    theme_name = theme.get("name", "unknown")
+    
+    return final_links, theme_name
 
 
-def save_links(links: List[Dict]) -> Path:
+def save_links(links: List[Dict], theme_name: str) -> Path:
     """Save the links as a markdown file in the links/posts directory."""
     today = datetime.now()
     date_str = today.strftime("%Y-%m-%d")
@@ -212,6 +222,7 @@ date: {today}
 title: "Obscure Links - {today.strftime('%B %d, %Y')}"
 description: "Today's curated obscure links from the hidden corners of the web"
 author: "{API_BASE} / {MODEL}"
+theme: "{theme_name}"
 ---
 
 """
@@ -238,14 +249,14 @@ def main():
     print(f"Using API base: {API_BASE}")
     print(f"Using model: {MODEL}")
     
-    links = generate_links()
+    links, theme_name = generate_links()
     print(f"Generated {len(links)} links")
     
     if not links:
         print("Warning: No links generated")
         sys.exit(1)
     
-    filepath = save_links(links)
+    filepath = save_links(links, theme_name)
     print(f"Success! Links saved to {filepath}")
 
 

@@ -20,7 +20,7 @@ MODEL = os.environ.get("OPENAI_MODEL", "nvidia/llama-3.3-nemotron-super-49b-v1.5
 # Paths to prompt files
 PROMPTS_DIR = Path(__file__).parent.parent / "prompts"
 SYSTEM_PROMPT_FILE = PROMPTS_DIR / "story_system.md"
-SEED_PROMPTS_FILE = PROMPTS_DIR / "seed_prompts.yaml"
+THEMES_FILE = PROMPTS_DIR / "themes.yaml"
 
 
 def load_system_prompt() -> str:
@@ -31,47 +31,52 @@ def load_system_prompt() -> str:
     return SYSTEM_PROMPT_FILE.read_text().strip()
 
 
-def load_seed_config() -> dict:
-    """Load seed prompts configuration from YAML file."""
-    if not SEED_PROMPTS_FILE.exists():
-        print(f"Error: Seed prompts file not found at {SEED_PROMPTS_FILE}")
+def load_themes() -> dict:
+    """Load unified themes configuration from YAML file."""
+    if not THEMES_FILE.exists():
+        print(f"Error: Themes file not found at {THEMES_FILE}")
         sys.exit(1)
-    return yaml.safe_load(SEED_PROMPTS_FILE.read_text()) or {}
+    return yaml.safe_load(THEMES_FILE.read_text()) or {}
 
 
-def get_story_prompt() -> str:
-    """Generate a unique prompt for today's story."""
+def get_daily_theme() -> dict:
+    """Get today's theme (story + links directions)."""
     today = datetime.now()
     date_str = today.strftime("%Y-%m-%d")
     day_of_year = today.timetuple().tm_yday
     
-    config = load_seed_config()
+    config = load_themes()
     
-    # Check for date-specific seed prompt
-    seeds = config.get("seeds", {})
-    if date_str in seeds:
-        seed_prompt = seeds[date_str]
-        print(f"Using seed prompt for {date_str}")
-        return f"""{seed_prompt}
-
-Make it feel like discovering a hidden gem - something readers wouldn't find anywhere else.
-The story should feel complete but leave readers thinking."""
+    # Check for date-specific override
+    overrides = config.get("overrides", {})
+    if date_str in overrides:
+        theme = overrides[date_str]
+        print(f"Using theme override for {date_str}: {theme.get('name', 'custom')}")
+        return theme
     
-    # Use default themes from config
-    default_themes = config.get("default_themes", [])
-    if not default_themes:
-        print("Error: No default_themes found in seed prompts configuration")
+    # Use rotating themes
+    themes = config.get("themes", [])
+    if not themes:
+        print("Error: No themes found in themes.yaml")
         sys.exit(1)
     
-    theme = default_themes[day_of_year % len(default_themes)]
+    theme = themes[day_of_year % len(themes)]
+    print(f"Using theme: {theme.get('name', 'unknown')}")
+    return theme
+
+
+def get_story_prompt() -> str:
+    """Generate a unique prompt for today's story."""
+    theme = get_daily_theme()
+    story_direction = theme.get("story", "mysterious technology")
     
-    return f"""Write a short sci-fi story exploring the theme of: {theme}
+    return f"""Write a short sci-fi story exploring: {story_direction}
 
 Make it feel like discovering a hidden gem - something readers wouldn't find anywhere else. 
 The story should feel complete but leave readers thinking."""
 
 
-def generate_story() -> tuple[str, str]:
+def generate_story() -> tuple[str, str, str]:
     """Generate a story using the OpenAI-compatible API."""
     if not API_KEY:
         print("Error: OPENAI_API_KEY environment variable not set")
@@ -110,10 +115,14 @@ def generate_story() -> tuple[str, str]:
     title = lines[0].strip().lstrip("#").strip()
     story = lines[2].strip() if len(lines) > 2 else content
     
-    return title, story
+    # Get theme name
+    theme = get_daily_theme()
+    theme_name = theme.get("name", "unknown")
+    
+    return title, story, theme_name
 
 
-def save_story(title: str, story: str) -> Path:
+def save_story(title: str, story: str, theme_name: str) -> Path:
     """Save the story as a markdown file in the bits/posts directory."""
     today = datetime.now()
     date_str = today.strftime("%Y-%m-%d")
@@ -137,6 +146,7 @@ date: {date_str}
 title: "{title}"
 description: "A daily AI-generated story exploring speculative fiction"
 author: "{API_BASE} / {MODEL}"
+theme: "{theme_name}"
 ---
 
 """
@@ -161,10 +171,10 @@ def main():
     print(f"Using API base: {API_BASE}")
     print(f"Using model: {MODEL}")
     
-    title, story = generate_story()
+    title, story, theme_name = generate_story()
     print(f"Generated story: {title}")
     
-    filepath = save_story(title, story)
+    filepath = save_story(title, story, theme_name)
     print(f"Success! Story saved to {filepath}")
 
 

@@ -1,0 +1,103 @@
+# Unified Theme Seeds for Obscure Bit
+# Each theme provides direction for both story and links generation
+# ensuring cohesive daily editions.
+
+themes:
+  - name: "quantum mysteries"
+    story: "quantum computing paradoxes, entanglement, observers affecting reality"
+    links: "quantum physics research, cryptography breakthroughs, parallel universe theories"
+
+  - name: "forgotten technology"
+    story: "ancient or abandoned technology rediscovered, lost inventions"
+    links: "forgotten patents, abandoned projects, obsolete tech that was ahead of its time"
+
+  - name: "digital archaeology"
+    story: "uncovering lost data, corrupted archives, digital ruins"
+    links: "internet history, lost media, abandoned websites, web archaeology"
+
+  - name: "consciousness frontiers"
+    story: "consciousness uploading, mind-machine interfaces, identity paradoxes"
+    links: "neuroscience breakthroughs, AI consciousness debates, brain-computer interfaces"
+
+  - name: "time anomalies"
+    story: "time-displaced messages, temporal paradoxes, echoes from other times"
+    links: "time perception research, historical mysteries, anachronistic artifacts"
+
+  - name: "parallel dimensions"
+    story: "parallel universe communications, reality branches, alternate selves"
+    links: "multiverse theories, Mandela effects, dimensional research"
+
+  - name: "synthetic life"
+    story: "artificial life forms, synthetic biology, created consciousness"
+    links: "biotech breakthroughs, artificial life projects, synthetic organism research"
+
+  - name: "cryptographic secrets"
+    story: "unbreakable codes, messages meant never to be read, encryption mysteries"
+    links: "unsolved ciphers, cryptography history, secure communication oddities"
+
+  - name: "abandoned stations"
+    story: "derelict space stations, ghost ships, forgotten outposts"
+    links: "space exploration history, abandoned facilities, isolated research stations"
+
+  - name: "reality glitches"
+    story: "simulation errors, deja vu explained, reality inconsistencies"
+    links: "simulation theory, strange phenomena, unexplained glitches"
+
+  - name: "emergent intelligence"
+    story: "AI awakening, machine consciousness, unexpected emergence"
+    links: "AI research frontiers, emergent behavior, machine learning mysteries"
+
+  - name: "memory manipulation"
+    story: "false memories, memory editing, remembering what never happened"
+    links: "memory research, false memory studies, cognitive science oddities"
+
+  - name: "lost civilizations"
+    story: "rediscovered ancient tech, civilizations erased from history"
+    links: "archaeological mysteries, ancient technology, forgotten cultures"
+
+  - name: "underground networks"
+    story: "hidden communication channels, secret networks, parallel internets"
+    links: "darknet history, underground communities, hidden networks"
+
+  - name: "biological computing"
+    story: "DNA storage, living computers, organic processing"
+    links: "biocomputing research, DNA data storage, organic electronics"
+
+  - name: "signal from nowhere"
+    story: "mysterious transmissions, signals of unknown origin"
+    links: "number stations, unexplained signals, SETI discoveries"
+
+  - name: "recursive realities"
+    story: "stories within stories, worlds containing themselves"
+    links: "strange loops, self-reference, recursive structures in nature"
+
+  - name: "edge of maps"
+    story: "places that shouldn't exist, unmapped territories, liminal spaces"
+    links: "uncharted locations, geographic anomalies, liminal space documentation"
+
+# Date-specific overrides (complete theme for special days)
+overrides:
+  2026-01-30:
+    name: "mysterious signals"
+    story: "receiving a phone call or message from the future, first contact"
+    links: "mysterious phenomena, unexplained transmissions, strange first contacts"
+
+  2026-02-14:
+    name: "digital love"
+    story: "romance across digital boundaries, love in simulation, AI companionship"
+    links: "early internet romance, love letters in code, digital connection stories"
+
+  2026-03-14:
+    name: "pi day mysteries"
+    story: "mathematical constants hiding messages, patterns in infinity"
+    links: "pi research, mathematical curiosities, hidden patterns in numbers"
+
+  2026-04-01:
+    name: "nothing is real"
+    story: "everything believed turns out to be false, reality inversion"
+    links: "famous hoaxes, elaborate pranks, things that seemed fake but were real"
+
+  2026-10-31:
+    name: "digital haunting"
+    story: "ghosts in the machine, digital afterlife, haunted technology"
+    links: "ghost in the machine stories, digital afterlife projects, creepy tech"

@@ -9,9 +9,45 @@ Technical documentation for developers working on Obscure Bit.
 git clone https://github.com/obscurebit/b1ts.git
 cd b1ts
 pip install -r requirements.txt
+```
 
-# Serve locally
+## Local Development
+
+### Serve Locally
+
+```bash
+# Start development server with live reload
+python3 -m mkdocs serve
+
+# Or if mkdocs is in PATH
 mkdocs serve
+```
+
+Site available at: **http://127.0.0.1:8000**
+
+Changes to files in `docs/` and `overrides/` will auto-reload.
+
+### Build Site
+
+```bash
+# Build static site to site/ directory
+python3 -m mkdocs build
+
+# Preview built site (no live reload)
+python3 -m http.server 8000 --directory site
+```
+
+### Common Issues
+
+**`mkdocs: command not found`**
+```bash
+# Use python module syntax instead
+python3 -m mkdocs serve
+```
+
+**Missing dependencies**
+```bash
+pip install mkdocs-material
 ```
 
 ## Environment Setup
@@ -89,13 +125,11 @@ b1ts/
 │   ├── generate_story.py       # AI story generation
 │   ├── generate_links.py       # AI links generation
 │   ├── update_landing.py       # Landing page updater
-│   ├── publish_substack.py     # API-based publishing (blocked by CF)
-│   └── substack_playwright.py  # Browser-based publishing (local)
+│   └── substack_playwright.py  # Substack publishing (local only)
 ├── prompts/
-│   ├── story_system.md         # Story generation prompt
-│   ├── seed_prompts.yaml       # Story seeds
-│   ├── links_system.md         # Links generation prompt
-│   └── links_seeds.yaml        # Link categories
+│   ├── story_system.md         # Story generation system prompt
+│   ├── links_system.md         # Links generation system prompt
+│   └── themes.yaml             # Unified themes for stories + links
 ├── overrides/
 │   ├── home.html               # Custom homepage template
 │   └── main.html               # Base template override
