@@ -180,8 +180,12 @@ def update_home_html(story: Optional[Dict], links: List[Dict], total_links: int,
         
         # Add "view all" link
         remaining = max(0, total_links - 3)
+        # Latest links slug = latest file stem
+        latest_links = sorted(Path("docs/links/posts").glob("*.md"), reverse=True)
+        latest_slug = latest_links[0].stem if latest_links else ""
+        cta_href = f"{{{{ 'links/posts/{latest_slug}/' | url }}}}" if latest_slug else "{{ 'links/' | url }}"
         links_html += f'''
-      <a href="{{{{ 'links/' | url }}}}" class="ob-link ob-link--more">
+      <a href="{cta_href}" class="ob-link ob-link--more">
         <span class="ob-link__more-text">View all links</span>
         <span class="ob-link__more-count">+{remaining} more today</span>
       </a>
