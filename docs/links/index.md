@@ -10,6 +10,16 @@ description: Daily curated discoveries from the hidden corners of the web
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-02-02-daily-links/" class="archive-item archive-item--links">
+    <div class="archive-item__number">004</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">February 02, 2026</span>
+      <h3 class="archive-item__title">Daily Discoveries</h3>
+      <p class="archive-item__excerpt">Curated signal from nowhere links from the hidden corners of the web...</p>
+    </div>
+    <span class="archive-item__category">6 Links</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-02-01-daily-links/" class="archive-item archive-item--links">
     <div class="archive-item__number">003</div>
     <div class="archive-item__content">

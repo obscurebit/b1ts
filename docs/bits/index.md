@@ -10,6 +10,16 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-02-02-the-static-between/" class="archive-item">
+    <div class="archive-item__number">004</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">February 02, 2026</span>
+      <h3 class="archive-item__title">The Static Between</h3>
+      <p class="archive-item__excerpt">Amara adjusted the receiver’s dial, her fingers smudging the dusty panel. The attic hummed with the whir of old electronics—her grandfather’s hobbyist...</p>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-02-01-the-bloom-protocol/" class="archive-item">
     <div class="archive-item__number">003</div>
     <div class="archive-item__content">
