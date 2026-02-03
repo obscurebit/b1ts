@@ -10,6 +10,16 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-02-03-edition-005/" class="archive-item">
+    <div class="archive-item__number">005</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">February 03, 2026</span>
+      <h3 class="archive-item__title">Edition #005</h3>
+      <p class="archive-item__excerpt">Daily curated story and links from this edition</p>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-02-02-edition-004/" class="archive-item">
     <div class="archive-item__number">004</div>
     <div class="archive-item__content">

@@ -10,6 +10,16 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-02-03-the-nested-echo/" class="archive-item">
+    <div class="archive-item__number">005</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">February 03, 2026</span>
+      <h3 class="archive-item__title">The Nested Echo</h3>
+      <p class="archive-item__excerpt">Ji-Hwan found the VHS tape behind a stack of moth-eaten encyclopedias in his uncle’s basement. The label read *“For K, from K”* in smudged marker. His...</p>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-02-02-the-static-between/" class="archive-item">
     <div class="archive-item__number">004</div>
     <div class="archive-item__content">
