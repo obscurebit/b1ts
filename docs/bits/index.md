@@ -10,6 +10,16 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-02-04-the-between-places/" class="archive-item">
+    <div class="archive-item__number">006</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">February 04, 2026</span>
+      <h3 class="archive-item__title">The Between Places</h3>
+      <p class="archive-item__excerpt">Soojin’s notebook had a map drawn in pencil, the kind that only made sense if you knew which alleys to ignore and which fire escapes led nowhere. Dieg...</p>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-02-03-the-nested-echo/" class="archive-item">
     <div class="archive-item__number">005</div>
     <div class="archive-item__content">
