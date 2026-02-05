@@ -10,6 +10,16 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-02-05-entangled-observers/" class="archive-item">
+    <div class="archive-item__number">007</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">February 05, 2026</span>
+      <h3 class="archive-item__title">Entangled Observers</h3>
+      <p class="archive-item__excerpt">Amara adjusted the sensor array, her fingers brushing against the coffee stain on her lab coat. Javier didn’t look up from the monitor, but his voice ...</p>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-02-04-the-between-places/" class="archive-item">
     <div class="archive-item__number">006</div>
     <div class="archive-item__content">
