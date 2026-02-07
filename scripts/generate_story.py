@@ -152,6 +152,20 @@ def save_story(title: str, story: str, theme_name: str) -> Path:
     filename = f"{date_str}-{slug}.md"
     filepath = posts_dir / filename
     
+    # Get git commit hash
+    import subprocess
+    try:
+        commit_hash = subprocess.run(
+            ["git", "rev-parse", "--short", "HEAD"],
+            capture_output=True,
+            text=True,
+            check=True
+        ).stdout.strip()
+        commit_url = f"https://github.com/jason-mcdermott/b1ts/commit/{commit_hash}"
+    except:
+        commit_hash = "unknown"
+        commit_url = "#"
+    
     # Create markdown file
     frontmatter = f"""---
 date: {date_str}
@@ -168,9 +182,14 @@ theme: "{theme_name}"
 
 ---
 
-<button class="share-btn" data-url="{{% raw %}}{{{{ page.canonical_url }}}}{{% endraw %}}" data-title="{title}">
-  Share this story
-</button>
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem;">
+  <button class="share-btn" data-url="{{% raw %}}{{{{ page.canonical_url }}}}{{% endraw %}}" data-title="{title}">
+    Share this story
+  </button>
+  <a href="{commit_url}" target="_blank" rel="noopener" style="font-size: 0.75rem; color: var(--md-default-fg-color--light); text-decoration: none; font-family: monospace;">
+    gen:{commit_hash}
+  </a>
+</div>
 """
     
     filepath.write_text(content)
