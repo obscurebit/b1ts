@@ -55,7 +55,7 @@ flowchart LR
     
     subgraph "Generation"
         B1[generate_story.py]
-        B2[generate_links_v2.py]
+        B2[generate_links.py]
         B3[update_landing.py]
         WS[web_scraper.py]
     end
@@ -89,35 +89,47 @@ flowchart LR
     C4 --> D2
 ```
 
-## Link Generation Architecture (v2)
+## Link Generation Architecture (v3 - Research Strategy)
 
-The link generation system uses a multi-stage pipeline with active web search and content verification:
+The link generation system uses a multi-stage pipeline with LLM-driven research strategy and active web search:
 
 ```mermaid
 flowchart LR
-    subgraph "Stage 1: Discovery"
-        D1[DuckDuckGo Search]
-        D2[Academic Sources]
-        D3[LLM Suggestions]
+    subgraph "Stage 1: LLM Research Strategy"
+        RS1[Load research_strategy_system.md]
+        RS2[LLM generates domain ideas]
+        RS3[LLM generates search queries]
+        RS4[Parse structured output]
     end
     
-    subgraph "Stage 2: Scraping"
+    subgraph "Stage 2: Discovery"
+        D1[Execute LLM search queries]
+        D2[Extended sources (42 APIs)]
+        D3[Archive.org fallback]
+    end
+    
+    subgraph "Stage 3: Scraping"
         S1[Fetch Content]
         S2[Extract Concepts]
         S3[Score Obscurity]
     end
     
-    subgraph "Stage 3: Verification"
+    subgraph "Stage 4: Verification"
         V1[LLM Relevance Check]
         V2[Keyword Fallback]
     end
     
-    subgraph "Stage 4: Selection"
+    subgraph "Stage 5: Selection"
         SEL[Score: 70% relevance + 30% obscurity]
         DIV[Filter Duplicates]
-        DOM[Domain Diversity]
+        DOM[Domain Diversity max 3/domain]
+        EDU[Filter .edu domains]
     end
     
+    RS1 --> RS2
+    RS2 --> RS3
+    RS3 --> RS4
+    RS4 --> D1
     D1 --> S1
     D2 --> S1
     D3 --> S1
@@ -128,20 +140,24 @@ flowchart LR
     V2 --> SEL
     SEL --> DIV
     DIV --> DOM
-    DOM --> OUT[Top 7 Links]
+    DOM --> EDU
+    EDU --> OUT[Top 7 Links]
 ```
 
-### Link Generation Flow
+### Research Strategy System
 
-1. **Discovery**: Search DuckDuckGo, arXiv, Archive.org + LLM suggestions
-2. **Scraping**: Extract full content, concepts, calculate obscurity score
-3. **Verification**: LLM checks relevance to theme (0-1 scale)
-4. **Scoring**: Combined score = 70% relevance + 30% obscurity
-5. **Selection**: 
-   - Filter by thresholds (relevance ≥0.6, obscurity ≥0.3)
-   - Skip content >50% similar to already-selected links
-   - Max 2 links per domain
-   - Select top 7
+The new approach asks the LLM to act as a **research strategist** rather than directly suggesting URLs:
+
+1. **Domain Ideas**: LLM suggests 5 creative domain categories (niche history blogs, museum collections, research departments, etc.)
+2. **Search Queries**: LLM generates 5 specific, SEO-avoiding queries using technical terms and dates
+3. **Query Execution**: System executes queries via DuckDuckGo to discover actual URLs
+4. **Direct URLs**: Any URLs the LLM knows with confidence are also included
+
+This approach surfaces obscure content by:
+- Avoiding broad keywords that attract clickbait
+- Using technical/academic vocabulary
+- Searching across diverse domains
+- Filtering listicles and SEO-optimized content early
 
 ## Action Flows
 
@@ -237,15 +253,16 @@ b1ts/
 │   └── stylesheets/
 ├── scripts/
 │   ├── generate_story.py       # AI story generation
-│   ├── generate_links.py       # Legacy links generation (basic AI)
-│   ├── generate_links_v2.py    # Enhanced links with web search
+│   ├── generate_links.py       # Enhanced links with web search & research strategy
+│   ├── generate_links_old.py   # Legacy links generation (archived)
 │   ├── web_scraper.py          # Content extraction & analysis
 │   ├── update_landing.py       # Site updates
 │   ├── publish_substack.py     # Substack API publishing
 │   └── substack_playwright.py  # Cookie extraction helper
 ├── prompts/
 │   ├── story_system.md         # Story generation prompts
-│   ├── links_system.md         # Links generation prompts
+│   ├── links_system.md         # Links content generation prompts
+│   ├── research_strategy_system.md  # LLM research strategy prompts
 │   └── themes.yaml             # Unified themes for stories + links
 └── cache/
     └── web_content/            # Cached scraped content
