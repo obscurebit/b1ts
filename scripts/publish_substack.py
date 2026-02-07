@@ -483,15 +483,15 @@ def main():
     email = os.environ.get("SUBSTACK_EMAIL")
     password = os.environ.get("SUBSTACK_PASSWORD")
     cookies = os.environ.get("SUBSTACK_COOKIES")
-    cookies_path = os.environ.get("SUBSTACK_COOKIES_PATH")
-    publication_url = os.environ.get("SUBSTACK_PUBLICATION_URL")
+    cookies_path = os.environ.get("SUBSTACK_COOKIES_PATH") or str(Path.home() / ".substack_cookies.json")
+    cookies_path = os.path.expanduser(cookies_path)
+    publication_url = os.environ.get("SUBSTACK_PUBLICATION_URL", "").strip() or "https://obscurebit.substack.com"
     
     # Need either email+password OR cookies, plus publication_url
     has_email_auth = email and password
     has_cookie_auth = cookies or cookies_path
-    
-    if not publication_url:
-        print("\nError: SUBSTACK_PUBLICATION_URL is required.")
+    if (args.publish or args.draft) and not publication_url:
+        print("Error: SUBSTACK_PUBLICATION_URL is required.")
         print("  export SUBSTACK_PUBLICATION_URL='https://obscurebit.substack.com'")
         sys.exit(1)
     

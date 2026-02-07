@@ -20,6 +20,7 @@ graph TB
     subgraph "Content Sources"
         E[OpenAI API] --> A
         F[Prompts & Seeds] --> A
+        W[Web Search] --> A
     end
     
     subgraph "Outputs"
@@ -54,9 +55,12 @@ flowchart LR
     
     subgraph "Generation"
         B1[generate_story.py]
-        B2[generate_links.py]
+        B2[generate_links_v2.py]
         B3[update_landing.py]
+        WS[web_scraper.py]
     end
+    
+    WS --> B2
     
     subgraph "Storage"
         C1[docs/bits/posts/]
@@ -72,8 +76,9 @@ flowchart LR
     
     A1 --> B1
     A2 --> B1
-    A1 --> B2
+    W --> B2
     A3 --> B2
+    WS --> B2
     B1 --> C1
     B2 --> C2
     B3 --> C3
@@ -83,6 +88,60 @@ flowchart LR
     C3 --> D1
     C4 --> D2
 ```
+
+## Link Generation Architecture (v2)
+
+The link generation system uses a multi-stage pipeline with active web search and content verification:
+
+```mermaid
+flowchart LR
+    subgraph "Stage 1: Discovery"
+        D1[DuckDuckGo Search]
+        D2[Academic Sources]
+        D3[LLM Suggestions]
+    end
+    
+    subgraph "Stage 2: Scraping"
+        S1[Fetch Content]
+        S2[Extract Concepts]
+        S3[Score Obscurity]
+    end
+    
+    subgraph "Stage 3: Verification"
+        V1[LLM Relevance Check]
+        V2[Keyword Fallback]
+    end
+    
+    subgraph "Stage 4: Selection"
+        SEL[Score: 70% relevance + 30% obscurity]
+        DIV[Filter Duplicates]
+        DOM[Domain Diversity]
+    end
+    
+    D1 --> S1
+    D2 --> S1
+    D3 --> S1
+    S1 --> S2
+    S2 --> S3
+    S3 --> V1
+    V1 --> SEL
+    V2 --> SEL
+    SEL --> DIV
+    DIV --> DOM
+    DOM --> OUT[Top 7 Links]
+```
+
+### Link Generation Flow
+
+1. **Discovery**: Search DuckDuckGo, arXiv, Archive.org + LLM suggestions
+2. **Scraping**: Extract full content, concepts, calculate obscurity score
+3. **Verification**: LLM checks relevance to theme (0-1 scale)
+4. **Scoring**: Combined score = 70% relevance + 30% obscurity
+5. **Selection**: 
+   - Filter by thresholds (relevance ≥0.6, obscurity ≥0.3)
+   - Skip content >50% similar to already-selected links
+   - Max 2 links per domain
+   - Select top 7
 
 ## Action Flows
 
@@ -178,12 +237,18 @@ b1ts/
 │   └── stylesheets/
 ├── scripts/
 │   ├── generate_story.py       # AI story generation
-│   ├── generate_links.py       # AI links generation
+│   ├── generate_links.py       # Legacy links generation (basic AI)
+│   ├── generate_links_v2.py    # Enhanced links with web search
+│   ├── web_scraper.py          # Content extraction & analysis
 │   ├── update_landing.py       # Site updates
-│   └── publish_substack.py     # Substack integration
-└── prompts/
-    ├── story_seeds.yaml        # Story prompts
-    └── links_seeds.yaml        # Link categories
+│   ├── publish_substack.py     # Substack API publishing
+│   └── substack_playwright.py  # Cookie extraction helper
+├── prompts/
+│   ├── story_system.md         # Story generation prompts
+│   ├── links_system.md         # Links generation prompts
+│   └── themes.yaml             # Unified themes for stories + links
+└── cache/
+    └── web_content/            # Cached scraped content
 ```
 
 ## Environment Variables
