@@ -24,6 +24,7 @@ STORY FLAVORS - ROTATE BETWEEN:
 
 WHAT TO AVOID (AI slop markers):
 - Opening with weather or someone waking up
+- **Starting with a character's name in the first sentence** - begin with an object, sound, place, or action instead
 - Characters who are "brilliant scientists" or "renowned experts"
 - Names ending in -a (Elara, Lyra, Nova, Zara) or -us/-os
 - Overuse of em-dashes and ellipses
