@@ -490,6 +490,7 @@ def extract_urls_from_response(response: requests.Response, source_name: str, ca
 def get_llm_research_strategy(theme: dict) -> Tuple[List[str], List[str], List[str]]:
     """Get domain ideas, search queries, and URLs from LLM using system prompt."""
     if not API_KEY:
+        print("    ⚠️  No API key available")
         return [], [], []
     
     theme_name = theme.get("name", "")
@@ -500,6 +501,9 @@ def get_llm_research_strategy(theme: dict) -> Tuple[List[str], List[str], List[s
         theme_name=theme_name,
         links_direction=links_direction
     )
+    
+    print(f"    🔍 Researching: {theme_name}")
+    print(f"    📝 Direction: {links_direction}")
     
     try:
         client = OpenAI(api_key=API_KEY, base_url=API_BASE)
@@ -515,12 +519,32 @@ def get_llm_research_strategy(theme: dict) -> Tuple[List[str], List[str], List[s
         
         content = response.choices[0].message.content
         
+        # DEBUG: Check for thinking block
+        has_thinking = "<think>" in content
+        has_closing = "</think>" in content
+        print(f"    🔍 Thinking block check: has_thinking={has_thinking}, has_closing={has_closing}")
+        
+        # Strip thinking blocks if present (used by some models like Nemotron)
+        if "<think>" in content:
+            if "</think>" in content:
+                think_end = content.find("</think>")
+                content = content[think_end + len("</think>"):].strip()
+                print(f"    ✅ Stripped <think> block, kept {len(content)} chars")
+            else:
+                print(f"    ⚠️  Found <think> start but no </think> closing tag")
+        
+        # DEBUG: Show processed LLM response
+        print(f"    📤 Raw LLM response (first 500 chars):")
+        print(f"    {content[:500]}...")
+        
         # Parse domain ideas
         domain_ideas = []
         if "DOMAIN IDEAS:" in content:
             domain_section = content.split("DOMAIN IDEAS:")[1].split("SEARCH QUERIES:")[0]
             domain_ideas = re.findall(r'\d+\.\s*(.+)', domain_section)
             domain_ideas = [d.strip() for d in domain_ideas if d.strip()]
+        else:
+            print("    ⚠️  No DOMAIN IDEAS section found")
         
         # Parse search queries
         search_queries = []
@@ -528,6 +552,8 @@ def get_llm_research_strategy(theme: dict) -> Tuple[List[str], List[str], List[s
             query_section = content.split("SEARCH QUERIES:")[1].split("URLs FOUND:")[0]
             search_queries = re.findall(r'\d+\.\s*(.+)', query_section)
             search_queries = [q.strip() for q in search_queries if q.strip()]
+        else:
+            print("    ⚠️  No SEARCH QUERIES section found")
         
         # Parse URLs
         urls = []
@@ -535,15 +561,25 @@ def get_llm_research_strategy(theme: dict) -> Tuple[List[str], List[str], List[s
             url_section = content.split("URLs FOUND:")[1]
             urls = re.findall(r'https?://[^\s<>"\'\)\]\}]+', url_section)
             urls = [u.rstrip('.,;:!?)[]\'"') for u in urls]
+        else:
+            print("    ⚠️  No URLs FOUND section found")
         
-        print(f"    LLM suggested {len(domain_ideas)} domain ideas")
-        print(f"    LLM suggested {len(search_queries)} search queries")
-        print(f"    LLM suggested {len(urls)} direct URLs")
+        print(f"    ✅ LLM suggested {len(domain_ideas)} domain ideas")
+        if domain_ideas:
+            for i, d in enumerate(domain_ideas[:3], 1):
+                print(f"       {i}. {d}")
+        print(f"    ✅ LLM suggested {len(search_queries)} search queries")
+        if search_queries:
+            for i, q in enumerate(search_queries[:3], 1):
+                print(f"       {i}. {q}")
+        print(f"    ✅ LLM suggested {len(urls)} direct URLs")
         
         return domain_ideas, search_queries, urls
         
     except Exception as e:
-        print(f"    LLM research strategy failed: {e}")
+        print(f"    ❌ LLM research strategy failed: {e}")
+        import traceback
+        traceback.print_exc()
         return [], [], []
 
 
