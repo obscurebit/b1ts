@@ -43,7 +43,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install openai pyyaml requests python-substack
+          pip install openai pyyaml requests beautifulsoup4 python-substack
 
       - name: Generate Daily Story
         if: ${{ github.event_name == 'schedule' || github.event.inputs.generate_story == 'true' }}
