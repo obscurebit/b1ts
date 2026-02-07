@@ -9,7 +9,7 @@ themes:
 
   - name: "forgotten technology"
     story: "ancient or abandoned technology rediscovered, lost inventions"
-    links: "forgotten patents, abandoned projects, obsolete tech that was ahead of its time"
+    links: "specific individual forgotten inventions, historical patents with stories, detailed case studies of obsolete technology"
 
   - name: "digital archaeology"
     story: "uncovering lost data, corrupted archives, digital ruins"
@@ -33,11 +33,11 @@ themes:
 
   - name: "cryptographic secrets"
     story: "unbreakable codes, messages meant never to be read, encryption mysteries"
-    links: "unsolved ciphers, cryptography history, secure communication oddities"
+    links: "specific unsolved cipher stories, individual cryptography historical cases, detailed code breaking attempts"
 
   - name: "abandoned stations"
     story: "derelict space stations, ghost ships, forgotten outposts"
-    links: "space exploration history, abandoned facilities, isolated research stations"
+    links: "specific abandoned facility histories, individual ghost ship stories, detailed space station research"
 
   - name: "reality glitches"
     story: "simulation errors, deja vu explained, reality inconsistencies"
@@ -53,7 +53,7 @@ themes:
 
   - name: "lost civilizations"
     story: "rediscovered ancient tech, civilizations erased from history"
-    links: "archaeological mysteries, ancient technology, forgotten cultures"
+    links: "specific archaeological discoveries, individual ancient artifacts, detailed forgotten culture histories"
 
   - name: "underground networks"
     story: "hidden communication channels, secret networks, parallel internets"
@@ -65,7 +65,7 @@ themes:
 
   - name: "signal from nowhere"
     story: "mysterious transmissions, signals of unknown origin"
-    links: "number stations, unexplained signals, SETI discoveries"
+    links: "specific number station recordings, individual unexplained signal incidents, detailed SETI discovery stories"
 
   - name: "recursive realities"
     story: "stories within stories, worlds containing themselves"

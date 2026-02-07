@@ -10,6 +10,16 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-02-06-resonance-chamber/" class="archive-item">
+    <div class="archive-item__number">008</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">February 06, 2026</span>
+      <h3 class="archive-item__title">Resonance Chamber</h3>
+      <p class="archive-item__excerpt">Diego’s screwdriver slipped, gouging the oak workbench. He muttered, wiping sawdust from the brass fixture in his hands. The device looked like a cros...</p>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-02-05-entangled-observers/" class="archive-item">
     <div class="archive-item__number">007</div>
     <div class="archive-item__content">

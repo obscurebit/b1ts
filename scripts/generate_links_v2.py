@@ -43,7 +43,7 @@ CACHE_DIR.mkdir(parents=True, exist_ok=True)
 # Search configuration
 SEARCH_TIMEOUT = 15
 MAX_CANDIDATES = 30
-MIN_RELEVANCE_SCORE = 0.6
+MIN_RELEVANCE_SCORE = 0.35
 MIN_OBSCURITY_SCORE = 0.3
 
 
@@ -52,6 +52,15 @@ def load_system_prompt() -> str:
     if not SYSTEM_PROMPT_FILE.exists():
         return "You are a helpful assistant that finds obscure and interesting web links."
     return SYSTEM_PROMPT_FILE.read_text().strip()
+
+
+RESEARCH_STRATEGY_PROMPT_FILE = PROMPTS_DIR / "research_strategy_system.md"
+
+def load_research_strategy_prompt() -> str:
+    """Load the research strategy system prompt from external file."""
+    if not RESEARCH_STRATEGY_PROMPT_FILE.exists():
+        return "You are a research strategist. Suggest domain ideas and search queries."
+    return RESEARCH_STRATEGY_PROMPT_FILE.read_text().strip()
 
 
 def load_themes() -> dict:
@@ -205,38 +214,464 @@ def search_academic_sources(theme: str, links_direction: str) -> List[str]:
     return urls
 
 
-def get_candidate_urls(theme: dict) -> List[str]:
-    """Generate candidate URLs from multiple search sources."""
+def search_extended_sources(theme: str, links_direction: str) -> List[str]:
+    """Search 30+ extended sources for obscure content."""
+    urls = []
+    query = quote_plus(f"{theme} {links_direction}")
+    
+    # === ACADEMIC & RESEARCH (8 sources) ===
+    academic_sources = [
+        # Google Scholar
+        ("https://scholar.google.com/scholar?q={q}", "Google Scholar"),
+        # Semantic Scholar
+        ("https://api.semanticscholar.org/graph/v1/paper/search?query={q}&limit=5", "Semantic Scholar"),
+        # CORE (Open Access Research)
+        ("https://core.ac.uk/api-v2/articles/search/{q}?apiKey=dummy&page=1&pageSize=5", "CORE"),
+        # BASE (Bielefeld Academic Search)
+        ("https://base-search.net/Search/Results?lookfor={q}&type=all&limit=5", "BASE"),
+        # PubMed (medical/biological)
+        ("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term={q}&retmax=5&retmode=json", "PubMed"),
+        # DOAJ (Open Access Journals)
+        ("https://doaj.org/api/search/articles/{q}?pageSize=5", "DOAJ"),
+        # SSRN (Social Science)
+        ("https://www.ssrn.com/index.cfm/en/search/?searchText={q}", "SSRN"),
+        # JSTOR (for older papers - limited access)
+        ("https://www.jstor.org/action/doBasicSearch?Query={q}&acc=off&wc=on&fc=off&group=none", "JSTOR"),
+    ]
+    
+    # === DIGITAL ARCHIVES & LIBRARIES (10 sources) ===
+    archive_sources = [
+        # HathiTrust
+        ("https://catalog.hathitrust.org/api/volumes/full/json?q={q}", "HathiTrust"),
+        # Digital Public Library of America
+        ("https://api.dp.la/v2/items?q={q}&api_key=dummy&page_size=5", "DPLA"),
+        # Library of Congress
+        ("https://www.loc.gov/search/?q={q}&fo=json&c=5", "Library of Congress"),
+        # National Archives
+        ("https://catalog.archives.gov/api/v1?rows=5&q={q}", "National Archives"),
+        # Europeana
+        ("https://api.europeana.eu/record/v2/search.json?wskey=dummy&query={q}&rows=5", "Europeana"),
+        # Gallica (French digital library)
+        ("https://gallica.bnf.fr/services/engine/search/sru?operation=searchRetrieve&query={q}&maximumRecords=5", "Gallica"),
+        # Trove (Australia)
+        ("https://trove.nla.gov.au/api/result?q={q}&zone=all&n=5&encoding=json", "Trove"),
+        # Wellcome Collection (medical history)
+        ("https://api.wellcomecollection.org/catalogue/v2/works?query={q}&pageSize=5", "Wellcome"),
+        # Smithsonian
+        ("https://api.si.edu/openaccess/api/v1.0/search?q={q}&rows=5", "Smithsonian"),
+        # Digital Commons Network
+        ("https://network.bepress.com/cgi/query.cgi?query={q}", "Digital Commons"),
+    ]
+    
+    # === TECH/COMPUTING HISTORY (6 sources) ===
+    tech_sources = [
+        # GitHub search (for abandoned projects)
+        ("https://api.github.com/search/repositories?q={q}+stars:<10+updated:<2020-01-01&sort=updated&order=desc&per_page=5", "GitHub"),
+        # Computer History Museum
+        ("https://www.computerhistory.org/search/?q={q}", "Computer History Museum"),
+        # Bitsavers (computer documentation)
+        ("http://bitsavers.org/search.html?q={q}", "Bitsavers"),
+        # Vintage Computing Federation
+        ("https://vcfed.org/search/?q={q}", "VCF"),
+        # Textfiles.com (BBS era)
+        ("http://textfiles.com/search/?q={q}", "Textfiles"),
+        # Software Heritage
+        ("https://archive.softwareheritage.org/browse/search/?q={q}", "Software Heritage"),
+    ]
+    
+    # === SPECIALIZED/CURATED PLATFORMS (8 sources) ===
+    curated_sources = [
+        # Are.na (curated collections)
+        ("https://api.are.na/v2/search?q={q}&per=5", "Are.na"),
+        # Atlas Obscura
+        ("https://www.atlasobscura.com/search?query={q}", "Atlas Obscura"),
+        # Reddit (obscure subreddits via search)
+        ("https://www.reddit.com/search/?q={q}&type=posts&sort=relevance&t=all", "Reddit"),
+        # Hacker News (Algolia API)
+        ("http://hn.algolia.com/api/v1/search?query={q}&tags=(story,show_hn)&hitsPerPage=5", "Hacker News"),
+        # Metafilter
+        ("https://www.metafilter.com/search.mefi?site=mefi&q={q}", "Metafilter"),
+        # 99% Invisible
+        ("https://99percentinvisible.org/?s={q}", "99PI"),
+        # Public Domain Review
+        ("https://publicdomainreview.org/?s={q}", "Public Domain Review"),
+        # Wikipedia "Further reading" via search
+        ("https://en.wikipedia.org/w/api.php?action=opensearch&search={q}&limit=5&namespace=0&format=json", "Wikipedia"),
+    ]
+    
+    # === GOVERNMENT/INSTITUTIONAL (5 sources) ===
+    gov_sources = [
+        # NASA Technical Reports
+        ("https://ntrs.nasa.gov/api/search?q={q}&page=1&size=5", "NASA NTRS"),
+        # USPTO Patents
+        ("https://patentsview.uspto.gov/api/patents/query?q={{\"_and\":{{\"_text_any\":{{\"patent_title\":\"{q}\"}}}}}}&f=[\"patent_number\",\"patent_title\"]&o={{\"per_page\":5}}", "USPTO"),
+        # DOE OSTI
+        ("https://www.osti.gov/api/v1/records?q={q}&rows=5", "OSTI"),
+        # DTIC (Defense Technical)
+        ("https://discover.dtic.mil/wp-json/dtic/v1/search?q={q}&posts_per_page=5", "DTIC"),
+        # CIA FOIA Reading Room
+        ("https://www.cia.gov/readingroom/search/site/{q}", "CIA FOIA"),
+    ]
+    
+    # === SPECIALIZED SEARCH ENGINES (5 sources) ===
+    # These surface obscure, non-commercial content perfect for discovery
+    obscure_sources = [
+        # Million Short - removes top 1M sites, surfaces hidden gems
+        ("https://millionshort.com/search?q={q}&remove=1000000", "Million Short"),
+        # Marginalia - indie search for old/forgotten web pages
+        ("https://search.marginalia.nu/search?query={q}", "Marginalia"),
+        # Open Library - millions of books, rare/out-of-print
+        ("https://openlibrary.org/search.json?q={q}&limit=5", "Open Library"),
+        # WorldCat - global library catalog (2B+ items)
+        ("https://www.worldcat.org/search?q={q}", "WorldCat"),
+        # Stanford Web Archive Portal - curated historical collections
+        ("https://swap.stanford.edu/?q={q}", "Stanford Web Archive"),
+    ]
+    
+    all_sources = (
+        [("academic", url, name) for url, name in academic_sources] +
+        [("archive", url, name) for url, name in archive_sources] +
+        [("tech", url, name) for url, name in tech_sources] +
+        [("curated", url, name) for url, name in curated_sources] +
+        [("gov", url, name) for url, name in gov_sources] +
+        [("obscure", url, name) for url, name in obscure_sources]
+    )
+    
+    print(f"\n  Searching 42 extended sources...")
+    
+    # Sample 15 sources to avoid overwhelming (rotate which ones we use)
+    random.shuffle(all_sources)
+    selected_sources = all_sources[:15]
+    
+    headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36'}
+    
+    for category, url_template, name in selected_sources:
+        try:
+            url = url_template.format(q=query)
+            response = requests.get(url, headers=headers, timeout=8)
+            
+            if response.status_code == 200:
+                # Extract URLs based on response type
+                found_urls = extract_urls_from_response(response, name, category)
+                if found_urls:
+                    urls.extend(found_urls[:2])  # Max 2 per source
+                    print(f"    ✓ {name}: {len(found_urls)} found")
+            
+        except Exception as e:
+            # Silent fail for individual sources
+            pass
+    
+    # Remove duplicates
+    seen = set()
+    unique_urls = []
+    for url in urls:
+        if url not in seen:
+            seen.add(url)
+            unique_urls.append(url)
+    
+    print(f"  Total unique from extended sources: {len(unique_urls)}")
+    return unique_urls
+
+
+def extract_urls_from_response(response: requests.Response, source_name: str, category: str) -> List[str]:
+    """Extract URLs from various API responses."""
+    urls = []
+    
+    try:
+        # JSON APIs
+        if 'json' in response.headers.get('Content-Type', ''):
+            data = response.json()
+            
+            if source_name == "Semantic Scholar":
+                papers = data.get('data', [])
+                for p in papers:
+                    if p.get('openAccessPdf', {}).get('url'):
+                        urls.append(p['openAccessPdf']['url'])
+                    elif p.get('externalIds', {}).get('DOI'):
+                        urls.append(f"https://doi.org/{p['externalIds']['DOI']}")
+            
+            elif source_name in ["PubMed", "NASA NTRS", "OSTI", "DTIC"]:
+                # Look for ID patterns in JSON
+                if 'esearchresult' in str(data):  # PubMed
+                    ids = data.get('esearchresult', {}).get('idlist', [])
+                    for pmid in ids:
+                        urls.append(f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/")
+                elif 'results' in data:  # NASA/OSTI
+                    for r in data.get('results', [])[:3]:
+                        if r.get('download'):
+                            urls.append(r['download'])
+                        elif r.get('links', [{}])[0].get('href'):
+                            urls.append(r['links'][0]['href'])
+            
+            elif source_name == "Europeana":
+                items = data.get('items', [])
+                for item in items:
+                    guid = item.get('guid')
+                    if guid:
+                        urls.append(guid)
+            
+            elif source_name == "Hacker News":
+                hits = data.get('hits', [])
+                for hit in hits:
+                    url = hit.get('url')
+                    if url and not url.startswith('http'):
+                        url = f"https://news.ycombinator.com/item?id={hit.get('objectID')}"
+                    if url:
+                        urls.append(url)
+            
+            elif source_name == "Open Library":
+                docs = data.get('docs', [])
+                for doc in docs:
+                    # Get Open Library work page
+                    key = doc.get('key')
+                    if key:
+                        urls.append(f"https://openlibrary.org{key}")
+                    # Or get archive.org link if available
+                    ia_id = doc.get('ia', [None])[0]
+                    if ia_id:
+                        urls.append(f"https://archive.org/details/{ia_id}")
+        
+        # HTML responses - parse for links
+        else:
+            soup = BeautifulSoup(response.text, 'html.parser')
+            
+            # Extract all external links
+            for a in soup.find_all('a', href=True):
+                href = a.get('href', '')
+                if href.startswith('http') and not any(skip in href for skip in [
+                    'google.com', 'facebook.com', 'twitter.com', 'instagram.com',
+                    'youtube.com', 'linkedin.com', 'pinterest.com'
+                ]):
+                    urls.append(href.split('#')[0])
+            
+            # Specific parsers for certain sources
+            if source_name == "Wikipedia":
+                # Look for external link sections
+                for extlink in soup.find_all('a', class_='external-text'):
+                    href = extlink.get('href', '')
+                    if href.startswith('http'):
+                        urls.append(href)
+            
+            elif source_name == "Marginalia":
+                # Marginalia shows results with original URLs
+                for link in soup.find_all('a', href=True):
+                    href = link.get('href', '')
+                    if href.startswith('http') and 'marginalia.nu' not in href:
+                        urls.append(href)
+            
+            elif source_name == "Million Short":
+                # Million Short shows results from web
+                for link in soup.find_all('a', class_=re.compile(r'result|title|url'), href=True):
+                    href = link.get('href', '')
+                    if href.startswith('http'):
+                        urls.append(href)
+            
+            elif source_name == "WorldCat":
+                # Look for catalog links
+                for link in soup.find_all('a', href=re.compile(r'/title/')):
+                    href = link.get('href', '')
+                    if href.startswith('/'):
+                        urls.append(f"https://www.worldcat.org{href}")
+            
+            elif source_name == "Stanford Web Archive":
+                # Look for archived page links
+                for link in soup.find_all('a', href=re.compile(r'web/\d{14}')):
+                    href = link.get('href', '')
+                    if href.startswith('http'):
+                        urls.append(href)
+    
+    except Exception as e:
+        pass
+    
+    return list(set(urls))[:5]  # Max 5 per source
+
+
+
+def get_llm_research_strategy(theme: dict) -> Tuple[List[str], List[str], List[str]]:
+    """Get domain ideas, search queries, and URLs from LLM using system prompt."""
+    if not API_KEY:
+        return [], [], []
+    
     theme_name = theme.get("name", "")
     links_direction = theme.get("links", theme_name)
     
-    print(f"\nSearching for: {links_direction}")
+    # Load and populate research strategy system prompt with full theme context
+    system_prompt = load_research_strategy_prompt().format(
+        theme_name=theme_name,
+        links_direction=links_direction
+    )
+    
+    try:
+        client = OpenAI(api_key=API_KEY, base_url=API_BASE)
+        response = client.chat.completions.create(
+            model=MODEL,
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": f"Research topic: {theme_name}"}
+            ],
+            temperature=0.5,
+            max_tokens=1000
+        )
+        
+        content = response.choices[0].message.content
+        
+        # Parse domain ideas
+        domain_ideas = []
+        if "DOMAIN IDEAS:" in content:
+            domain_section = content.split("DOMAIN IDEAS:")[1].split("SEARCH QUERIES:")[0]
+            domain_ideas = re.findall(r'\d+\.\s*(.+)', domain_section)
+            domain_ideas = [d.strip() for d in domain_ideas if d.strip()]
+        
+        # Parse search queries
+        search_queries = []
+        if "SEARCH QUERIES:" in content:
+            query_section = content.split("SEARCH QUERIES:")[1].split("URLs FOUND:")[0]
+            search_queries = re.findall(r'\d+\.\s*(.+)', query_section)
+            search_queries = [q.strip() for q in search_queries if q.strip()]
+        
+        # Parse URLs
+        urls = []
+        if "URLs FOUND:" in content:
+            url_section = content.split("URLs FOUND:")[1]
+            urls = re.findall(r'https?://[^\s<>"\'\)\]\}]+', url_section)
+            urls = [u.rstrip('.,;:!?)[]\'"') for u in urls]
+        
+        print(f"    LLM suggested {len(domain_ideas)} domain ideas")
+        print(f"    LLM suggested {len(search_queries)} search queries")
+        print(f"    LLM suggested {len(urls)} direct URLs")
+        
+        return domain_ideas, search_queries, urls
+        
+    except Exception as e:
+        print(f"    LLM research strategy failed: {e}")
+        return [], [], []
+
+
+def get_llm_candidate_urls(theme: dict) -> List[str]:
+    """Get URLs from LLM research strategy."""
+    domain_ideas, search_queries, direct_urls = get_llm_research_strategy(theme)
+    
+    all_urls = list(direct_urls)
+    
+    # Execute search queries
+    if search_queries:
+        print(f"\n  Executing LLM search queries...")
+        for query in search_queries[:3]:
+            print(f"    Query: {query[:60]}...")
+            results = search_duckduckgo(query, max_results=5)
+            all_urls.extend(results)
+            if results:
+                print(f"      Found {len(results)} URLs")
+    
+    return all_urls[:15]
+
+
+def get_llm_search_sources_batch(theme: dict, batch_num: int = 0) -> List[str]:
+    """Ask LLM for domains - multiple batches."""
+    if not API_KEY:
+        return []
+    
+    theme_name = theme.get("name", "")
+    
+    prompts = [
+        f"List 4 diverse website domains about {theme_name} (mix of news, history, tech, museums). Just domains:",
+        f"List 4 different websites covering {theme_name} (not archive.org). Just domains:",
+        f"List 4 varied sources for {theme_name} articles (blogs, news, edu, orgs). Just domains:",
+    ]
+    
+    prompt = prompts[batch_num % len(prompts)]
+    
+    try:
+        client = OpenAI(api_key=API_KEY, base_url=API_BASE)
+        response = client.chat.completions.create(
+            model=MODEL,
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.4 + (batch_num * 0.1),
+            max_tokens=200
+        )
+        
+        content = response.choices[0].message.content
+        domains = re.findall(r'[a-z0-9][a-z0-9\-\.]+\.(?:com|org|net|edu|io|co)', content.lower())
+        
+        return list(set(domains))
+        
+    except Exception as e:
+        print(f"    Domain batch {batch_num} failed: {e}")
+        return []
+
+
+def get_llm_search_sources(theme: dict) -> List[str]:
+    """Get domains from multiple LLM calls."""
+    all_domains = []
+    
+    for i in range(3):  # 3 batches
+        domains = get_llm_search_sources_batch(theme, i)
+        all_domains.extend(domains)
+        if domains:
+            print(f"    Batch {i+1}: {len(domains)} domains")
+    
+    # Deduplicate
+    seen = set()
+    unique = []
+    for d in all_domains:
+        if d not in seen:
+            seen.add(d)
+            unique.append(d)
+    
+    print(f"    Total unique: {len(unique)} domains")
+    return unique[:10]
+
+
+def get_candidate_urls(theme: dict) -> List[str]:
+    """Generate candidate URLs from multiple sources."""
+    theme_name = theme.get("name", "")
+    links_direction = theme.get("links", theme_name)
+    
+    print(f"\nTheme: {theme_name}")
     
     all_urls = []
     
-    # 1. DuckDuckGo search with different queries
-    queries = [
-        f"{links_direction} obscure interesting",
-        f"{links_direction} hidden gems",
-        f"{theme_name} {links_direction} research",
-        f"site:.edu {links_direction}",
-        f"site:.gov {links_direction}",
-    ]
-    
-    for query in queries[:3]:  # Limit to 3 queries to avoid rate limits
-        print(f"\n  Query: {query}")
-        urls = search_duckduckgo(query, max_results=8)
-        all_urls.extend(urls)
-    
-    # 2. Academic/archival sources
-    print(f"\n  Searching academic sources...")
-    academic_urls = search_academic_sources(theme_name, links_direction)
-    all_urls.extend(academic_urls)
-    
-    # 3. Get LLM-suggested URLs for variety
-    print(f"\n  Getting LLM suggestions...")
+    # 1. LLM suggestions (primary)
+    print(f"\n  Getting LLM URL suggestions...")
     llm_urls = get_llm_candidate_urls(theme)
     all_urls.extend(llm_urls)
+    
+    # 2. Extended sources (42 different APIs and search engines)
+    print(f"\n  Searching extended sources...")
+    extended_urls = search_extended_sources(theme_name, links_direction)
+    all_urls.extend(extended_urls)
+    
+    # 3. Ask LLM for diverse sources, then search them
+    print(f"\n  Getting LLM source suggestions...")
+    suggested_domains = get_llm_search_sources(theme)
+    
+    for domain in suggested_domains[:5]:  # Search top 5 suggested domains
+        print(f"\n  Searching DuckDuckGo (site:{domain})...")
+        ddg_urls = search_duckduckgo(f"site:{domain} {theme_name}", max_results=5)
+        all_urls.extend(ddg_urls)
+    
+    # 4. Fallback searches - hardcoded diverse sources
+    if len(all_urls) < 25:
+        print(f"\n  Searching fallback sources...")
+        fallbacks = [
+            f"site:wikipedia.org/wiki/ {theme_name}",
+            f"site:atlasobscura.com {theme_name}",
+            f"site:mentalfloss.com {theme_name}",
+            f"site:britannica.com {theme_name}",
+            f"site:nytimes.com {theme_name}",
+            f"site:theguardian.com {theme_name} technology",
+        ]
+        for query in fallbacks:
+            ddg_urls = search_duckduckgo(query, max_results=5)
+            all_urls.extend(ddg_urls)
+            if ddg_urls:
+                print(f"      Found {len(ddg_urls)} from: {query[:50]}...")
+    
+    # 5. Archive.org search as last resort
+    if len(all_urls) < 30:
+        print(f"\n  Searching archive.org...")
+        archive_urls = search_archive_org(theme_name)
+        all_urls.extend(archive_urls)
     
     # Deduplicate and limit
     seen = set()
@@ -250,55 +685,128 @@ def get_candidate_urls(theme: dict) -> List[str]:
     return unique_urls
 
 
-def get_llm_candidate_urls(theme: dict) -> List[str]:
-    """Ask LLM for URL suggestions based on theme."""
-    if not API_KEY:
-        return []
-    
-    theme_name = theme.get("name", "")
-    links_direction = theme.get("links", theme_name)
-    
-    prompt = f"""Suggest 5 real, verifiable URLs about: {links_direction}
-
-These should be actual web pages that exist and are related to the topic.
-Prefer .edu, .gov, archive.org, Wikipedia, or well-known sites.
-
-Respond with ONLY the URLs, one per line, starting with http:// or https://
-Example format:
-https://example.com/page1
-https://archive.org/details/item2"""
-
+def search_archive_org(theme: str) -> List[str]:
+    """Search Archive.org for specific items related to theme."""
+    urls = []
     try:
-        client = OpenAI(api_key=API_KEY, base_url=API_BASE)
-        response = client.chat.completions.create(
-            model=MODEL,
-            messages=[
-                {"role": "system", "content": "You suggest real, working URLs from your training data. Only output valid URLs."},
-                {"role": "user", "content": prompt}
-            ],
-            temperature=0.3,
-            max_tokens=500
-        )
+        # Search for specific subjects in archive.org
+        subjects = [
+            f"{theme} invention",
+            f"{theme} patent", 
+            f"{theme} history",
+            f"early {theme}",
+        ]
         
-        content = response.choices[0].message.content
-        
-        # Extract URLs with validation
-        urls = []
-        for match in re.finditer(r'https?://[^\s<>"\'\)\]\}]+', content):
-            url = match.group(0)
-            # Basic validation
-            parsed = urlparse(url)
-            if parsed.scheme and parsed.netloc and '.' in parsed.netloc:
-                # Skip if it's just a domain placeholder
-                if len(parsed.netloc) > 3:
-                    urls.append(url)
-        
-        print(f"    LLM suggested {len(urls)} valid URLs")
-        return urls[:5]
-        
+        for subject in subjects[:2]:
+            query = quote_plus(subject)
+            # Use archive.org catalog search for items (not collections)
+            search_url = f"https://archive.org/services/search/v1/scrape?fields=identifier,title&q={query}%20mediatype:texts&sorts=week"
+            
+            response = requests.get(search_url, timeout=SEARCH_TIMEOUT)
+            if response.status_code == 200:
+                data = response.json()
+                docs = data.get('items', [])
+                for doc in docs[:3]:  # Max 3 per subject
+                    identifier = doc.get('identifier')
+                    title = doc.get('title', '')
+                    if identifier and title:
+                        # Filter out generic collections
+                        bad_keywords = ['collection', 'archive', 'library', 'group']
+                        if not any(kw in title.lower() for kw in bad_keywords):
+                            urls.append(f"https://archive.org/details/{identifier}")
+                
+        print(f"    Found {len(urls)} archive.org items")
     except Exception as e:
-        print(f"    LLM suggestion failed: {e}")
-        return []
+        print(f"    Archive.org search failed: {e}")
+    
+    return urls[:8]  # Return up to 8
+
+
+def search_smithsonian(theme: str) -> List[str]:
+    """Search Smithsonian API for specific objects."""
+    urls = []
+    try:
+        # Smithsonian API
+        query = quote_plus(f"{theme} invention")
+        api_url = f"https://api.si.edu/openaccess/api/v1.0/search?q={query}&api_key=hJ1TEiyhGhY&rows=10"
+        
+        response = requests.get(api_url, timeout=SEARCH_TIMEOUT)
+        if response.status_code == 200:
+            data = response.json()
+            objects = data.get('response', {}).get('rows', [])
+            for obj in objects:
+                url = obj.get('content', {}).get('descriptiveNonRepeating', {}).get('online_media', {}).get('media', [{}])[0].get('guid')
+                if not url:
+                    url = f"https://www.si.edu/object/{obj.get('id')}"
+                if url:
+                    urls.append(url)
+            print(f"    Found {len(urls)} Smithsonian items")
+    except Exception as e:
+        print(f"    Smithsonian search failed: {e}")
+    
+    return urls[:5]
+
+
+def is_listicle_url(url: str, title: str = "") -> bool:
+    """Detect if URL/title appears to be a listicle/junk article or collection."""
+    listicle_patterns = [
+        # Numbered listicles
+        r'\d+\s+(forgotten|abandoned|obsolete|lost|hidden|secret|amazing|incredible|surprising|weird)',
+        r'top\s+\d+',
+        r'\d+\s+best',
+        r'\d+\s+worst',
+        r'\d+\s+things?\s+(you|to|that)',
+        # List/collection content (even from academic sources)
+        r'list\s+of',
+        r'listicle',
+        r'timeline\s+of',
+        r'famous',
+        r'notable',
+        r'greatest',
+        r'guide\s+to',
+        r'research\s+guide',
+        r'library\s+guide',
+        r'collection\s+of',
+        r'category:',
+        r'index\s+of',
+        # Clickbait sites
+        r'listicle-site',
+        r'buzzfeed',
+        r'boredpanda',
+        r'viralnova',
+        r'ranker',
+        r'list25',
+        r'\d+-facts?',
+        r'mind-blowing',
+        r'will-blow-your-mind',
+        r'you-won.t-believe',
+        r'won.t-believe',
+    ]
+    
+    combined_text = f"{url} {title}".lower()
+    
+    for pattern in listicle_patterns:
+        if re.search(pattern, combined_text, re.IGNORECASE):
+            return True
+    
+    # Check for excessive numbers in title
+    numbers = re.findall(r'\d+', title)
+    if len(numbers) >= 2:  # Multiple numbers suggests a list
+        return True
+    
+    # Check for library guide URLs (.edu sites with /guides/, /research/, etc)
+    library_guide_patterns = [
+        r'/guides?/',
+        r'research.*guide',
+        r'libguides',
+        r'library.*guide',
+        r'subject.*guide',
+    ]
+    for pattern in library_guide_patterns:
+        if re.search(pattern, url, re.IGNORECASE):
+            return True
+    
+    return False
 
 
 def scrape_and_analyze(urls: List[str], theme: dict) -> List[LinkCandidate]:
@@ -330,6 +838,12 @@ def scrape_and_analyze(urls: List[str], theme: dict) -> List[LinkCandidate]:
         candidate.content = scraped.content[:3000]  # Limit content
         candidate.concepts = scraped.concepts
         candidate.obscurity_score = scraped.obscurity_score
+        
+        # Reject listicles early
+        if is_listicle_url(candidate.url, candidate.title):
+            print(f"    ✗ Rejected (listicle/junk): {scraped.title[:60]}...")
+            candidate.error = "Listicle/junk content detected"
+            continue
         
         print(f"    ✓ Scraped: {scraped.title[:60]}...")
         print(f"    Concepts: {', '.join(scraped.concepts[:5])}")
@@ -476,12 +990,13 @@ def calculate_content_similarity(candidate1: LinkCandidate, candidate2: LinkCand
 
 def select_best_links(candidates: List[LinkCandidate], count: int = 7) -> List[LinkCandidate]:
     """Select the best links based on final score with diversity checks."""
-    # Filter out candidates with errors or low scores
+    # Filter out candidates with errors, low scores, or .edu domains
     valid = [
         c for c in candidates 
         if c.error is None 
         and c.relevance_score >= MIN_RELEVANCE_SCORE
         and c.obscurity_score >= MIN_OBSCURITY_SCORE
+        and not urlparse(c.url).netloc.endswith('.edu')  # Skip .edu domains
     ]
     
     print(f"\n{len(valid)} candidates passed minimum thresholds")
@@ -493,6 +1008,7 @@ def select_best_links(candidates: List[LinkCandidate], count: int = 7) -> List[L
     
     # Select top N with diversity checks (domain + content)
     selected = []
+    domains_used = []
     
     for candidate in sorted_candidates:
         if len(selected) >= count:
@@ -500,16 +1016,16 @@ def select_best_links(candidates: List[LinkCandidate], count: int = 7) -> List[L
         
         domain = urlparse(candidate.url).netloc
         
-        # Check domain diversity (max 2 links from same domain)
-        domain_count = sum(1 for s in selected if urlparse(s.url).netloc == domain)
-        if domain_count >= 2:
+        # Skip if domain already used (max 3 links per domain)
+        if domains_used.count(domain) >= 3:
+            print(f"  ⏭ Skipping (domain already used): {candidate.title[:50]}...")
             continue
         
         # Check content similarity with already selected links
         is_duplicate = False
         for existing in selected:
             similarity = calculate_content_similarity(candidate, existing)
-            if similarity > 0.5:  # Lower threshold - skip if >50% similar
+            if similarity > 0.5:  # Skip if >50% similar
                 print(f"  ⏭ Skipping (similarity {similarity:.0%} to '{existing.title[:40]}...'): {candidate.title[:40]}...")
                 is_duplicate = True
                 break
@@ -518,6 +1034,7 @@ def select_best_links(candidates: List[LinkCandidate], count: int = 7) -> List[L
             continue
         
         selected.append(candidate)
+        domains_used.append(domain)
         print(f"  ✓ Selected: {candidate.title[:50]}... (score: {candidate.final_score:.2f})")
     
     return selected

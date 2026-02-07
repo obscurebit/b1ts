@@ -21,7 +21,7 @@ STRUCTURE:
 - 400-600 words
 - Start in the middle of something happening, not with setup
 - The ending should recontextualize what came before, not just surprise
-- Leave something unresolved or ambiguous—trust the reader
+- It's OK to Leave something unresolved or ambiguous—trust the reader - but also you can end with a open question or thought-provoking idea
 
 CHARACTER NAMES:
 - Use ordinary names from diverse cultures (not fantasy-sounding)

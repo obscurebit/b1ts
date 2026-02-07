@@ -1,5 +1,5 @@
 ---
-date: 2026-02-06 21:30:01.372577
+date: 2026-02-06 23:51:36.977528
 title: "Obscure Links - February 06, 2026"
 description: "Today's curated obscure links: forgotten technology"
 author: "Obscure Bit"
@@ -14,73 +14,63 @@ theme: "forgotten technology"
 Today's curated discoveries from the hidden corners of the web.
 
 
-## 1. 15 Forgotten Technologies Making an Unexpected Comeback - The Voyaging
+## 1. Eftos_Local_Sense_Technology_The_Forgotten4hifi-full : Eftos : Free Download, Borrow, and Streami...
 
-Home 15 Forgotten Technologies Making an Unexpected Comeback By Erika Cruz May 14, 2025 15 Forgotten Technologies Making an Unexpected Comeback MidJourney Beneath the sleek surfaces of modern innovati...
+Eftos_Local_Sense_Technology_The_Forgotten4hifi-full Suiright Op. 01 1.2 C10H15N Op. 02 2.1 Progeria Op. 03 2.6 Carpe Nihil Op. 04 6.0 Nihilism harmless...
 
-*Obscurity score: 0.95. Key concepts: exploration by erika, we ever imagined, forgotten technologies making.*
+*Obscurity score: 1.00. Key concepts: download download, EMBED, BACK.*
 
-<a href="https://thevoyaging.com/forgotten-technologies-making-an-unexpected-comeback/" target="_blank" rel="noopener" class="visit-link">Visit Link →</a>
-
----
-
-## 2. 10 Superior Technologies That Were Forgotten or Abandoned - Listverse
-
-In the tech world, some of the best ideas don't always make it to the finish line. We've seen incredible innovations come and go, not because they weren't
-
-*Obscurity score: 0.95. Key concepts: AIBO, watch this video, video on youtube.*
-
-<a href="https://listverse.com/2024/08/29/10-superior-technologies-that-were-forgotten-or-abandoned/" target="_blank" rel="noopener" class="visit-link">Visit Link →</a>
+<a href="https://archive.org/details/Eftos_Local_Sense_Technology_The_Forgotten4hifi-full" target="_blank" rel="noopener" class="visit-link">Visit Link →</a>
 
 ---
 
-## 3. 15 Forgotten Inventions That Were Way Ahead of Their Time
+## 2. the forgotten technology : Mestre pedreiro : Free Download, Borrow, and Streaming : Internet Archive
 
-These forgotten creations might have revolutionized the world if only the world was prepared. But instead, they were rejected or forgotten.
+the forgotten technology Video Item Preview remove-circle Internet Archive's in-browser video "theater" requires JavaScript to be enabled. It appears your browser does not have it turned on. Please se...
 
-*Obscurity score: 0.95. Key concepts: NASA, STILL, UFO.*
+*Obscurity score: 1.00. Key concepts: EMBED, webkitallowfullscreen, mozallowfullscreen.*
 
-<a href="https://nadia-onpoint.com/forgotten-inventions/" target="_blank" rel="noopener" class="visit-link">Visit Link →</a>
-
----
-
-## 4. 18 Forgotten Inventions That Were Ahead of Their Time | Illumeably
-
-These inventions were smart, creative, and way ahead of when people were ready for them.
-
-*Obscurity score: 0.95. Key concepts: on wikimedia commons, BCE, ideas and gadgets.*
-
-<a href="https://illumeably.net/posts/18-forgotten-inventions-that-were-ahead-of-their-time/" target="_blank" rel="noopener" class="visit-link">Visit Link →</a>
+<a href="https://archive.org/details/youtube-_mRrB33wvGk" target="_blank" rel="noopener" class="visit-link">Visit Link →</a>
 
 ---
 
-## 5. 9 Forgotten Inventions That Were Decades Ahead of Their Time - The Voyaging
+## 3. Charles Joe Flynn Parallel Path Technology - How Parallel Path Gets Over Unity : Overunity Electr...
 
-Home 9 Forgotten Inventions That Were Decades Ahead of Their Time By Erika Cruz December 23, 2024 9 Forgotten Inventions That Were Decades Ahead of Their Time MidJourney History is filled with groundb...
+This text examines Charles Joe Flynn’s Parallel Path Magnetic Amplifier through the analytical and critical lens of Eric Dollard’s engineering philosophy....
 
-*Obscurity score: 0.95. Key concepts: the solar system, forgotten inventions that, were decades ahead.*
+*Obscurity score: 1.00. Key concepts: PAGE, EMBED, TEXT.*
 
-<a href="https://thevoyaging.com/forgotten-inventions-that-were-decades-ahead-of-their-time/" target="_blank" rel="noopener" class="visit-link">Visit Link →</a>
-
----
-
-## 6. Outdated but Impactful: 10 Obsolete Technologies That Built the Modern World
-
-Technology Outdated but Impactful: 10 Obsolete Technologies That Built the Modern World Darren - June 25, 2025 Throughout history, groundbreaking inventions have ignited revolutions in how we live, wo...
-
-*Obscurity score: 0.80. Key concepts: inventions have ignited, revolutions in how, these technologies have.*
-
-<a href="https://historycollection.com/outdated-but-impactful-10-obsolete-technologies-that-built-the-modern-world/" target="_blank" rel="noopener" class="visit-link">Visit Link →</a>
+<a href="https://archive.org/details/charles-joe-flynn-parallel-path-technology" target="_blank" rel="noopener" class="visit-link">Visit Link →</a>
 
 ---
 
-## 7. The Forgotten Inventions That Could Have Changed The World: Tech ahead of its time – Global Watchdog
+## 4. Old Computers - rare, vintage, and obsolete computers
 
-Tech ahead of its time often dies without the right networks, batteries, or leadership. Meet General Magic, the EV1, and the Xerox Alto.
+Old, rare, vintage and obsolete computer museum
 
-*Obscurity score: 0.75. Key concepts: PARC, the creation of, unorthodox guide to.*
+*Obscurity score: 0.65. Key concepts: obsolete computers, obsolete, computers.*
 
-<a href="https://gwmac.com/tech-ahead-of-its-time/" target="_blank" rel="noopener" class="visit-link">Visit Link →</a>
+<a href="https://oldcomputers.net/indexwp.html" target="_blank" rel="noopener" class="visit-link">Visit Link →</a>
+
+---
+
+## 5. 4 (number) - New World Encyclopedia
+
+4 (number) From New World Encyclopedia Jump to: navigation , search Previous (3 Maccabees) Next (4 Maccabees) 4 0 1 2 3 4 5 6 7 8 9 >> List of numbers — Integers 0 10 20 30 40 50 60 70 80 90 >> Cardin...
+
+*Obscurity score: 0.60. Key concepts: roman numeral iv, is the smallest, RNA.*
+
+<a href="https://www.newworldencyclopedia.org/entry/4_(number)" target="_blank" rel="noopener" class="visit-link">Visit Link →</a>
+
+---
+
+## 6. Techaro
+
+The anti-AI AI company based in Canada
+
+*Obscurity score: 0.50. Key concepts: your business with, techaro we help, canadian businesses leverage.*
+
+<a href="https://techaro.lol" target="_blank" rel="noopener" class="visit-link">Visit Link →</a>
 
 ---
 
