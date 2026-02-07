@@ -10,6 +10,16 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-02-07-/" class="archive-item">
+    <div class="archive-item__number">009</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">February 07, 2026</span>
+      <h3 class="archive-item__title">```</h3>
+      <p class="archive-item__excerpt">Juno Park’s decoder ring—a dented USB-C dongle wrapped in copper tape—clicked into the server’s port. The machine shuddered, its cooling fan stutterin...</p>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-02-06-resonance-chamber/" class="archive-item">
     <div class="archive-item__number">008</div>
     <div class="archive-item__content">

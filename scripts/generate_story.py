@@ -110,6 +110,18 @@ def generate_story() -> tuple[str, str, str]:
         think_end = content.find("</think>")
         content = content[think_end + len("</think>"):].strip()
     
+    # Remove markdown code block fences if present
+    if content.startswith("```"):
+        # Find the closing fence
+        lines = content.split("\n")
+        # Skip opening fence line
+        if lines[0].strip() == "```":
+            lines = lines[1:]
+        # Remove closing fence if present
+        if lines and lines[-1].strip() == "```":
+            lines = lines[:-1]
+        content = "\n".join(lines).strip()
+    
     # Parse title and story
     lines = content.split("\n", 2)
     title = lines[0].strip().lstrip("#").strip()
