@@ -21,4 +21,26 @@
       "anon": true
     });
   </script>
+
+  {% if page and page.file and page.file.src_uri %}
+    {% set src_uri = page.file.src_uri %}
+    {% if src_uri.startswith('bits/posts/') %}
+      <script>
+        mixpanel.track('Story Viewed', {
+          title: "{{ page.meta.title | default(page.title) | e('js') }}",
+          slug: "{{ page.file.slug | e('js') }}",
+          date: "{{ page.meta.date | default('') | e('js') }}",
+          theme: "{{ page.meta.theme | default('') | e('js') }}"
+        });
+      </script>
+    {% elif src_uri.startswith('links/posts/') %}
+      <script>
+        mixpanel.track('Links Viewed', {
+          title: "{{ page.meta.title | default(page.title) | e('js') }}",
+          date: "{{ page.meta.date | default('') | e('js') }}",
+          theme: "{{ page.meta.theme | default('') | e('js') }}"
+        });
+      </script>
+    {% endif %}
+  {% endif %}
 {% endblock %}
