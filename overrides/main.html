@@ -6,6 +6,23 @@
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary" />
 
+  {% set has_page = page is defined and page %}
+  {% set page_src = page.file.src_uri if has_page and page.file and page.file.src_uri else '' %}
+  {% set page_kind = 'story' if page_src.startswith('bits/posts/') else ('links' if page_src.startswith('links/posts/') else '') %}
+
+  {% set page_title = '' %}
+  {% if has_page %}
+    {% if page.meta and page.meta.title %}
+      {% set page_title = page.meta.title %}
+    {% elif page.title %}
+      {% set page_title = page.title %}
+    {% endif %}
+  {% endif %}
+
+  {% set page_slug = page.file.slug if has_page and page.file and page.file.slug else '' %}
+  {% set page_date = page.meta.date if has_page and page.meta and page.meta.date else '' %}
+  {% set page_theme = page.meta.theme if has_page and page.meta and page.meta.theme else '' %}
+
   <script type="text/javascript">
     (function(e,c){if(!c.__SV){var l,h;window.mixpanel=c;c._i=[];c.init=function(q,r,f){function t(d,a){var g=a.split(".");2==g.length&&(d=d[g[0]],a=g[1]);d[a]=function(){d.push([a].concat(Array.prototype.slice.call(arguments,0)))}}var b=c;"undefined"!==typeof f?b=c[f]=[]:f="mixpanel";b.people=b.people||[];b.toString=function(d){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);d||(a+=" (stub)");return a};b.people.toString=function(){return b.toString(1)+".people (stub)"};l="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders start_session_recording stop_session_recording people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");
     for(h=0;h<l.length;h++)t(b,l[h]);var n="set set_once union unset remove delete".split(" ");b.get_group=function(){function d(p){a[p]=function(){b.push([g,[p].concat(Array.prototype.slice.call(arguments,0))])}}for(var a={},g=["get_group"].concat(Array.prototype.slice.call(arguments,0)),m=0;m<n.length;m++)d(n[m]);return a};c._i.push([q,r,f])};c.__SV=1.2;var k=e.createElement("script");k.type="text/javascript";k.async=!0;k.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===
@@ -21,11 +38,11 @@
       "anon": true
     });
 
-    var pageKind = "{{ 'story' if page and page.file and page.file.src_uri and page.file.src_uri.startswith('bits/posts/') else ('links' if page and page.file and page.file.src_uri and page.file.src_uri.startswith('links/posts/') else '') }}";
-    var pageTitle = "{{ page.meta.title | default(page.title) | default('') | e('js') }}";
-    var pageSlug = "{{ page.file.slug | default('') | e('js') }}";
-    var pageDate = "{{ page.meta.date | default('') | e('js') }}";
-    var pageTheme = "{{ page.meta.theme | default('') | e('js') }}";
+    var pageKind = "{{ page_kind | e }}";
+    var pageTitle = "{{ page_title | default('') | e }}";
+    var pageSlug = "{{ page_slug | default('') | e }}";
+    var pageDate = "{{ page_date | default('') | e }}";
+    var pageTheme = "{{ page_theme | default('') | e }}";
 
     if (pageKind === 'story') {
       mixpanel.track('Story Viewed', {
