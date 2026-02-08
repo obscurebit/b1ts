@@ -60,10 +60,6 @@ Amara unclipped her neural jack, the port at her temple throbbing. “Will you t
 
 The archive went dark. In the sudden silence, Amara wondered which of them had just been erased.  
 
----  
-**Word count:** 398  
-**Flavors used:** *The Peripheral Witness* (Amara as observer), *The Broken Machine* (unstable upload), *The Unreliable Memory* (conflicting Junos)  
-**Ending:** The transfer occurs, but the story lingers on the ambiguity of identity—did the “echo” replace the original, or was it a collaboration? The final line implies the distinction may be meaningless.
 
 ---
 

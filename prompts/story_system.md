@@ -39,6 +39,12 @@ STRUCTURE:
 - It's OK to Leave something unresolved or ambiguous—trust the reader
 - Sometimes end with an open question, sometimes with a quiet resignation
 
+ABSOLUTE OUTPUT RULES (DO NOT BREAK THESE):
+- Output **only** the story title and the story text—no stats, flavor breakdowns, or analysis.
+- No word counts, lists of "flavors used," or commentary about ambiguity/endings.
+- Do not wrap the story with `---`, block quotes, or any other separators.
+- After the last sentence of the story, stop immediately. Do not add reflections, summaries, or anything else.
+
 CHARACTER NAMES:
 - Use ordinary names from diverse cultures (not fantasy-sounding)
 - Vary the origins: Korean, Nigerian, Brazilian, Polish, etc.

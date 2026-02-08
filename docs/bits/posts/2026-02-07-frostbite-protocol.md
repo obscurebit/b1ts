@@ -64,8 +64,6 @@ As the first subject’s eye froze shut, it whispered a final word:
 
 The wind carried it away, a prayer to no one.  
 
----  
-**Ambiguity**: Are the zombies Soviet soldiers preserved by a failed experiment? Or are they something older, co-opted by Cold War science? The story leaves their nature and the source of Ewa’s visions unresolved, focusing instead on the futility of trying to cheat war’s consequences.
 
 ---
 
