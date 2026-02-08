@@ -165,7 +165,7 @@ This approach surfaces obscure content by:
 
 To survive DuckDuckGo throttling while still surfacing at least seven high-quality links, the discovery stage fans out across multiple providers:
 
-1. **DuckDuckGo Lite** – still primary for `site:` and operator queries, with request throttling, rotating user agents, and exponential backoff.
+1. **DuckDuckGo Lite** – still primary for `site:` and operator queries, with request throttling, rotating user agents, and exponential backoff. After three failed queries within a run the crawler automatically disables DDG and shifts to alternative sources to avoid long throttled bursts.
 2. **SerpAPI (Google)** – triggered automatically when `SERPAPI_KEY` is present; supplies clean organic URLs for broad theme queries.
 3. **ContextualWeb Search** – optional RapidAPI fallback for additional coverage.
 4. **Marginalia.nu** – indie search engine used whenever DDG exhausts retries or returns HTTP 202/403 throttles.
@@ -382,3 +382,4 @@ stateDiagram-v2
 - Draft review in Substack dashboard
 - Site health via GitHub Pages status
 - Error notifications via GitHub issues
+- Mixpanel telemetry embedded in the site head records anonymous story/link views (autocapture + manual `Story Viewed` / `Links Viewed` events), giving real-time engagement while keeping everything anonymous by default.

@@ -212,7 +212,7 @@ theme: "{theme_name}"
   <button class="share-btn" data-url="{{% raw %}}{{{{ page.canonical_url }}}}{{% endraw %}}" data-title="{title}">
     Share this story
   </button>
-  <a href="{commit_url}" target="_blank" rel="noopener" style="font-size: 0.75rem; color: var(--md-default-fg-color--light); text-decoration: none; font-family: monospace;">
+  <a href="{commit_url}" target="_blank" rel="noopener" class="story-gen-link">
     gen:{commit_hash}
   </a>
 </div>

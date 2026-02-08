@@ -1687,7 +1687,7 @@ def save_links(links: List[LinkCandidate], theme: dict) -> Path:
 
 {summary}
 
-Tags: {tag_line}
+<p class="link-tags">Tags: {tag_line}</p>
 
 <a href="{url}" target="_blank" rel="noopener" class="visit-link">Visit Link →</a>
 
