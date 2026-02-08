@@ -10,6 +10,16 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-02-08-the-echo-archive/" class="archive-item">
+    <div class="archive-item__number">010</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">February 08, 2026</span>
+      <h3 class="archive-item__title">The Echo Archive</h3>
+      <p class="archive-item__excerpt">The first upload fractured in a loop of static and childhood memories—Juno’s voice counting backward in Korean, the smell of ozone, a flicker of a gra...</p>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-02-07-frostbite-protocol/" class="archive-item">
     <div class="archive-item__number">009</div>
     <div class="archive-item__content">
