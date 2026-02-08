@@ -14,6 +14,18 @@ on:
         description: 'Generate new links'
         type: boolean
         default: true
+      update_landing:
+        description: 'Update landing/archive pages'
+        type: boolean
+        default: true
+      theme_json:
+        description: 'Optional theme JSON or path (only for manual runs)'
+        type: string
+        required: false
+      theme_date:
+        description: 'Optional date (YYYY-MM-DD) to pick theme from themes.yaml'
+        type: string
+        required: false
 
 permissions:
   contents: write
@@ -45,16 +57,45 @@ jobs:
         run: |
           pip install openai pyyaml requests beautifulsoup4 python-substack
 
-      - name: Generate Daily Story
-        if: ${{ github.event_name == 'schedule' || github.event.inputs.generate_story == 'true' }}
-        run: python scripts/generate_story.py
+      - name: Run Daily Generation Pipeline
+        env:
+          INPUT_THEME_JSON: ${{ inputs.theme_json }}
+          INPUT_THEME_DATE: ${{ inputs.theme_date }}
+          INPUT_GENERATE_STORY: ${{ inputs.generate_story }}
+          INPUT_GENERATE_LINKS: ${{ inputs.generate_links }}
+          INPUT_UPDATE_LANDING: ${{ inputs.update_landing }}
+        run: |
+          CMD="python scripts/run_daily.py"
 
-      - name: Generate Daily Links
-        if: ${{ github.event_name == 'schedule' || github.event.inputs.generate_links == 'true' }}
-        run: python scripts/generate_links.py
+          if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
+            if [[ -n "$INPUT_THEME_JSON" ]]; then
+              if [[ "${INPUT_THEME_JSON:0:1}" == "{" ]]; then
+                printf '%s' "$INPUT_THEME_JSON" > theme_override.json
+                CMD="$CMD --theme-json theme_override.json"
+              else
+                CMD="$CMD --theme-json $INPUT_THEME_JSON"
+              fi
+            fi
 
-      - name: Update Landing Page
-        run: python scripts/update_landing.py
+            if [[ -n "$INPUT_THEME_DATE" ]]; then
+              CMD="$CMD --date $INPUT_THEME_DATE"
+            fi
+
+            if [[ "$INPUT_GENERATE_STORY" != "true" ]]; then
+              CMD="$CMD --skip-story"
+            fi
+
+            if [[ "$INPUT_GENERATE_LINKS" != "true" ]]; then
+              CMD="$CMD --skip-links"
+            fi
+
+            if [[ "$INPUT_UPDATE_LANDING" != "true" ]]; then
+              CMD="$CMD --skip-landing"
+            fi
+          fi
+
+          echo "Running: $CMD"
+          eval $CMD
 
       - name: Generate Substack Newsletter
         run: python scripts/publish_substack.py

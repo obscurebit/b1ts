@@ -2,14 +2,14 @@
 
 ## Overview
 
-Obscure Bit is an automated content generation system that creates and publishes daily tech stories, links, and newsletter editions. The system runs on GitHub Actions for content generation and publishes to GitHub Pages. Substack publishing requires local execution due to Cloudflare restrictions.
+Obscure Bit is an automated content generation system that creates and publishes daily tech stories, links, and newsletter editions. A single orchestrator (`run_daily.py`) synchronizes theme selection and triggers the story, link, and landing generators. The system runs on GitHub Actions for content generation and publishes to GitHub Pages. Substack publishing requires local execution due to Cloudflare restrictions.
 
 ## Architecture
 
 ```mermaid
 graph TB
     subgraph "GitHub Actions (Daily 6AM UTC)"
-        A[Generate Content] --> B[Update Landing Pages]
+        A[run_daily.py (story+links+landing)] --> B[Update Landing Pages]
         B --> C[Commit & Push]
     end
     
@@ -20,7 +20,7 @@ graph TB
     subgraph "Content Sources"
         E[OpenAI API] --> A
         F[Prompts & Seeds] --> A
-        W[Web Search] --> A
+        W[LLM Strategy + Web Search APIs] --> A
     end
     
     subgraph "Outputs"
@@ -105,7 +105,8 @@ flowchart LR
     subgraph "Stage 2: Discovery"
         D1[Execute LLM search queries]
         D2[Extended sources (42 APIs)]
-        D3[Archive.org fallback]
+        D3[SerpAPI / ContextualWeb]
+        D4[Marginalia fallback]
     end
     
     subgraph "Stage 3: Scraping"
@@ -133,6 +134,7 @@ flowchart LR
     D1 --> S1
     D2 --> S1
     D3 --> S1
+    D4 --> S1
     S1 --> S2
     S2 --> S3
     S3 --> V1
@@ -158,6 +160,19 @@ This approach surfaces obscure content by:
 - Using technical/academic vocabulary
 - Searching across diverse domains
 - Filtering listicles and SEO-optimized content early
+
+### Resilient Search Stack
+
+To survive DuckDuckGo throttling while still surfacing at least seven high-quality links, the discovery stage fans out across multiple providers:
+
+1. **DuckDuckGo Lite** – still primary for `site:` and operator queries, with request throttling, rotating user agents, and exponential backoff.
+2. **SerpAPI (Google)** – triggered automatically when `SERPAPI_KEY` is present; supplies clean organic URLs for broad theme queries.
+3. **ContextualWeb Search** – optional RapidAPI fallback for additional coverage.
+4. **Marginalia.nu** – indie search engine used whenever DDG exhausts retries or returns HTTP 202/403 throttles.
+5. **Curated fallback queries** – `run_fallback_searches()` hits dependable domains (Library of Congress, Smithsonian, Wilson Center, etc.) plus generic "oral history / archives / declassified" searches, ensuring variety even when all other sources are sparse.
+6. **Backup booster queries** – if the deduplicated pool has <25 URLs, broad "hidden history" prompts run through both DDG and Marginalia.
+
+Downstream safeguards guarantee at least three published links by temporarily relaxing relevance/obscurity thresholds when the strict pass yields too few candidates.
 
 ## Action Flows
 
@@ -252,8 +267,9 @@ b1ts/
 │   │   └── edition-XXX-published.txt
 │   └── stylesheets/
 ├── scripts/
+│   ├── run_daily.py            # Theme orchestrator (story + links + landing)
 │   ├── generate_story.py       # AI story generation
-│   ├── generate_links.py       # Enhanced links with web search & research strategy
+│   ├── generate_links.py       # Enhanced links with LLM research + multi-source search
 │   ├── generate_links_old.py   # Legacy links generation (archived)
 │   ├── web_scraper.py          # Content extraction & analysis
 │   ├── update_landing.py       # Site updates
@@ -275,6 +291,8 @@ b1ts/
 OPENAI_API_KEY:          # OpenAI API access
 OPENAI_API_BASE:         # API endpoint (NVIDIA)
 OPENAI_MODEL:            # Model name
+SERPAPI_KEY:             # Optional SerpAPI key for resilient search
+CONTEXTUALWEB_API_KEY:   # Optional RapidAPI key (ContextualWeb backup)
 # Note: Substack secrets removed - Cloudflare blocks CI
 ```
 
@@ -283,6 +301,8 @@ OPENAI_MODEL:            # Model name
 export OPENAI_API_KEY="..."
 export OPENAI_API_BASE="https://integrate.api.nvidia.com/v1"
 export OPENAI_MODEL="nvidia/llama-3.3-nemotron-super-49b-v1.5"
+export SERPAPI_KEY="optional-serpapi-key"
+export CONTEXTUALWEB_API_KEY="optional-rapidapi-key"
 export SUBSTACK_PUBLICATION_URL="https://obscurebit.substack.com"
 export SUBSTACK_COOKIES_PATH="$HOME/.substack_cookies.json"
 ```

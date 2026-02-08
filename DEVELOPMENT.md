@@ -58,6 +58,8 @@ pip install mkdocs-material
 export OPENAI_API_KEY="your-nvidia-nim-api-key"
 export OPENAI_API_BASE="https://integrate.api.nvidia.com/v1"
 export OPENAI_MODEL="nvidia/llama-3.3-nemotron-super-49b-v1.5"
+export SERPAPI_KEY="optional-serpapi-key"              # Enables resilient Google results
+export CONTEXTUALWEB_API_KEY="optional-rapidapi-key"  # Backup search provider
 ```
 
 ### GitHub Secrets (for CI)
@@ -67,12 +69,17 @@ export OPENAI_MODEL="nvidia/llama-3.3-nemotron-super-49b-v1.5"
 | `OPENAI_API_KEY` | NVIDIA NIM API key |
 | `OPENAI_API_BASE` | API endpoint (optional) |
 | `OPENAI_MODEL` | Model name (optional) |
+| `SERPAPI_KEY` | Optional SerpAPI key for reliable Google results |
+| `CONTEXTUALWEB_API_KEY` | Optional RapidAPI key for ContextualWeb backup |
 
 ## Scripts
 
 ### Content Generation
 
 ```bash
+# Full daily run (story + links + landing)
+python scripts/run_daily.py
+
 # Generate a new story
 python scripts/generate_story.py
 
@@ -144,7 +151,7 @@ b1ts/
 │   └── javascripts/            # Custom JS
 ├── scripts/
 │   ├── generate_story.py       # AI story generation
-│   ├── generate_links.py       # AI links generation
+│   ├── generate_links.py       # Links generation w/ LLM research + multi-source search
 │   ├── update_landing.py       # Landing page updater
 │   ├── publish_substack.py     # Substack publishing via API
 │   └── substack_playwright.py  # Cookie extraction helper
@@ -169,6 +176,41 @@ Runs daily at 6 AM UTC via `.github/workflows/generate-content.yml`:
 2. Generate links → `docs/links/posts/`
 3. Update landing pages and archives
 4. Commit and push → triggers GitHub Pages deploy
+
+#### Manual Orchestration
+
+Use `scripts/run_daily.py` to run all three steps locally with a single command:
+
+```bash
+python scripts/run_daily.py
+```
+
+**Options**
+
+```bash
+# Provide explicit theme JSON (string or path)
+python scripts/run_daily.py --theme-json '{"name": "quantum mysteries", "story": "decoder cults", "links": "analog cryptography"}'
+python scripts/run_daily.py --theme-json path/to/custom-theme.json
+
+# Pick a specific date from themes.yaml (uses overrides or rotation)
+python scripts/run_daily.py --date 2026-02-14
+
+# Skip specific steps if needed
+python scripts/run_daily.py --skip-story      # links + landing only
+python scripts/run_daily.py --skip-links      # story + landing only
+python scripts/run_daily.py --skip-landing    # story + links only
+
+# Pass overrides directly to individual scripts
+python scripts/generate_links.py --theme-json '{"name": "lost utilities", "story": "haunted telecom", "links": "abandoned power grids"}'
+python scripts/generate_story.py --theme-json custom-theme.json
+python scripts/update_landing.py --theme-json custom-theme.json
+
+# Provide optional search API keys for resilient link generation
+export SERPAPI_KEY="..."
+export CONTEXTUALWEB_API_KEY="..."
+```
+
+When `--theme-json` is omitted, all scripts fall back to loading `prompts/themes.yaml` (with date overrides). Setting the `THEME_JSON` environment variable has the same effect as passing `--theme-json`.
 
 ### Manual Trigger
 

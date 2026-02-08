@@ -6,8 +6,11 @@ Uses OpenAI-compatible API endpoints.
 
 import os
 import sys
+import json
+import argparse
 from datetime import datetime
 from pathlib import Path
+from typing import Optional
 
 import yaml
 from openai import OpenAI
@@ -21,6 +24,33 @@ MODEL = os.environ.get("OPENAI_MODEL", "nvidia/llama-3.3-nemotron-super-49b-v1.5
 PROMPTS_DIR = Path(__file__).parent.parent / "prompts"
 SYSTEM_PROMPT_FILE = PROMPTS_DIR / "story_system.md"
 THEMES_FILE = PROMPTS_DIR / "themes.yaml"
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Generate the daily Obscure Bit story")
+    parser.add_argument("--theme-json", help="JSON string or path to JSON file specifying today's theme")
+    return parser.parse_args()
+
+
+def load_theme_override(raw_value: Optional[str]) -> Optional[dict]:
+    source = raw_value or os.environ.get("THEME_JSON")
+    if not source:
+        return None
+    try:
+        text = source.strip()
+        if text.startswith("{"):
+            data = json.loads(text)
+        else:
+            potential = Path(text)
+            if potential.exists():
+                data = json.loads(potential.read_text())
+            else:
+                data = json.loads(text)
+        print(f"Using theme override: {data.get('name', 'custom')}")
+        return data
+    except Exception as e:
+        print(f"⚠️  Failed to parse theme override: {e}")
+        return None
 
 
 def load_system_prompt() -> str:
@@ -65,18 +95,16 @@ def get_daily_theme() -> dict:
     return theme
 
 
-def get_story_prompt() -> str:
-    """Generate a unique prompt for today's story."""
-    theme = get_daily_theme()
-    story_direction = theme.get("story", "mysterious technology")
-    
+def build_story_prompt(theme: dict) -> str:
+    """Generate a unique prompt for today's story based on theme."""
+    story_direction = theme.get("story", theme.get("name", "mysterious technology"))
     return f"""Write a short sci-fi story exploring: {story_direction}
 
 Make it feel like discovering a hidden gem - something readers wouldn't find anywhere else. 
 The story should feel complete but leave readers thinking."""
 
 
-def generate_story() -> tuple[str, str, str]:
+def generate_story(theme: dict) -> tuple[str, str, str]:
     """Generate a story using the OpenAI-compatible API."""
     if not API_KEY:
         print("Error: OPENAI_API_KEY environment variable not set")
@@ -88,7 +116,7 @@ def generate_story() -> tuple[str, str, str]:
     )
     
     system_prompt = load_system_prompt()
-    user_prompt = get_story_prompt()
+    user_prompt = build_story_prompt(theme)
     
     print(f"System prompt loaded from: {SYSTEM_PROMPT_FILE}")
     
@@ -127,8 +155,6 @@ def generate_story() -> tuple[str, str, str]:
     title = lines[0].strip().lstrip("#").strip()
     story = lines[2].strip() if len(lines) > 2 else content
     
-    # Get theme name
-    theme = get_daily_theme()
     theme_name = theme.get("name", "unknown")
     
     return title, story, theme_name
@@ -161,7 +187,7 @@ def save_story(title: str, story: str, theme_name: str) -> Path:
             text=True,
             check=True
         ).stdout.strip()
-        commit_url = f"https://github.com/jason-mcdermott/b1ts/commit/{commit_hash}"
+        commit_url = f"https://github.com/obscurebit/b1ts/commit/{commit_hash}"
     except:
         commit_hash = "unknown"
         commit_url = "#"
@@ -198,11 +224,15 @@ theme: "{theme_name}"
 
 
 def main():
+    args = parse_args()
+    theme_override = load_theme_override(args.theme_json)
+    theme = theme_override or get_daily_theme()
     print("Generating daily story...")
     print(f"Using API base: {API_BASE}")
     print(f"Using model: {MODEL}")
+    print(f"Theme: {theme.get('name', 'unknown')}")
     
-    title, story, theme_name = generate_story()
+    title, story, theme_name = generate_story(theme)
     print(f"Generated story: {title}")
     
     filepath = save_story(title, story, theme_name)

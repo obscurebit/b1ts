@@ -14,6 +14,7 @@ import re
 import json
 import time
 import hashlib
+from collections import Counter
 from typing import Dict, List, Optional, Tuple
 from urllib.parse import urljoin, urlparse
 from pathlib import Path
@@ -146,34 +147,71 @@ class WebScraper:
         return text[:10000]  # Limit to 10k chars
     
     def extract_concepts(self, text: str) -> List[str]:
-        """Extract key concepts from text."""
-        concepts = []
-        
-        # Technical terms and acronyms
-        tech_terms = re.findall(r'\b[A-Z]{2,}\b', text)
-        concepts.extend([t for t in tech_terms if len(t) >= 3])
-        
-        # Noun phrases (simple heuristic)
-        noun_phrases = re.findall(r'\b(?:the|a|an)?\s+([a-z]+(?:\s+[a-z]+){0,2})\b', text.lower())
-        concepts.extend([p for p in noun_phrases if 15 <= len(p) <= 50])
-        
-        # Numbers with units
-        measurements = re.findall(r'\b\d+(?:\.\d+)?\s+(?:bytes|hz|gb|mb|kb|ms|sec|min|hour|day|year|degree|percent|°C|°F)\b', text.lower())
-        concepts.extend(measurements)
-        
-        # Unique and interesting words
-        words = re.findall(r'\b[a-z]{8,}\b', text.lower())
-        unique_words = list(set(words))[:20]
-        concepts.extend(unique_words)
-        
-        # Remove duplicates and sort by frequency
-        concept_counts = {}
-        for concept in concepts:
-            concept_counts[concept] = concept_counts.get(concept, 0) + 1
-        
-        # Return top concepts
-        sorted_concepts = sorted(concept_counts.items(), key=lambda x: x[1], reverse=True)
-        return [c[0] for c in sorted_concepts[:15]]
+        """Extract meaningful key phrases from page content."""
+        if not text:
+            return []
+        stopwords = {
+            'the', 'and', 'for', 'that', 'with', 'from', 'this', 'have', 'will', 'into', 'about', 'after',
+            'your', 'their', 'were', 'been', 'which', 'when', 'while', 'where', 'within', 'through', 'among',
+            'into', 'onto', 'each', 'such', 'than', 'them', 'they', 'them', 'those', 'these', 'ourselves',
+            'could', 'would', 'should', 'might', 'there', 'here', 'also', 'very', 'much', 'make', 'made',
+            'including', 'include', 'using', 'used', 'because', 'between', 'before', 'after', 'over', 'under',
+            'again', 'still', 'being', 'only', 'even', 'most', 'more', 'less'
+        }
+        tokens = re.findall(r"[A-Za-z][A-Za-z\-']+", text)
+        if not tokens:
+            return []
+        lower_tokens = [tok.lower() for tok in tokens]
+        candidate_phrases: List[str] = []
+
+        def is_content_word(word: str) -> bool:
+            return len(word) >= 4 and word not in stopwords
+
+        # Capture proper nouns / capitalized sequences
+        for match in re.finditer(r'(?:[A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,3})', text):
+            phrase = match.group().strip()
+            if len(phrase) >= 4:
+                candidate_phrases.append(phrase)
+
+        # High-value single words
+        for word in lower_tokens:
+            if is_content_word(word):
+                candidate_phrases.append(word)
+
+        # Bigrams and trigrams of content words
+        for n in (2, 3):
+            for i in range(len(lower_tokens) - n + 1):
+                chunk = lower_tokens[i:i + n]
+                if not any(is_content_word(w) for w in chunk):
+                    continue
+                if chunk[0] in stopwords and chunk[-1] in stopwords:
+                    continue
+                phrase = " ".join(chunk)
+                candidate_phrases.append(phrase)
+
+        counts = Counter()
+        display_map: Dict[str, str] = {}
+        for phrase in candidate_phrases:
+            key = re.sub(r'\s+', ' ', phrase.lower()).strip()
+            if not key:
+                continue
+            counts[key] += 1
+            if key not in display_map:
+                display_map[key] = phrase.strip()
+
+        top_keys = [key for key, _ in counts.most_common(15)]
+        concepts: List[str] = []
+        for key in top_keys:
+            phrase = display_map[key]
+            cleaned = re.sub(r'\s+', ' ', phrase).strip()
+            if not cleaned:
+                continue
+            if cleaned.islower():
+                cleaned = cleaned.title()
+            if len(cleaned) > 48:
+                cleaned = cleaned[:45].rstrip() + "..."
+            concepts.append(cleaned)
+        return concepts
     
     def calculate_obscurity_score(self, url: str, title: str, content: str) -> float:
         """Calculate obscurity score (0-1, higher is more obscure)."""
@@ -242,11 +280,15 @@ class WebScraper:
         # Check cache first
         cached = self.load_from_cache(url)
         if cached:
+            print(f"    💾 Cache HIT: {url[:60]}...")
             return cached
+        
+        print(f"    🌐 Fetching: {url[:60]}...")
         
         # Fetch the page
         response = self.fetch_page(url)
         if not response:
+            print(f"    ✗ Failed to fetch: {url[:60]}...")
             return ScrapedContent(
                 url=url,
                 title="",
@@ -294,6 +336,7 @@ class WebScraper:
         
         # Save to cache
         self.save_to_cache(result)
+        print(f"    💾 Saved to cache")
         
         return result
     

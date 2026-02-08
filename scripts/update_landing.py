@@ -4,13 +4,42 @@ Update the landing page (home.html) with the latest story and links content.
 Run after generate_story.py and generate_links.py.
 """
 
+import os
 import re
+import json
+import argparse
 from datetime import datetime, date
 from pathlib import Path
 from typing import Optional, List, Dict
 
 # Launch date - edition #001
 LAUNCH_DATE = date(2026, 1, 30)
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Update landing page and archives with latest content")
+    parser.add_argument("--theme-json", help="JSON string or path to JSON file specifying today's theme")
+    return parser.parse_args()
+
+
+def load_theme_override(raw_value: Optional[str]) -> Optional[dict]:
+    source = raw_value or os.environ.get("THEME_JSON")
+    if not source:
+        return None
+    try:
+        text = source.strip()
+        if text.startswith("{"):
+            data = json.loads(text)
+        else:
+            potential = Path(text)
+            if potential.exists():
+                data = json.loads(potential.read_text())
+            else:
+                data = json.loads(text)
+        return data
+    except Exception as e:
+        print(f"⚠️  Failed to parse theme override: {e}")
+        return None
 
 def get_edition_number() -> int:
     """Calculate edition number based on days since launch."""
@@ -112,7 +141,7 @@ def get_latest_links() -> tuple[List[Dict], int]:
     return links, total_count
 
 
-def update_home_html(story: Optional[Dict], links: List[Dict], total_links: int, edition: int):
+def update_home_html(story: Optional[Dict], links: List[Dict], total_links: int, edition: int, theme: Optional[Dict] = None):
     """Update the home.html template with latest content."""
     home_path = Path("overrides/home.html")
     if not home_path.exists():
@@ -128,9 +157,14 @@ def update_home_html(story: Optional[Dict], links: List[Dict], total_links: int,
         content
     )
     
-    # Update theme category if we have a story with theme
-    if story and 'theme' in story:
+    # Determine theme for category display
+    theme_name = None
+    if story and story.get('theme'):
         theme_name = story['theme']
+    elif theme and theme.get('name'):
+        theme_name = theme['name']
+
+    if theme_name:
         content = re.sub(
             r'(<span class="ob-today__category">)[^<]+(</span>)',
             f"\\g<1>{theme_name.title()}\\g<2>",
@@ -356,7 +390,7 @@ def update_links_index():
     return True
 
 
-def create_edition_snapshot(edition: int, story: Optional[Dict], links: List[Dict]):
+def create_edition_snapshot(edition: int, story: Optional[Dict], links: List[Dict], theme: Optional[Dict] = None):
     """Create a snapshot of today's edition for the archive."""
     today = date.today()
     date_str = today.strftime("%Y-%m-%d")
@@ -394,14 +428,18 @@ def create_edition_snapshot(edition: int, story: Optional[Dict], links: List[Dic
 [View all links →](../../../links/posts/{date_str}-daily-links/)
 """
     
-    # Get theme from story or links
-    theme = story.get('theme', 'unknown') if story else 'unknown'
+    # Get theme from story or fallback
+    theme_name = 'unknown'
+    if story and story.get('theme'):
+        theme_name = story['theme']
+    elif theme and theme.get('name'):
+        theme_name = theme['name']
     
     content = f"""---
 title: "Edition #{edition:03d}"
 description: "Obscure Bit - {today.strftime('%B %d, %Y')}"
 date: {date_str}
-theme: "{theme}"
+theme: "{theme_name}"
 ---
 
 # Edition #{edition:03d}
@@ -478,6 +516,10 @@ def update_editions_index():
 
 
 def main():
+    args = parse_args()
+    theme_override = load_theme_override(args.theme_json)
+    theme = theme_override or {}
+
     print("Updating landing page with latest content...")
     
     edition = get_edition_number()
@@ -492,14 +534,14 @@ def main():
     links, total_links = get_latest_links()
     print(f"Found {total_links} links")
     
-    if update_home_html(story, links, total_links, edition):
+    if update_home_html(story, links, total_links, edition, theme):
         print("Success! Landing page updated.")
     else:
         print("Failed to update landing page.")
     
     # Create edition snapshot
     print("\nCreating edition snapshot...")
-    create_edition_snapshot(edition, story, links)
+    create_edition_snapshot(edition, story, links, theme)
     
     # Update archive pages
     print("\nUpdating archive pages...")
