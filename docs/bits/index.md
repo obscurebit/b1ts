@@ -10,6 +10,16 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-02-09-static-echoes/" class="archive-item">
+    <div class="archive-item__number">011</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">February 09, 2026</span>
+      <h3 class="archive-item__title">Static Echoes</h3>
+      <p class="archive-item__excerpt">The dial trembled under his fingers, the radio’s static hissing like rain on asphalt. Diego didn’t notice the sweat on his brow, all his attention fix...</p>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-02-08-the-echo-archive/" class="archive-item">
     <div class="archive-item__number">010</div>
     <div class="archive-item__content">
