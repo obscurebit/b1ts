@@ -20,6 +20,16 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
     <span class="archive-item__category">Story</span>
     <span class="archive-item__arrow">→</span>
   </a>
+  <a href="posts/2026-02-11-the-bloom-protocol/" class="archive-item">
+    <div class="archive-item__number">013</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">February 11, 2026</span>
+      <h3 class="archive-item__title">The Bloom Protocol</h3>
+      <p class="archive-item__excerpt">The third terrarium cracked its lid open at 3:14 a.m. Ewa noticed because the grow lights flickered when it happened, casting the lab wall in a stutte...</p>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-02-09-static-echoes/" class="archive-item">
     <div class="archive-item__number">011</div>
     <div class="archive-item__content">
