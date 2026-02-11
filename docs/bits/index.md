@@ -10,6 +10,16 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-02-11-the-second-genome/" class="archive-item">
+    <div class="archive-item__number">013</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">February 11, 2026</span>
+      <h3 class="archive-item__title">The Second Genome</h3>
+      <p class="archive-item__excerpt">The petri dish quivered. Not vibrated, not shimmered—quivered, like a lip poised to speak. Dr. Ewa Okoro leaned closer, her breath fogging the glass. ...</p>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-02-09-static-echoes/" class="archive-item">
     <div class="archive-item__number">011</div>
     <div class="archive-item__content">
