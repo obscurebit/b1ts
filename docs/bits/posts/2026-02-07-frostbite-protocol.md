@@ -71,7 +71,7 @@ The wind carried it away, a prayer to no one.
   <button class="share-btn" data-url="{% raw %}{{ page.canonical_url }}{% endraw %}" data-title="Frostbite Protocol">
     Share this story
   </button>
-  <a href="https://github.com/obscurebit/b1ts/commit/10ec7d2" target="_blank" rel="noopener" style="font-size: 0.75rem; color: var(--md-default-fg-color--light); text-decoration: none; font-family: monospace;">
+  <a href="https://github.com/obscurebit/b1ts/tree/10ec7d2" target="_blank" rel="noopener" style="font-size: 0.75rem; color: var(--md-default-fg-color--light); text-decoration: none; font-family: monospace;">
     gen:10ec7d2
   </a>
 </div>

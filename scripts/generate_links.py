@@ -21,6 +21,7 @@ from typing import List, Dict, Optional, Tuple
 from urllib.parse import quote_plus, urlparse, parse_qs, unquote
 import random
 import time
+import subprocess
 
 import yaml
 import requests
@@ -1565,16 +1566,31 @@ def select_best_links(candidates: List[LinkCandidate], count: int = 7) -> List[L
     if len(valid) < MINIMUM_SELECTED_LINKS:
         print(f"\n⚠️  Only {len(valid)} candidates passed strict filters; enabling fallback thresholds")
         fallback_mode = True
-        for c in candidates:
-            if c in valid or c.error or urlparse(c.url).netloc.endswith('.edu'):
-                continue
-            if looks_like_boilerplate(c):
-                continue
-            if c.relevance_score >= MIN_RELEVANCE_FALLBACK and c.obscurity_score >= MIN_OBSCURITY_FALLBACK:
-                print(f"  ➕ Fallback candidate: {c.url[:60]}... (rel {c.relevance_score:.2f}, obs {c.obscurity_score:.2f})")
-                valid.append(c)
+        fallback_tiers = [
+            (MIN_RELEVANCE_FALLBACK, MIN_OBSCURITY_FALLBACK, "standard fallback"),
+            (0.20, 0.20, "relaxed fallback"),
+            (0.05, 0.15, "last-chance fallback"),
+            (0.0, 0.0, "final emergency fallback"),
+        ]
+
+        for rel_threshold, obs_threshold, label in fallback_tiers:
             if len(valid) >= MINIMUM_SELECTED_LINKS:
                 break
+            print(f"    • {label}: rel ≥ {rel_threshold:.2f}, obs ≥ {obs_threshold:.2f}")
+            added_this_tier = 0
+            for c in candidates:
+                if len(valid) >= MINIMUM_SELECTED_LINKS:
+                    break
+                if c in valid or c.error or urlparse(c.url).netloc.endswith('.edu'):
+                    continue
+                if looks_like_boilerplate(c):
+                    continue
+                if c.relevance_score >= rel_threshold and c.obscurity_score >= obs_threshold:
+                    print(f"  ➕ Fallback candidate: {c.url[:60]}... (rel {c.relevance_score:.2f}, obs {c.obscurity_score:.2f})")
+                    valid.append(c)
+                    added_this_tier += 1
+            if added_this_tier:
+                print(f"    → Added {added_this_tier} candidate(s) via {label}")
 
     if not valid:
         print("\n❌ No candidates passed filtering!")
@@ -1666,7 +1682,18 @@ def save_links(links: List[LinkCandidate], theme: dict) -> Path:
     today = datetime.now()
     date_str = today.strftime("%Y-%m-%d")
     theme_name = theme.get("name", "unknown")
-    
+    try:
+        commit_hash = subprocess.run(
+            ["git", "rev-parse", "--short", "HEAD"],
+            capture_output=True,
+            text=True,
+            check=True,
+        ).stdout.strip()
+        commit_url = f"https://github.com/obscurebit/b1ts/tree/{commit_hash}"
+    except Exception:
+        commit_hash = "unknown"
+        commit_url = "#"
+
     # Ensure posts directory exists
     posts_dir = Path("docs/links/posts")
     posts_dir.mkdir(parents=True, exist_ok=True)
@@ -1713,9 +1740,14 @@ Today's curated discoveries from the hidden corners of the web.
 
 {links_content}
 
-<button class="share-btn" data-url="{{% raw %}}{{{{ page.canonical_url }}}}{{% endraw %}}" data-title="Obscure Links - {date_str}">
-  Share today's links
-</button>
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem;">
+  <button class="share-btn" data-url="{{% raw %}}{{{{ page.canonical_url }}}}{{% endraw %}}" data-title="Obscure Links - {date_str}">
+    Share today's links
+  </button>
+  <a href="{commit_url}" target="_blank" rel="noopener" class="story-gen-link">
+    gen:{commit_hash}
+  </a>
+</div>
 """
     
     filepath.write_text(content)

@@ -67,7 +67,7 @@ The archive went dark. In the sudden silence, Amara wondered which of them had j
   <button class="share-btn" data-url="{% raw %}{{ page.canonical_url }}{% endraw %}" data-title="The Echo Archive">
     Share this story
   </button>
-  <a href="https://github.com/obscurebit/b1ts/commit/9dd0ef3" target="_blank" rel="noopener" class="story-gen-link">
+  <a href="https://github.com/obscurebit/b1ts/tree/9dd0ef3" target="_blank" rel="noopener" class="story-gen-link">
     gen:9dd0ef3
   </a>
 </div>

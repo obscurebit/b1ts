@@ -187,7 +187,7 @@ def save_story(title: str, story: str, theme_name: str) -> Path:
             text=True,
             check=True
         ).stdout.strip()
-        commit_url = f"https://github.com/obscurebit/b1ts/commit/{commit_hash}"
+        commit_url = f"https://github.com/obscurebit/b1ts/tree/{commit_hash}"
     except:
         commit_hash = "unknown"
         commit_url = "#"

@@ -47,6 +47,11 @@ Smaller posts surface images, books, audio, and film (sourced from places like I
 ---
 
 
-<button class="share-btn" data-url="{% raw %}{{ page.canonical_url }}{% endraw %}" data-title="Obscure Links - 2026-02-08">
-  Share today's links
-</button>
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem;">
+  <button class="share-btn" data-url="{% raw %}{{ page.canonical_url }}{% endraw %}" data-title="Obscure Links - 2026-02-08">
+    Share today's links
+  </button>
+  <a href="https://github.com/obscurebit/b1ts/tree/9dd0ef3" target="_blank" rel="noopener" class="story-gen-link">
+    gen:9dd0ef3
+  </a>
+</div>

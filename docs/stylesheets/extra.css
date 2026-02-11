@@ -41,6 +41,13 @@
   --ob-accent: #7c3aed;
 }
 
+[data-md-color-scheme="default"] .md-header__button,
+[data-md-color-scheme="default"] .md-header__button md-icon,
+[data-md-color-scheme="default"] .md-header__button svg {
+  color: var(--ob-text-primary);
+  fill: var(--ob-text-primary);
+}
+
 /* ===== Page Header ===== */
 .page-header {
   padding: 3rem 0 4rem;
