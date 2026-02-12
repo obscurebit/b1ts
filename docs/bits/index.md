@@ -10,6 +10,16 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-02-12-the-unbroken-key/" class="archive-item">
+    <div class="archive-item__number">014</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">February 12, 2026</span>
+      <h3 class="archive-item__title">The Unbroken Key</h3>
+      <p class="archive-item__excerpt">Amara’s gloved hands trembled as she pried open the archive panel. The station’s hull groaned around her, a sound like ancient metal sighing. Inside, ...</p>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-02-11-the-second-genome/" class="archive-item">
     <div class="archive-item__number">013</div>
     <div class="archive-item__content">
