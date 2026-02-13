@@ -10,6 +10,16 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-02-13-the-silent-garden/" class="archive-item">
+    <div class="archive-item__number">015</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">February 13, 2026</span>
+      <h3 class="archive-item__title">The Silent Garden</h3>
+      <p class="archive-item__excerpt">Jisun’s plasma torch hissed as it cut through the station’s outer hull. The metal curled away like tinfoil, revealing a chamber thick with silence. He...</p>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-02-12-the-unbroken-key/" class="archive-item">
     <div class="archive-item__number">014</div>
     <div class="archive-item__content">
