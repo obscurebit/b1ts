@@ -288,12 +288,21 @@
 }
 
 .ob-today__category,
+.ob-today__genre,
 .ob-today__reading-time {
   font-family: var(--ob-font-mono);
   font-size: 0.65rem;
   color: var(--ob-text-muted);
   text-transform: uppercase;
   letter-spacing: 0.15em;
+}
+
+.ob-today__genre {
+  color: var(--ob-accent);
+  border: 1px solid var(--ob-accent);
+  border-radius: 2px;
+  padding: 0.15em 0.5em;
+  opacity: 0.8;
 }
 
 .ob-today__story-title {

@@ -21,6 +21,6 @@ description: What is Obscure Bit and how does it work?
   </p>
 
   <p class="about-cta">
-    <a href="https://github.com" target="_blank" rel="noopener">This project is open source ↗</a>
+    <a href="https://github.com/obscurebit/b1ts" target="_blank" rel="noopener">This project is open source ↗</a>
   </p>
 </div>

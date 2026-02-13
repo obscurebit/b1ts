@@ -118,7 +118,15 @@ RESEARCH_STRATEGY_PROMPT_FILE = PROMPTS_DIR / "research_strategy_system.md"
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Generate curated obscure links")
     parser.add_argument("--theme-json", help="JSON string or path to JSON file specifying today's theme")
+    parser.add_argument("--date", help="Override date (YYYY-MM-DD) for backfill generation")
     return parser.parse_args()
+
+
+def resolve_date(date_override: Optional[str] = None) -> datetime:
+    """Return the target date, either from an override string or today."""
+    if date_override:
+        return datetime.strptime(date_override, "%Y-%m-%d")
+    return datetime.now()
 
 
 def load_theme_override(raw_value: Optional[str]) -> Optional[dict]:
@@ -1644,10 +1652,16 @@ def select_best_links(candidates: List[LinkCandidate], count: int = 7) -> List[L
 
 def _extract_summary_text(candidate: LinkCandidate) -> str:
     """Build cleaner summaries, preferring descriptions and sentence boundaries."""
-    if candidate.description and len(candidate.description.strip()) >= 40:
-        base = candidate.description.strip()
+    description = (candidate.description or "").strip()
+    if description and len(description) >= 40:
+        base = description
     else:
-        content = candidate.content.replace('\n', ' ').strip()
+        content = (candidate.content or "").replace('\n', ' ').strip()
+        if not content:
+            domain = urlparse(candidate.url).netloc
+            if candidate.url.lower().endswith('.pdf') or 'application/pdf' in description.lower():
+                return f"PDF download hosted by {domain}."
+            return f"Resource hosted on {domain}—open to explore the primary source."
         sentences = re.split(r'(?<=[.!?])\s+', content)
         base = ' '.join(sentences[:2]).strip()
     if not base:
@@ -1677,9 +1691,9 @@ def generate_summary(candidate: LinkCandidate, theme: dict) -> Tuple[str, str, L
     return title, summary, tags
 
 
-def save_links(links: List[LinkCandidate], theme: dict) -> Path:
+def save_links(links: List[LinkCandidate], theme: dict, target_date: Optional[datetime] = None) -> Path:
     """Save the selected links as a markdown file."""
-    today = datetime.now()
+    today = target_date or datetime.now()
     date_str = today.strftime("%Y-%m-%d")
     theme_name = theme.get("name", "unknown")
     try:
@@ -1758,6 +1772,7 @@ Today's curated discoveries from the hidden corners of the web.
 def main():
     """Main entry point for link generation."""
     args = parse_args()
+    target_date = resolve_date(args.date) if args.date else None
     theme_override = load_theme_override(args.theme_json)
     theme = theme_override or get_daily_theme()
     theme_name = theme.get("name", "unknown")
@@ -1817,7 +1832,7 @@ def main():
     print("\n" + "=" * 70)
     print("STEP 5: Saving Results")
     print("=" * 70)
-    filepath = save_links(selected, theme)
+    filepath = save_links(selected, theme, target_date)
     
     print("\n" + "=" * 70)
     print("SUCCESS!")

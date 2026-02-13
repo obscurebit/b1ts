@@ -162,6 +162,41 @@
   overflow: hidden;
 }
 
+.archive-item__tags {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.archive-item__theme {
+  font-family: var(--ob-font-mono);
+  font-size: 0.6rem;
+  color: var(--ob-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  border: 1px solid var(--ob-border);
+  border-radius: 2px;
+  padding: 0.15em 0.5em;
+}
+
+.archive-item__genre {
+  font-family: var(--ob-font-mono);
+  font-size: 0.6rem;
+  color: var(--ob-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  border: 1px solid var(--ob-accent);
+  border-radius: 2px;
+  padding: 0.15em 0.5em;
+  opacity: 0.8;
+  max-width: 22ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .archive-item__category {
   font-family: var(--ob-font-mono);
   font-size: 0.65rem;

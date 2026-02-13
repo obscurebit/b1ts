@@ -1,0 +1,177 @@
+# Style Modifiers for Story Generation
+# Each dimension is independently randomized per day to create unique combinations.
+# With ~15 options per dimension across 8 dimensions + 12 banned sets,
+# there are billions of unique combinations—enough for decades of daily stories.
+
+# Point of view / narrative voice
+pov:
+  - "First person, unreliable narrator"
+  - "Third person close, single character"
+  - "Second person (you)"
+  - "Epistolary: letters, emails, or chat logs"
+  - "Third person omniscient, cold and clinical"
+  - "Interview transcript with redactions"
+  - "Multiple first-person voices alternating"
+  - "Field notes or research log entries"
+  - "Third person distant, almost journalistic"
+  - "Stream of consciousness, fragmented"
+  - "First person plural (we)"
+  - "Told as a bedtime story or oral tale"
+  - "Second person imperative, like instructions or a recipe"
+  - "Voiceover narration, as if from a documentary"
+  - "First person, looking back decades later"
+
+# Emotional tone
+tone:
+  - "Darkly comic, deadpan humor"
+  - "Melancholic and tender"
+  - "Tense, paranoid thriller"
+  - "Quiet wonder, almost reverent"
+  - "Bitter and disillusioned"
+  - "Playful and surreal"
+  - "Cold, procedural detachment"
+  - "Nostalgic warmth curdling into unease"
+  - "Frantic urgency, breathless pacing"
+  - "Dry, understated irony"
+  - "Giddy and manic, barely holding together"
+  - "Elegiac, mourning something beautiful"
+  - "Conspiratorial, like sharing a secret"
+  - "Weary acceptance, gallows humor"
+  - "Childlike awe mixed with dread"
+
+# Time period / setting era
+era:
+  - "Near future, 2040s, recognizable but shifted"
+  - "1970s analog technology era"
+  - "Far future, post-scarcity society"
+  - "Present day, mundane and specific"
+  - "1990s early internet era"
+  - "Victorian or industrial revolution"
+  - "Ambiguous time, could be any era"
+  - "Post-collapse, decades after a vague catastrophe"
+  - "Cold War era, 1960s espionage feel"
+  - "Ancient world with anachronistic elements"
+  - "1930s-1940s, art deco and radio dramas"
+  - "2010s, smartphones exist but feel new"
+  - "Medieval, candlelight and parchment"
+  - "1950s suburban, manicured lawns and secrets"
+  - "Deep future, humanity barely recognizable"
+
+# Setting location
+setting:
+  - "A small apartment in a dense city"
+  - "Rural, isolated—farmland or forest"
+  - "Underground: subway, bunker, cave"
+  - "A ship at sea or in space"
+  - "An office or bureaucratic institution"
+  - "A market, bazaar, or street fair"
+  - "A hospital, clinic, or care facility"
+  - "A school or university campus"
+  - "A border crossing or transit hub"
+  - "A workshop, garage, or maker space"
+  - "A library, archive, or bookshop"
+  - "Rooftop, balcony, or high vantage point"
+  - "A restaurant kitchen during a rush"
+  - "A moving vehicle: train, bus, or car"
+  - "A cemetery, memorial, or ruin"
+  - "A theater, concert hall, or stadium"
+
+# Narrative structure / format
+structure:
+  - "Linear chronology, tight scene"
+  - "Reverse chronology, ending revealed first"
+  - "Fragmented vignettes with gaps"
+  - "A list or inventory that tells a story"
+  - "Two timelines intercut"
+  - "Single long conversation, mostly dialogue"
+  - "Found document with editorial annotations"
+  - "Montage of brief moments across years"
+  - "One continuous real-time scene, no breaks"
+  - "A story told through objects described"
+  - "Nested story: a character tells a story within the story"
+  - "Countdown or ticking clock structure"
+  - "Parallel scenes in different locations, converging"
+  - "A single paragraph, no breaks, dense and breathless"
+
+# Central conflict type
+conflict:
+  - "Person vs. bureaucracy or institution"
+  - "Two people who want incompatible things"
+  - "Person vs. their own memory or identity"
+  - "A moral dilemma with no right answer"
+  - "Something mundane that becomes uncanny"
+  - "A secret that's about to surface"
+  - "A task that keeps failing in new ways"
+  - "Grief reshaping someone's perception"
+  - "A promise that can't be kept"
+  - "The cost of knowing something others don't"
+  - "A relationship tested by an impossible choice"
+  - "Trying to explain something no one believes"
+  - "An inheritance—literal or figurative—with strings attached"
+  - "Two strangers forced into brief, intense proximity"
+
+# Opening hook style
+opening:
+  - "Start with a specific sensory detail (smell, texture, sound)"
+  - "Start with a line of dialogue mid-conversation"
+  - "Start with an object being examined or handled"
+  - "Start with a contradiction or impossible statement"
+  - "Start with a place description, one sentence, then action"
+  - "Start with a list, receipt, or label"
+  - "Start with a question the narrator asks themselves"
+  - "Start with a memory intruding on the present"
+  - "Start with a sound that shouldn't be there"
+  - "Start with someone arriving somewhere unfamiliar"
+  - "Start with a deadline or countdown"
+  - "Start with a confession or admission"
+  - "Start with an action already in progress, no context"
+  - "Start with a rule or law being stated, then broken"
+
+# Genre / subgenre flavor — forces variety beyond "speculative mystery"
+genre:
+  - "Domestic drama with one speculative element"
+  - "Cosmic horror, vast and indifferent"
+  - "Workplace comedy with a sci-fi twist"
+  - "Fable or parable, simple surface hiding depth"
+  - "Noir detective, hard-boiled voice"
+  - "Satire of technology culture"
+  - "Quiet literary realism with one impossible thing"
+  - "Body horror, transformation, the flesh is wrong"
+  - "Heist or caper, clever and kinetic"
+  - "Ghost story, atmospheric and slow"
+  - "Romantic subplot driving a speculative premise"
+  - "Political allegory, thinly veiled"
+  - "Survival story, resourcefulness under pressure"
+  - "Epistolary mystery, pieced together from fragments"
+  - "Mythic retelling set in a modern context"
+
+# Wildcard — an extra constraint that doesn't fit other categories
+wildcard:
+  - "The story must contain exactly one lie the reader can catch"
+  - "No character speaks more than one sentence at a time"
+  - "The story must reference a specific real historical event"
+  - "Include a nonhuman character who is not a robot or AI"
+  - "The protagonist is wrong about something important and never learns"
+  - "The story contains no technology more advanced than exists today"
+  - "Every paragraph must be shorter than the one before it"
+  - "The central object in the story is something boring: a chair, a receipt, a sock"
+  - "Two characters who never meet but affect each other's lives"
+  - "The story takes place entirely in one room"
+  - "No one in the story has a name"
+  - "The story must be funny, genuinely funny, not just wry"
+
+# Banned words for THIS generation (rotated to prevent staleness)
+# Each list is a set that gets selected together
+banned_word_sets:
+  - ["echo", "static", "hum", "shimmer", "pulse", "flicker", "whisper"]
+  - ["signal", "frequency", "receiver", "dial", "monitor", "terminal", "screen"]
+  - ["echo", "protocol", "archive", "chamber", "void", "nexus", "lattice"]
+  - ["static", "ozone", "circuitry", "hum", "pulse", "crackle", "hiss"]
+  - ["shimmer", "flicker", "glow", "luminous", "phosphorescent", "radiant", "gleam"]
+  - ["whisper", "murmur", "rasp", "hiss", "breath", "sigh", "tremor"]
+  - ["echo", "resonance", "vibration", "frequency", "wavelength", "oscillation", "harmonic"]
+  - ["ancient", "relic", "artifact", "forgotten", "buried", "unearthed", "dormant"]
+  - ["quantum", "entangled", "superposition", "decoherence", "collapse", "observer", "particle"]
+  - ["fractal", "spiral", "recursive", "infinite", "loop", "pattern", "nested"]
+  - ["threshold", "boundary", "liminal", "between", "edge", "margin", "border"]
+  - ["transmission", "broadcast", "antenna", "relay", "channel", "bandwidth", "spectrum"]

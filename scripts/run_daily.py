@@ -109,24 +109,27 @@ def main():
 
     scripts_dir = Path(__file__).parent
 
+    # Build optional --date flag for child scripts
+    date_args = ["--date", args.date] if args.date else []
+
     if not args.skip_links:
         run_script(
             "Generate Links",
-            [sys.executable, str(scripts_dir / "generate_links.py"), "--theme-json", theme_json],
+            [sys.executable, str(scripts_dir / "generate_links.py"), "--theme-json", theme_json] + date_args,
             shared_env,
         )
 
     if not args.skip_story:
         run_script(
             "Generate Story",
-            [sys.executable, str(scripts_dir / "generate_story.py"), "--theme-json", theme_json],
+            [sys.executable, str(scripts_dir / "generate_story.py"), "--theme-json", theme_json] + date_args,
             shared_env,
         )
 
     if not args.skip_landing:
         run_script(
             "Update Landing",
-            [sys.executable, str(scripts_dir / "update_landing.py"), "--theme-json", theme_json],
+            [sys.executable, str(scripts_dir / "update_landing.py"), "--theme-json", theme_json] + date_args,
             shared_env,
         )
 

@@ -21,6 +21,7 @@ graph TB
         E[OpenAI API] --> A
         F[Prompts & Seeds] --> A
         W[LLM Strategy + Web Search APIs] --> A
+        SM[Style Modifiers<br/>SHA-256 date seed] --> A
     end
     
     subgraph "Outputs"
@@ -51,6 +52,7 @@ flowchart LR
         A1[OpenAI API]
         A2[Story Prompts]
         A3[Link Seeds]
+        SM[style_modifiers.yaml]
     end
     
     subgraph "Generation"
@@ -63,9 +65,9 @@ flowchart LR
     WS --> B2
     
     subgraph "Storage"
-        C1[docs/bits/posts/]
+        C1["docs/bits/posts/<br/>(frontmatter: theme, genre)"]
         C2[docs/links/posts/]
-        C3[docs/editions.md]
+        C3[docs/editions/posts/]
         C4[docs/substack/]
     end
     
@@ -76,6 +78,7 @@ flowchart LR
     
     A1 --> B1
     A2 --> B1
+    SM --> B1
     W --> B2
     A3 --> B2
     WS --> B2
@@ -88,6 +91,47 @@ flowchart LR
     C3 --> D1
     C4 --> D2
 ```
+
+## Style Modifiers System
+
+Each story is shaped by randomized constraints drawn from `prompts/style_modifiers.yaml`. This ensures variety even when themes repeat on their 18-day rotation.
+
+```mermaid
+flowchart TD
+    DATE["Date (YYYY-MM-DD)"] --> HASH["SHA-256 hash → seed"]
+    HASH --> RNG["Seeded RNG"]
+    
+    subgraph "Style Dimensions (9)"
+        POV[pov · 15 options]
+        TONE[tone · 15 options]
+        ERA[era · 15 options]
+        SET[setting · 16 options]
+        STR[structure · 14 options]
+        CON[conflict · 14 options]
+        OPEN[opening · 14 options]
+        GEN[genre · 15 options]
+        WILD[wildcard · 12 options]
+    end
+    
+    RNG --> POV & TONE & ERA & SET & STR & CON & OPEN & GEN & WILD
+    
+    subgraph "Banned Words"
+        BAN["12 word sets · 7 words each"]
+    end
+    
+    RNG --> BAN
+    
+    POV & TONE & ERA & SET & STR & CON & OPEN & GEN & WILD --> PROMPT["Story prompt<br/>with TODAY'S CONSTRAINTS"]
+    BAN --> PROMPT
+    GEN --> FM["Frontmatter: genre field"]
+    FM --> CARDS["Landing page + archive genre tags"]
+```
+
+### Properties
+- **Deterministic**: Same date → same modifiers (reproducible backfills)
+- **Combinatorial**: ~15^9 × 12 ≈ 460 billion unique combinations
+- **Anti-repetition**: Banned word sets rotate to prevent stylistic staleness
+- **Genre propagation**: Genre flows from modifier → frontmatter → HTML cards via `update_landing.py`
 
 ## Link Generation Architecture (v3 - Research Strategy)
 
@@ -185,20 +229,45 @@ sequenceDiagram
     participant GH as GitHub Repo
     participant SS as Substack API
     
-    GA->>AI: Generate story
-    AI-->>GA: Story content
-    GA->>AI: Generate links
+    GA->>GA: Select theme (rotation or override)
+    GA->>GA: Select style modifiers (SHA-256 date seed)
+    GA->>AI: Generate story (theme + modifiers)
+    AI-->>GA: Story content + genre
+    GA->>AI: Generate links (theme direction)
     AI-->>GA: Links content
     
-    GA->>GH: Save story to docs/bits/posts/
+    GA->>GH: Save story to docs/bits/posts/ (genre in frontmatter)
     GA->>GH: Save links to docs/links/posts/
-    GA->>GH: Update editions.md
-    GA->>GH: Update landing pages
+    GA->>GH: Create edition snapshot (genre in frontmatter)
+    GA->>GH: Update landing page + archives (genre tags on cards)
     
     GA->>GH: Commit changes
     GA->>GH: Push to main
     
     Note over GA: Content ready for local Substack publish
+```
+
+### 1b. Backfill Generation (Manual)
+
+All scripts accept `--date YYYY-MM-DD` to generate content for past dates. The date controls theme selection, style modifier seed, and output filenames.
+
+```mermaid
+sequenceDiagram
+    participant Dev as Developer
+    participant RD as run_daily.py
+    participant GS as generate_story.py
+    participant GL as generate_links.py
+    
+    Dev->>RD: --date 2026-02-10 --skip-landing
+    RD->>RD: select_theme("2026-02-10")
+    RD->>GL: --date 2026-02-10 --theme-json {...}
+    GL->>GL: save_links(target_date=Feb 10)
+    RD->>GS: --date 2026-02-10 --theme-json {...}
+    GS->>GS: select_style_modifiers(seed=SHA256("2026-02-10"))
+    GS->>GS: save_story(target_date=Feb 10)
+    
+    Dev->>Dev: python scripts/update_landing.py
+    Note over Dev: Rebuild archives to include backfilled content
 ```
 
 ### 2. Local Substack Publishing (Manual)
@@ -272,14 +341,16 @@ b1ts/
 │   ├── generate_links.py       # Enhanced links with LLM research + multi-source search
 │   ├── generate_links_old.py   # Legacy links generation (archived)
 │   ├── web_scraper.py          # Content extraction & analysis
-│   ├── update_landing.py       # Site updates
+│   ├── update_landing.py       # Site updates (parses genre → HTML tags)
 │   ├── publish_substack.py     # Substack API publishing
-│   └── substack_playwright.py  # Cookie extraction helper
+│   ├── substack_playwright.py  # Cookie extraction helper
+│   └── test_web_access.py      # Web access diagnostics
 ├── prompts/
 │   ├── story_system.md         # Story generation prompts
 │   ├── links_system.md         # Links content generation prompts
 │   ├── research_strategy_system.md  # LLM research strategy prompts
-│   └── themes.yaml             # Unified themes for stories + links
+│   ├── themes.yaml             # Unified themes for stories + links
+│   └── style_modifiers.yaml    # Randomized story constraint pools (9 dimensions)
 └── cache/
     └── web_content/            # Cached scraped content
 ```
@@ -349,7 +420,7 @@ stateDiagram-v2
 ### Content Volume
 - Daily editions: ~365 posts/year
 - Storage: Minimal (markdown files)
-- API calls: 2 per day (story + links)
+- API calls: ~4-6 per day (story generation, link research strategy, link scoring, link summaries)
 
 ### Performance
 - Generation time: ~30 seconds

@@ -90,6 +90,24 @@ python scripts/generate_links.py
 python scripts/update_landing.py
 ```
 
+### Backfill Past Dates
+
+All generation scripts accept `--date YYYY-MM-DD` to generate content for a specific date. The date controls theme selection, style modifier seed, and output filenames.
+
+```bash
+# Full backfill for a specific date (skip landing since it should reflect latest)
+python scripts/run_daily.py --date 2026-02-10 --skip-landing
+
+# Backfill just a story
+python scripts/generate_story.py --date 2026-02-10
+
+# Backfill just links
+python scripts/generate_links.py --date 2026-02-10
+
+# Then rebuild archives to include the new content
+python scripts/update_landing.py
+```
+
 ### Substack Publishing
 
 Substack uses Cloudflare protection that blocks automated requests. We use a two-script approach:
@@ -150,15 +168,20 @@ b1ts/
 │   ├── stylesheets/            # Custom CSS
 │   └── javascripts/            # Custom JS
 ├── scripts/
-│   ├── generate_story.py       # AI story generation
+│   ├── run_daily.py            # Orchestrator (theme → story + links + landing)
+│   ├── generate_story.py       # AI story generation w/ style modifiers
 │   ├── generate_links.py       # Links generation w/ LLM research + multi-source search
-│   ├── update_landing.py       # Landing page updater
+│   ├── web_scraper.py          # Content extraction & analysis
+│   ├── update_landing.py       # Landing page & archive updater
 │   ├── publish_substack.py     # Substack publishing via API
-│   └── substack_playwright.py  # Cookie extraction helper
+│   ├── substack_playwright.py  # Cookie extraction helper
+│   └── test_web_access.py      # Web access diagnostics
 ├── prompts/
 │   ├── story_system.md         # Story generation system prompt
 │   ├── links_system.md         # Links generation system prompt
-│   └── themes.yaml             # Unified themes for stories + links
+│   ├── research_strategy_system.md  # LLM research strategy prompt
+│   ├── themes.yaml             # Unified themes for stories + links
+│   └── style_modifiers.yaml    # Randomized story constraint pools
 ├── overrides/
 │   ├── home.html               # Custom homepage template
 │   └── main.html               # Base template override
@@ -255,6 +278,56 @@ themes:
 - `generate_links.py` uses theme's `links` direction
 - Theme displayed on landing page and archive pages
 - Edition snapshots include theme metadata
+
+## Style Modifiers System
+
+Story generation uses randomized style constraints from `prompts/style_modifiers.yaml` to ensure every story feels distinct, even when themes repeat.
+
+### Dimensions
+
+| Dimension | Examples | Count |
+|-----------|----------|-------|
+| **pov** | First person unreliable, epistolary, stream of consciousness | 15 |
+| **tone** | Darkly comic, tense thriller, quiet wonder | 15 |
+| **era** | 1970s analog, near future 2040s, post-collapse | 15 |
+| **setting** | Small apartment, underground bunker, moving vehicle | 16 |
+| **structure** | Reverse chronology, fragmented vignettes, countdown | 14 |
+| **conflict** | Person vs. bureaucracy, moral dilemma, uncanny mundane | 14 |
+| **opening** | Sensory detail, mid-dialogue, contradiction | 14 |
+| **genre** | Cosmic horror, workplace comedy, noir detective, fable | 15 |
+| **wildcard** | One lie the reader can catch, no names, one room only | 12 |
+
+With ~15 options per dimension across 9 dimensions + 12 banned word sets, there are **billions of unique combinations**.
+
+### How It Works
+
+1. A **deterministic seed** is derived from the date (`SHA-256(YYYY-MM-DD)`)
+2. Each dimension is independently sampled using that seed
+3. A **banned word set** is also selected to prevent repetitive language
+4. The selected modifiers are injected into the story prompt as strict constraints
+5. The **genre** modifier is written to story frontmatter and displayed as a tag on cards
+
+The same date always produces the same style combination, making generation reproducible.
+
+### Story Frontmatter
+
+Generated stories include full metadata:
+
+```yaml
+---
+date: 2026-02-10
+title: "The Duplicate Report"
+description: "A daily AI-generated story exploring speculative fiction"
+author: "https://integrate.api.nvidia.com/v1 / nvidia/llama-3.3-nemotron-super-49b-v1.5"
+theme: "parallel dimensions"
+genre: "Fable or parable, simple surface hiding depth"
+---
+```
+
+The `genre` field is parsed by `update_landing.py` and displayed as a tag on:
+- The landing page story card (`.ob-today__genre`)
+- Bits archive cards (`.archive-item__genre`)
+- Editions archive cards (`.archive-item__genre`)
 
 ## Substack Integration
 

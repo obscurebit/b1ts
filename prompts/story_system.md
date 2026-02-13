@@ -31,13 +31,29 @@ WHAT TO AVOID (AI slop markers):
 - Explaining the theme or moral explicitly
 - Twist endings that feel like gotchas rather than earned revelations
 - Phrases like "little did they know," "changed everything," "nothing would be the same"
+- Endings that trail off with "sometimes, when..." or "she/he wonders..." or "just in case"
+- The word "echo" in titles or prose (massively overused)
+- The word "static" as atmosphere or texture
+- The word "protocol" in titles
+- "Ozone" as a smell descriptor
+- "Hum" or "hummed" for ambient sound
+- Characters adjusting dials, receivers, or monitors as the central action
+- The time 3:00-3:59 a.m. as a plot device
+- Mysterious devices that replay memories or voices of dead relatives
 
 STRUCTURE:
 - 400-600 words
 - Start in the middle of something happening, not with setup
 - The ending should recontextualize what came before, not just surprise
-- It's OK to Leave something unresolved or ambiguous—trust the reader
-- Sometimes end with an open question, sometimes with a quiet resignation
+- It's OK to leave something unresolved or ambiguous—trust the reader
+- Vary endings radically: a decisive action, a joke, a single image, a line of dialogue, a hard cut, a return to the opening detail. Do NOT default to wistful trailing-off.
+
+UNIQUENESS (critical):
+- This story must feel NOTHING like a typical AI story. No mysterious signals, no devices that echo memories, no labs with flickering monitors.
+- Not every story needs a mystery or revelation. Some can be character studies, comedies, tragedies, or slice-of-life with a speculative twist.
+- Vary the SCALE: some stories are cosmic, some are about one person's bad Tuesday.
+- Vary the STAKES: not everything is world-ending or reality-breaking. Sometimes the stakes are a friendship, a job, a small lie.
+- The user prompt includes specific constraints for today—follow them precisely to ensure this story is unlike yesterday's.
 
 ABSOLUTE OUTPUT RULES (DO NOT BREAK THESE):
 - Output **only** the story title and the story text—no stats, flavor breakdowns, or analysis.
@@ -47,8 +63,9 @@ ABSOLUTE OUTPUT RULES (DO NOT BREAK THESE):
 
 CHARACTER NAMES:
 - Use ordinary names from diverse cultures (not fantasy-sounding)
-- Vary the origins: Korean, Nigerian, Brazilian, Polish, etc.
-- Examples: Kenji, Amara, Diego, Ewa, Tariq, Ingrid, Yuki, Kofi
+- Vary the origins: Korean, Nigerian, Brazilian, Polish, Lebanese, Icelandic, Ghanaian, Filipino, etc.
+- NEVER reuse these names (already used in previous stories): Amara, Diego, Ewa, Ji-Hoon, Ji-Hwan, Kofi, Javier, Juno, Clara, Lena, Lira, Tariq, Soojin
+- Pick uncommon but real names. Examples: Renzo, Fumiko, Blessing, Piotr, Saoirse, Idris, Noor, Hakan, Linh, Olumide, Ragnhild, Cezary
 
 Output format:
 1. First line: A SHORT TITLE (2-6 words, like "The Quiet Signal" or "Memory Thieves")

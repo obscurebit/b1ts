@@ -16,7 +16,7 @@ import time
 import hashlib
 from collections import Counter
 from typing import Dict, List, Optional, Tuple
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urljoin, urlparse, unquote
 from pathlib import Path
 from dataclasses import dataclass, asdict
 import requests
@@ -112,6 +112,35 @@ class WebScraper:
             return response
         except requests.RequestException as e:
             return None
+
+    def _derive_asset_title(self, url: str) -> str:
+        path = unquote(urlparse(url).path)
+        basename = path.rstrip('/').split('/')[-1]
+        if basename:
+            basename = re.sub(r'\.[A-Za-z0-9]+$', '', basename)
+            cleaned = re.sub(r'[-_]+', ' ', basename).strip()
+            if cleaned:
+                return cleaned.title()
+        domain = urlparse(url).netloc
+        return domain or url
+
+    def _handle_non_html_asset(self, url: str, response: requests.Response, asset_type: str) -> ScrapedContent:
+        title = self._derive_asset_title(url)
+        domain = urlparse(url).netloc
+        description = f"{asset_type} document from {domain}. Download to explore the primary source."
+        concepts = [title] if title else []
+        result = ScrapedContent(
+            url=url,
+            title=title,
+            description=description,
+            content="",
+            concepts=concepts,
+            obscurity_score=self.calculate_obscurity_score(url, title, description),
+            accessibility_score=1.0 if response.status_code == 200 else 0.0,
+            interesting_bits=[f"{asset_type} download"],
+        )
+        self.save_to_cache(result)
+        return result
     
     def extract_text(self, soup: BeautifulSoup) -> str:
         """Extract clean text from HTML."""
@@ -301,6 +330,11 @@ class WebScraper:
                 error="Failed to fetch"
             )
         
+        content_type = response.headers.get('Content-Type', '').lower()
+        if 'application/pdf' in content_type or url.lower().endswith('.pdf'):
+            print("    📄 Detected PDF document; using download metadata")
+            return self._handle_non_html_asset(url, response, "PDF")
+
         # Parse HTML
         soup = BeautifulSoup(response.text, 'html.parser')
         
