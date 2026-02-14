@@ -16,7 +16,7 @@ description: Browse previous daily editions of Obscure Bit
       <span class="archive-item__date">February 14, 2026</span>
       <h3 class="archive-item__title">Edition #016</h3>
       <p class="archive-item__excerpt">Reality Glitches · The streetlight flickered in a seven-blink cadence: on, off, on, off, on, off, then a pause before repeating. Eko counted each cycle as he waited at the crosswa...</p>
-      <div class="archive-item__tags"><span class="archive-item__theme">Reality Glitches</span></div>
+      <div class="archive-item__tags"><span class="archive-item__theme">Reality Glitches</span><span class="archive-item__genre" title="Dystopian Meet Cute">Dystopian Meet Cute</span></div>
     </div>
     <span class="archive-item__category">Edition</span>
     <span class="archive-item__arrow">→</span>
