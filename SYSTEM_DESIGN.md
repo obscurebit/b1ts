@@ -9,7 +9,7 @@ Obscure Bit is an automated content generation system that creates and publishes
 ```mermaid
 graph TB
     subgraph "GitHub Actions (Daily 6AM UTC)"
-        A[run_daily.py (story+links+landing)] --> B[Update Landing Pages]
+        A["run_daily.py (story+links+landing)"] --> B[Update Landing Pages]
         B --> C[Commit & Push]
     end
     
@@ -148,9 +148,9 @@ flowchart LR
     
     subgraph "Stage 2: Discovery"
         D1[Execute LLM search queries]
-        D2[Extended sources (42 APIs)]
+        D2["Extended sources (42 APIs)"]
         D3[SerpAPI / ContextualWeb]
-        D4[Marginalia (primary fallback)]
+        D4["Marginalia (primary fallback)"]
     end
     
     subgraph "Stage 2b: Registry Filter"
