@@ -14,8 +14,7 @@ description: Daily curated discoveries from the hidden corners of the web
     <div class="archive-item__number">016</div>
     <div class="archive-item__content">
       <span class="archive-item__date">February 14, 2026</span>
-      <h3 class="archive-item__title">Daily Discoveries</h3>
-      <p class="archive-item__excerpt">Curated reality glitches links from the hidden corners of the web...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Reality Glitches</span></div>
     </div>
     <span class="archive-item__category">3 Links</span>
     <span class="archive-item__arrow">→</span>

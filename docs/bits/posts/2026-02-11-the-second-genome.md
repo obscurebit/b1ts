@@ -4,6 +4,7 @@ title: "The Second Genome"
 description: "A daily AI-generated story exploring speculative fiction"
 author: "https://integrate.api.nvidia.com/v1 / nvidia/llama-3.3-nemotron-super-49b-v1.5"
 theme: "synthetic life"
+genre: "Romantic, subplot driving a speculative premise"
 ---
 
 # The Second Genome

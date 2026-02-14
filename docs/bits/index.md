@@ -16,6 +16,7 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
       <span class="archive-item__date">February 14, 2026</span>
       <h3 class="archive-item__title">Fault Lines</h3>
       <p class="archive-item__excerpt">The streetlight flickered in a seven-blink cadence: on, off, on, off, on, off, then a pause before repeating. Eko counted each cycle as he waited at t...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Reality Glitches</span><span class="archive-item__genre">Political allegory</span></div>
     </div>
     <span class="archive-item__category">Story</span>
     <span class="archive-item__arrow">→</span>
@@ -26,7 +27,7 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
       <span class="archive-item__date">February 13, 2026</span>
       <h3 class="archive-item__title">The Silent Garden</h3>
       <p class="archive-item__excerpt">Jisun’s plasma torch hissed as it cut through the station’s outer hull. The metal curled away like tinfoil, revealing a chamber thick with silence. He...</p>
-      <div class="archive-item__tags"><span class="archive-item__theme">Abandoned Stations</span></div>
+      <div class="archive-item__tags"><span class="archive-item__theme">Abandoned Stations</span><span class="archive-item__genre">Survival story</span></div>
     </div>
     <span class="archive-item__category">Story</span>
     <span class="archive-item__arrow">→</span>
@@ -37,7 +38,7 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
       <span class="archive-item__date">February 12, 2026</span>
       <h3 class="archive-item__title">The Unbroken Key</h3>
       <p class="archive-item__excerpt">Amara’s gloved hands trembled as she pried open the archive panel. The station’s hull groaned around her, a sound like ancient metal sighing. Inside, ...</p>
-      <div class="archive-item__tags"><span class="archive-item__theme">Cryptographic Secrets</span></div>
+      <div class="archive-item__tags"><span class="archive-item__theme">Cryptographic Secrets</span><span class="archive-item__genre">Noir detective</span></div>
     </div>
     <span class="archive-item__category">Story</span>
     <span class="archive-item__arrow">→</span>
@@ -48,7 +49,7 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
       <span class="archive-item__date">February 11, 2026</span>
       <h3 class="archive-item__title">The Second Genome</h3>
       <p class="archive-item__excerpt">The petri dish quivered. Not vibrated, not shimmered—quivered, like a lip poised to speak. Dr. Ewa Okoro leaned closer, her breath fogging the glass. ...</p>
-      <div class="archive-item__tags"><span class="archive-item__theme">Synthetic Life</span></div>
+      <div class="archive-item__tags"><span class="archive-item__theme">Synthetic Life</span><span class="archive-item__genre">Romantic</span></div>
     </div>
     <span class="archive-item__category">Story</span>
     <span class="archive-item__arrow">→</span>
