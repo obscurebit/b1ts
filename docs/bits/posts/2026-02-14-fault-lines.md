@@ -4,7 +4,6 @@ title: "Fault Lines"
 description: "A daily AI-generated story exploring speculative fiction"
 author: "https://integrate.api.nvidia.com/v1 / nvidia/llama-3.3-nemotron-super-49b-v1.5"
 theme: "reality glitches"
-genre: "Political allegory, thinly veiled"
 ---
 
 # Fault Lines

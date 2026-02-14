@@ -323,7 +323,7 @@ def update_bits_index():
         
         genre_short = genre.split(',')[0].strip() if genre else ''
         theme_tag = f'<span class="archive-item__theme">{theme_name.title()}</span>' if theme_name else ''
-        genre_tag = f'<span class="archive-item__genre">{genre_short}</span>' if genre_short else ''
+        genre_tag = f'<span class="archive-item__genre" title="{genre}">{genre_short}</span>' if genre_short else ''
         tags_html = ''
         if theme_tag or genre_tag:
             tags_html = f'\n      <div class="archive-item__tags">{theme_tag}{genre_tag}</div>'
@@ -477,6 +477,14 @@ def create_edition_snapshot(edition: int, story: Optional[Dict], links: List[Dic
         genre = story['genre']
     
     genre_line = f'\ngenre: "{genre}"' if genre else ''
+    tags_line = ''
+    tag_parts = []
+    if theme_name and theme_name != 'unknown':
+        tag_parts.append(f'<span class="edition-tag edition-tag--theme">{theme_name.title()}</span>')
+    if genre:
+        tag_parts.append(f'<span class="edition-tag edition-tag--genre">{genre}</span>')
+    if tag_parts:
+        tags_line = '\n<div class="edition-tags">' + ' '.join(tag_parts) + '</div>\n'
     content = f"""---
 title: "Edition #{edition:03d}"
 description: "Obscure Bit - {today.strftime('%B %d, %Y')}"
@@ -486,7 +494,7 @@ theme: "{theme_name}"{genre_line}
 
 # Edition #{edition:03d}
 ## {today.strftime('%B %d, %Y')}
-
+{tags_line}
 {story_section}
 {links_section}
 """
@@ -566,7 +574,7 @@ def update_editions_index():
         
         genre_short = genre.split(',')[0].strip() if genre else ''
         theme_tag = f'<span class="archive-item__theme">{theme_name.title()}</span>' if theme_name else ''
-        genre_tag = f'<span class="archive-item__genre">{genre_short}</span>' if genre_short else ''
+        genre_tag = f'<span class="archive-item__genre" title="{genre}">{genre_short}</span>' if genre_short else ''
         tags_html = ''
         if theme_tag or genre_tag:
             tags_html = f'\n      <div class="archive-item__tags">{theme_tag}{genre_tag}</div>'

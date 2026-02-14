@@ -195,6 +195,36 @@
   max-width: 22ch;
   overflow: hidden;
   text-overflow: ellipsis;
+  cursor: help;
+}
+
+/* Edition post page tags */
+.edition-tags {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.edition-tag {
+  font-family: var(--ob-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  border-radius: 2px;
+  padding: 0.2em 0.6em;
+}
+
+.edition-tag--theme {
+  color: var(--ob-text-muted);
+  text-transform: uppercase;
+  border: 1px solid var(--ob-border);
+}
+
+.edition-tag--genre {
+  color: var(--ob-accent);
+  border: 1px solid var(--ob-accent);
+  opacity: 0.8;
 }
 
 .archive-item__category {
