@@ -10,6 +10,16 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-02-14-fault-lines/" class="archive-item">
+    <div class="archive-item__number">016</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">February 14, 2026</span>
+      <h3 class="archive-item__title">Fault Lines</h3>
+      <p class="archive-item__excerpt">The streetlight flickered in a seven-blink cadence: on, off, on, off, on, off, then a pause before repeating. Eko counted each cycle as he waited at t...</p>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-02-13-the-silent-garden/" class="archive-item">
     <div class="archive-item__number">015</div>
     <div class="archive-item__content">
