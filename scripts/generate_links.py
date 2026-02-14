@@ -30,6 +30,7 @@ from openai import OpenAI
 
 # Import our web scraper
 from web_scraper import WebScraper, ScrapedContent
+from link_registry import LinkRegistry
 
 # Configuration
 API_BASE = os.environ.get("OPENAI_API_BASE", "https://integrate.api.nvidia.com/v1")
@@ -56,10 +57,11 @@ MINIMUM_SELECTED_LINKS = 3
 MIN_LLM_DOMAIN_IDEAS = 3
 MIN_LLM_SEARCH_QUERIES = 3
 
-DDG_MAX_RETRIES = 3
+DDG_MAX_RETRIES = 1
 DDG_MIN_INTERVAL = 1.0  # seconds between requests
 DDG_THROTTLE_FACTOR = 1.5
-DDG_DISABLE_AFTER_FAILURES = 3  # queries
+DDG_DISABLE_AFTER_FAILURES = 1  # disable after first failure — DDG throttles CI hard
+DDG_MAX_QUERIES_PER_RUN = 1  # single broad query to avoid 202 storms
 DDG_USER_AGENTS = [
     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2 Safari/605.1.15',
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
@@ -70,10 +72,19 @@ DDG_USER_AGENTS = [
 THINKING_BLOCK_RE = re.compile(r'^<think>.*?</think>\s*', re.S)
 DISALLOWED_BASE_DOMAINS = ("wikipedia.org", "archive.org", "github.com")
 
+# Domains that produce junk / irrelevant content — block at candidate stage
+DISALLOWED_LINK_DOMAINS = {
+    "listverse.com", "buzzfeed.com", "boredpanda.com", "ranker.com",
+    "list25.com", "viralnova.com", "thecoolist.com", "therichest.com",
+    "softwareheritage.org", "packsify.com", "techaro.lol",
+    "newworldencyclopedia.org",
+}
+
 
 _last_ddg_request_time = 0.0
 _ddg_failure_count = 0
 _ddg_disabled_for_run = False
+_ddg_queries_this_run = 0
 
 
 def _throttle_ddg(min_interval: float) -> None:
@@ -102,7 +113,7 @@ def _record_ddg_failure() -> None:
     _ddg_failure_count += 1
     if not _ddg_disabled_for_run and _ddg_failure_count >= DDG_DISABLE_AFTER_FAILURES:
         _ddg_disabled_for_run = True
-        print("      ⚠️  Disabling DuckDuckGo for the remainder of this run (3 failed queries)")
+        print("      ⚠️  Disabling DuckDuckGo for the remainder of this run")
 
 
 def load_system_prompt() -> str:
@@ -165,9 +176,15 @@ def strip_thinking_block(content: str) -> str:
 
 def is_disallowed_domain(domain: str) -> bool:
     domain = domain.lower()
+    if domain.startswith("www."):
+        domain = domain[4:]
     if domain.endswith('.edu'):
         return True
-    return any(domain == base or domain.endswith(f".{base}") for base in DISALLOWED_BASE_DOMAINS)
+    if any(domain == base or domain.endswith(f".{base}") for base in DISALLOWED_BASE_DOMAINS):
+        return True
+    if domain in DISALLOWED_LINK_DOMAINS:
+        return True
+    return False
 
 
 def normalize_search_query(query: str) -> Optional[str]:
@@ -387,10 +404,16 @@ def search_duckduckgo(query: str, max_results: int = 10) -> List[str]:
 
     clean_query = query.strip().strip('"').strip("'")
 
-    global _ddg_disabled_for_run
+    global _ddg_disabled_for_run, _ddg_queries_this_run
     if _ddg_disabled_for_run:
         print("      ⚠️  DuckDuckGo disabled for this run; skipping query")
         return search_marginalia(clean_query, max_results=max_results)
+
+    if _ddg_queries_this_run >= DDG_MAX_QUERIES_PER_RUN:
+        print(f"      ⚠️  DDG budget exhausted ({DDG_MAX_QUERIES_PER_RUN} query/run); using Marginalia")
+        return search_marginalia(clean_query, max_results=max_results)
+
+    _ddg_queries_this_run += 1
 
     for attempt in range(DDG_MAX_RETRIES):
         headers = {
@@ -504,22 +527,8 @@ def search_academic_sources(theme: str, links_direction: str) -> List[str]:
     except Exception as e:
         print(f"  arXiv search failed: {e}")
     
-    # Archive.org search
-    try:
-        archive_url = f"https://archive.org/advancedsearch.php?q={query}&output=json&rows=5"
-        response = requests.get(archive_url, timeout=SEARCH_TIMEOUT)
-        if response.status_code == 200:
-            data = response.json()
-            docs = data.get('response', {}).get('docs', [])
-            for doc in docs:
-                identifier = doc.get('identifier')
-                if identifier:
-                    urls.append(f"https://archive.org/details/{identifier}")
-            print(f"  Found {len(docs)} results from Archive.org")
-    except Exception as e:
-        print(f"  Archive.org search failed: {e}")
-    
-    return urls
+    # Filter out disallowed domains before returning
+    return [u for u in urls if not is_disallowed_domain(urlparse(u).netloc)]
 
 
 def search_extended_sources(theme: str, links_direction: str) -> List[str]:
@@ -669,13 +678,20 @@ def search_extended_sources(theme: str, links_direction: str) -> List[str]:
             # Silent fail for individual sources
             pass
     
-    # Remove duplicates
+    # Remove duplicates and filter disallowed domains
     seen = set()
     unique_urls = []
     for url in urls:
-        if url not in seen:
-            seen.add(url)
-            unique_urls.append(url)
+        if url in seen:
+            continue
+        try:
+            domain = urlparse(url).netloc.lower()
+        except Exception:
+            continue
+        if is_disallowed_domain(domain):
+            continue
+        seen.add(url)
+        unique_urls.append(url)
     
     print(f"  Total unique from extended sources: {len(unique_urls)}")
     return unique_urls
@@ -1115,8 +1131,13 @@ def get_llm_search_sources(theme: dict) -> List[str]:
     return unique[:10]
 
 
-def get_candidate_urls(theme: dict) -> List[str]:
-    """Generate candidate URLs from multiple sources."""
+def get_candidate_urls(theme: dict, registry: Optional[LinkRegistry] = None) -> List[str]:
+    """Generate candidate URLs from multiple sources.
+
+    DDG is limited to a single broad query per run to avoid 202 throttling.
+    Marginalia, SerpApi, ContextualWeb, and the 42 extended-source APIs carry
+    the bulk of discovery.
+    """
     theme_name = theme.get("name", "")
     links_direction = theme.get("links", theme_name)
     
@@ -1124,7 +1145,7 @@ def get_candidate_urls(theme: dict) -> List[str]:
     
     all_urls = []
     
-    # 1. LLM suggestions (primary)
+    # 1. LLM suggestions (primary — uses DDG budget for its top query)
     print(f"\n  Getting LLM URL suggestions...")
     llm_urls = get_llm_candidate_urls(theme)
     all_urls.extend(llm_urls)
@@ -1134,7 +1155,7 @@ def get_candidate_urls(theme: dict) -> List[str]:
     extended_urls = search_extended_sources(theme_name, links_direction)
     all_urls.extend(extended_urls)
     
-    # 3. External API searches (SerpApi / ContextualWeb)
+    # 3. External API searches (SerpApi / ContextualWeb) — no DDG cost
     search_terms = [
         f"{theme_name} {links_direction}",
         f"obscure {theme_name} history",
@@ -1156,25 +1177,34 @@ def get_candidate_urls(theme: dict) -> List[str]:
                 print(f"    ContextualWeb found {len(api_results)} for '{term[:40]}...'")
     all_urls.extend(api_urls)
     
-    # 4. Operator-driven queries for extra breadth
-    operator_urls = run_operator_queries(theme_name, links_direction)
-    all_urls.extend(operator_urls)
-    
-    # 5. Ask LLM for diverse sources, then search them
+    # 4. Ask LLM for diverse sources, search via Marginalia (no DDG cost)
     print(f"\n  Getting LLM source suggestions...")
     suggested_domains = get_llm_search_sources(theme)
     
-    for domain in suggested_domains[:6]:  # search more domains for breadth
-        print(f"\n  Searching DuckDuckGo (site:{domain})...")
-        ddg_urls = search_duckduckgo(f"site:{domain} {theme_name}", max_results=6)
-        all_urls.extend(ddg_urls)
+    for domain in suggested_domains[:6]:
+        print(f"\n  Searching Marginalia (site:{domain})...")
+        marginalia_urls = search_marginalia(f"site:{domain} {theme_name}", max_results=6)
+        all_urls.extend(marginalia_urls)
     
-    # 6. Fallback searches - curated list of reliable sources (no wikipedia/guardian duplicates)
+    # 5. Fallback searches — curated reliable sources (DDG budget will auto-redirect to Marginalia)
     fallback_urls = run_fallback_searches(theme_name, links_direction)
     all_urls.extend(fallback_urls)
 
     # Deduplicate but keep order
     all_urls = list(dict.fromkeys(all_urls))
+
+    # Filter disallowed domains that slipped through any source
+    all_urls = [
+        u for u in all_urls
+        if not is_disallowed_domain(urlparse(u).netloc)
+    ]
+
+    # Filter previously-published URLs via registry
+    if registry:
+        before = len(all_urls)
+        all_urls, rejected = registry.filter_new(all_urls)
+        if rejected:
+            print(f"\n  🗂️  Registry rejected {rejected} previously-published URLs")
 
     if len(all_urls) < 25:
         print(f"\n  ⚠️  Only {len(all_urls)} unique candidates so far — running backup broad queries")
@@ -1184,8 +1214,6 @@ def get_candidate_urls(theme: dict) -> List[str]:
             f"{theme_name} oral history",
         ]
         for term in booster_terms:
-            ddg_results = search_duckduckgo(term, max_results=5)
-            all_urls.extend(ddg_results)
             marginalia_results = search_marginalia(term, max_results=5)
             all_urls.extend(marginalia_results)
         all_urls = list(dict.fromkeys(all_urls))
@@ -1260,13 +1288,25 @@ def search_smithsonian(theme: str) -> List[str]:
 
 def is_listicle_url(url: str, title: str = "") -> bool:
     """Detect if URL/title appears to be a listicle/junk article or collection."""
+    # Domain-level block
+    try:
+        domain = urlparse(url).netloc.lower()
+        if domain.startswith("www."):
+            domain = domain[4:]
+        if domain in DISALLOWED_LINK_DOMAINS:
+            return True
+    except Exception:
+        pass
+
     listicle_patterns = [
-        # Numbered listicles
+        # Numbered listicles — broad: "N <word>" at start of title
+        r'^\d+\s+\w+',
         r'\d+\s+(forgotten|abandoned|obsolete|lost|hidden|secret|amazing|incredible|surprising|weird)',
         r'top\s+\d+',
         r'\d+\s+best',
         r'\d+\s+worst',
         r'\d+\s+things?\s+(you|to|that)',
+        r'\d+\s+(unsolved|bizarre|crazy|close\s+calls?|ways)',
         # List/collection content (even from academic sources)
         r'list\s+of',
         r'listicle',
@@ -1280,7 +1320,7 @@ def is_listicle_url(url: str, title: str = "") -> bool:
         r'collection\s+of',
         r'category:',
         r'index\s+of',
-        # Clickbait sites
+        # Clickbait sites (redundant with domain block but keeps URL-path checks)
         r'listicle-site',
         r'buzzfeed',
         r'boredpanda',
@@ -1292,6 +1332,10 @@ def is_listicle_url(url: str, title: str = "") -> bool:
         r'will-blow-your-mind',
         r'you-won.t-believe',
         r'won.t-believe',
+        # Game guides / tips pages
+        r'tips?\s+(and|&)\s+tricks?',
+        r'game\s+tips',
+        r'survival\s+tips',
     ]
     
     combined_text = f"{url} {title}".lower()
@@ -1300,9 +1344,9 @@ def is_listicle_url(url: str, title: str = "") -> bool:
         if re.search(pattern, combined_text, re.IGNORECASE):
             return True
     
-    # Check for excessive numbers in title
-    numbers = re.findall(r'\d+', title)
-    if len(numbers) >= 2:  # Multiple numbers suggests a list
+    # Check title specifically for leading number pattern (e.g. "5 Cold War Close Calls")
+    title_stripped = title.strip()
+    if re.match(r'^\d+\s+', title_stripped):
         return True
     
     # Check for library guide URLs (.edu sites with /guides/, /research/, etc)
@@ -1577,8 +1621,7 @@ def select_best_links(candidates: List[LinkCandidate], count: int = 7) -> List[L
         fallback_tiers = [
             (MIN_RELEVANCE_FALLBACK, MIN_OBSCURITY_FALLBACK, "standard fallback"),
             (0.20, 0.20, "relaxed fallback"),
-            (0.05, 0.15, "last-chance fallback"),
-            (0.0, 0.0, "final emergency fallback"),
+            (0.15, 0.15, "floor fallback"),
         ]
 
         for rel_threshold, obs_threshold, label in fallback_tiers:
@@ -1589,9 +1632,13 @@ def select_best_links(candidates: List[LinkCandidate], count: int = 7) -> List[L
             for c in candidates:
                 if len(valid) >= MINIMUM_SELECTED_LINKS:
                     break
-                if c in valid or c.error or urlparse(c.url).netloc.endswith('.edu'):
+                if c in valid or c.error:
+                    continue
+                if is_disallowed_domain(urlparse(c.url).netloc):
                     continue
                 if looks_like_boilerplate(c):
+                    continue
+                if is_listicle_url(c.url, c.title):
                     continue
                 if c.relevance_score >= rel_threshold and c.obscurity_score >= obs_threshold:
                     print(f"  ➕ Fallback candidate: {c.url[:60]}... (rel {c.relevance_score:.2f}, obs {c.obscurity_score:.2f})")
@@ -1780,18 +1827,22 @@ def main():
     print(f"Direction: {theme.get('links', theme_name)}")
 
     print("=" * 70)
-    print("Obscure Bit - Link Generation v2")
+    print("Obscure Bit - Link Generation v3")
     print("=" * 70)
     
     if not API_KEY:
         print("Error: OPENAI_API_KEY environment variable not set")
         sys.exit(1)
+
+    # Load persistent URL registry for cross-day dedup
+    registry = LinkRegistry()
+    print(f"🗂️  Registry loaded: {registry.total_links} previously-published links")
     
     # Step 1: Get candidate URLs
     print("\n" + "=" * 70)
     print("STEP 1: Finding Candidate URLs")
     print("=" * 70)
-    candidates_urls = get_candidate_urls(theme)
+    candidates_urls = get_candidate_urls(theme, registry=registry)
     
     if not candidates_urls:
         print("Error: No candidate URLs found")
@@ -1832,7 +1883,18 @@ def main():
     print("\n" + "=" * 70)
     print("STEP 5: Saving Results")
     print("=" * 70)
+    today = target_date or datetime.now()
+    date_str = today.strftime("%Y-%m-%d")
     filepath = save_links(selected, theme, target_date)
+
+    # Step 6: Register published URLs in the persistent registry
+    registry.register_batch(
+        [(link.url, link.title) for link in selected],
+        date=date_str,
+        theme=theme_name,
+    )
+    stats = registry.stats()
+    print(f"\n🗂️  Registry updated: {stats['total_links']} total links across {stats['days_tracked']} days")
     
     print("\n" + "=" * 70)
     print("SUCCESS!")

@@ -133,9 +133,9 @@ flowchart TD
 - **Anti-repetition**: Banned word sets rotate to prevent stylistic staleness
 - **Genre propagation**: Genre flows from modifier → frontmatter → HTML cards via `update_landing.py`
 
-## Link Generation Architecture (v3 - Research Strategy)
+## Link Generation Architecture (v3.1 - Registry + Quality Gates)
 
-The link generation system uses a multi-stage pipeline with LLM-driven research strategy and active web search:
+The link generation system uses a multi-stage pipeline with LLM-driven research strategy, active web search, and a persistent URL registry for cross-day deduplication:
 
 ```mermaid
 flowchart LR
@@ -150,7 +150,13 @@ flowchart LR
         D1[Execute LLM search queries]
         D2[Extended sources (42 APIs)]
         D3[SerpAPI / ContextualWeb]
-        D4[Marginalia fallback]
+        D4[Marginalia (primary fallback)]
+    end
+    
+    subgraph "Stage 2b: Registry Filter"
+        REG[link_registry.py]
+        REG2[SHA-256 URL hash lookup]
+        REG3[Reject previously-published URLs]
     end
     
     subgraph "Stage 3: Scraping"
@@ -166,28 +172,34 @@ flowchart LR
     
     subgraph "Stage 5: Selection"
         SEL[Score: 70% relevance + 30% obscurity]
-        DIV[Filter Duplicates]
+        QG[Listicle + junk domain filter]
+        DIV[Content similarity filter]
         DOM[Domain Diversity max 3/domain]
-        EDU[Filter .edu domains]
+        EDU[Filter .edu + disallowed domains]
     end
     
     RS1 --> RS2
     RS2 --> RS3
     RS3 --> RS4
     RS4 --> D1
-    D1 --> S1
-    D2 --> S1
-    D3 --> S1
-    D4 --> S1
+    D1 --> REG
+    D2 --> REG
+    D3 --> REG
+    D4 --> REG
+    REG --> REG2
+    REG2 --> REG3
+    REG3 --> S1
     S1 --> S2
     S2 --> S3
     S3 --> V1
     V1 --> SEL
     V2 --> SEL
-    SEL --> DIV
+    SEL --> QG
+    QG --> DIV
     DIV --> DOM
     DOM --> EDU
     EDU --> OUT[Top 7 Links]
+    OUT --> REG4[Register in registry]
 ```
 
 ### Research Strategy System
@@ -209,14 +221,36 @@ This approach surfaces obscure content by:
 
 To survive DuckDuckGo throttling while still surfacing at least seven high-quality links, the discovery stage fans out across multiple providers:
 
-1. **DuckDuckGo Lite** – still primary for `site:` and operator queries, with request throttling, rotating user agents, and exponential backoff. After three failed queries within a run the crawler automatically disables DDG and shifts to alternative sources to avoid long throttled bursts.
-2. **SerpAPI (Google)** – triggered automatically when `SERPAPI_KEY` is present; supplies clean organic URLs for broad theme queries.
+1. **DuckDuckGo Lite** – limited to **1 query per run** to avoid 202 throttle storms in CI. Disables after the first failure. Used only for the broadest theme query; all other searches route through alternative providers.
+2. **SerpAPI (Google)** – triggered automatically when `SERPAPI_KEY` is present; supplies clean organic URLs for broad theme queries. Now the primary search engine.
 3. **ContextualWeb Search** – optional RapidAPI fallback for additional coverage.
-4. **Marginalia.nu** – indie search engine used whenever DDG exhausts retries or returns HTTP 202/403 throttles.
+4. **Marginalia.nu** – indie search engine that handles all `site:` domain queries and serves as the automatic fallback whenever DDG budget is exhausted or throttled.
 5. **Curated fallback queries** – `run_fallback_searches()` hits dependable domains (Library of Congress, Smithsonian, Wilson Center, etc.) plus generic "oral history / archives / declassified" searches, ensuring variety even when all other sources are sparse.
-6. **Backup booster queries** – if the deduplicated pool has <25 URLs, broad "hidden history" prompts run through both DDG and Marginalia.
+6. **Backup booster queries** – if the deduplicated pool has <25 URLs, broad "hidden history" prompts run through Marginalia.
 
-Downstream safeguards guarantee at least three published links by temporarily relaxing relevance/obscurity thresholds when the strict pass yields too few candidates.
+### URL Registry (Cross-Day Deduplication)
+
+A persistent SHA-256 hash registry (`cache/link_registry.json`) prevents the same URL from ever being published twice:
+
+1. **Normalize** – lowercase domain, strip `www.`, remove tracking params (`utm_*`, `fbclid`, etc.), sort query params, strip trailing slashes
+2. **Hash** – SHA-256 of the normalized URL → deterministic key
+3. **Filter** – before scoring, every candidate URL is checked against the registry; known URLs are rejected
+4. **Register** – after saving, all selected URLs are added to the registry with date, theme, title, and domain metadata
+5. **Domain frequency** – the registry tracks per-domain counts across all days, enabling future global diversity caps
+
+The registry was backfilled from all existing posts via `scripts/backfill_registry.py`.
+
+### Quality Gates
+
+Multiple layers prevent low-quality content from reaching publication:
+
+- **Disallowed domains**: Wikipedia, Archive.org, GitHub, `.edu` domains, plus a blocklist of junk/listicle sites (Listverse, BuzzFeed, Ranker, etc.)
+- **Listicle filter**: Catches numbered titles ("5 Cold War Close Calls"), clickbait patterns, game guides, and tip pages
+- **Domain filtering at every stage**: `search_extended_sources()` and `search_academic_sources()` now filter disallowed domains before returning URLs
+- **Fallback floor**: Emergency fallback thresholds bottom out at (0.15, 0.15) — no more zero-threshold "accept anything" mode
+- **Boilerplate detection**: Contact pages, privacy policies, and thin content are filtered
+
+Downstream safeguards guarantee at least three published links by temporarily relaxing relevance/obscurity thresholds (floor: 0.15/0.15) when the strict pass yields too few candidates.
 
 ## Action Flows
 
@@ -338,7 +372,9 @@ b1ts/
 ├── scripts/
 │   ├── run_daily.py            # Theme orchestrator (story + links + landing)
 │   ├── generate_story.py       # AI story generation
-│   ├── generate_links.py       # Enhanced links with LLM research + multi-source search
+│   ├── generate_links.py       # Enhanced links with LLM research + multi-source search (v3.1)
+│   ├── link_registry.py        # Persistent SHA-256 URL registry for cross-day dedup
+│   ├── backfill_registry.py    # One-time script to seed registry from existing posts
 │   ├── generate_links_old.py   # Legacy links generation (archived)
 │   ├── web_scraper.py          # Content extraction & analysis
 │   ├── update_landing.py       # Site updates (parses genre → HTML tags)
@@ -352,6 +388,7 @@ b1ts/
 │   ├── themes.yaml             # Unified themes for stories + links
 │   └── style_modifiers.yaml    # Randomized story constraint pools (9 dimensions)
 └── cache/
+    ├── link_registry.json      # Persistent URL hash registry (cross-day dedup)
     └── web_content/            # Cached scraped content
 ```
 
