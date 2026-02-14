@@ -90,6 +90,19 @@ python scripts/generate_links.py
 python scripts/update_landing.py
 ```
 
+### Link Registry
+
+The link generation system uses a persistent SHA-256 URL registry (`cache/link_registry.json`) to prevent cross-day duplicates. Since `cache/` is gitignored, the registry must be rebuilt before each run in CI.
+
+```bash
+# Seed the registry from all existing published link posts
+python scripts/backfill_registry.py
+
+# The registry is automatically updated after each generate_links.py run
+```
+
+In CI, the `Backfill Link Registry` step runs automatically before daily generation.
+
 ### Backfill Past Dates
 
 All generation scripts accept `--date YYYY-MM-DD` to generate content for a specific date. The date controls theme selection, style modifier seed, and output filenames.
@@ -170,7 +183,9 @@ b1ts/
 ├── scripts/
 │   ├── run_daily.py            # Orchestrator (theme → story + links + landing)
 │   ├── generate_story.py       # AI story generation w/ style modifiers
-│   ├── generate_links.py       # Links generation w/ LLM research + multi-source search
+│   ├── generate_links.py       # Links generation v3.1 w/ registry + quality gates
+│   ├── link_registry.py        # Persistent SHA-256 URL registry for cross-day dedup
+│   ├── backfill_registry.py    # Seeds registry from existing published posts
 │   ├── web_scraper.py          # Content extraction & analysis
 │   ├── update_landing.py       # Landing page & archive updater
 │   ├── publish_substack.py     # Substack publishing via API
@@ -185,6 +200,9 @@ b1ts/
 ├── overrides/
 │   ├── home.html               # Custom homepage template
 │   └── main.html               # Base template override
+├── cache/
+│   ├── link_registry.json      # Persistent URL hash registry (gitignored, rebuilt by backfill)
+│   └── web_content/            # Cached scraped content
 ├── mkdocs.yml                  # MkDocs configuration
 └── requirements.txt            # Python dependencies
 ```
@@ -195,10 +213,11 @@ b1ts/
 
 Runs daily at 6 AM UTC via `.github/workflows/generate-content.yml`:
 
-1. Generate story → `docs/bits/posts/`
-2. Generate links → `docs/links/posts/`
-3. Update landing pages and archives
-4. Commit and push → triggers GitHub Pages deploy
+1. Backfill link registry from existing posts (since `cache/` is gitignored)
+2. Generate story → `docs/bits/posts/`
+3. Generate links → `docs/links/posts/` (registry filters previously-published URLs)
+4. Update landing pages and archives
+5. Commit and push → triggers GitHub Pages deploy
 
 #### Manual Orchestration
 
