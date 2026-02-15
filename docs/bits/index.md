@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-02-15-the-listening-chair/" class="archive-item">
+    <div class="archive-item__number">017</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">February 15, 2026</span>
+      <h3 class="archive-item__title">The Listening Chair</h3>
+      <p class="archive-item__excerpt">A metallic click. Not from the punch-card machine. Not from the ventilators. Lower. Closer.</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Emergent Intelligence</span><span class="archive-item__genre" title="Ghost story, atmospheric and slow">Ghost story</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-02-14-fault-lines/" class="archive-item">
     <div class="archive-item__number">016</div>
     <div class="archive-item__content">
