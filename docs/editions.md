@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-02-16-edition-018/" class="archive-item">
+    <div class="archive-item__number">018</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">February 16, 2026</span>
+      <h3 class="archive-item__title">Edition #018</h3>
+      <p class="archive-item__excerpt">Memory Manipulation · You remember the sky being blue, but that’s the first lie they planted.</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Memory Manipulation</span><span class="archive-item__genre" title="Survival story, resourcefulness under pressure">Survival story</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-02-15-edition-017/" class="archive-item">
     <div class="archive-item__number">017</div>
     <div class="archive-item__content">

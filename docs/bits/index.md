@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-02-16-the-blue-that-wasnt/" class="archive-item">
+    <div class="archive-item__number">018</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">February 16, 2026</span>
+      <h3 class="archive-item__title">The Blue That Wasn’t</h3>
+      <p class="archive-item__excerpt">You remember the sky being blue, but that’s the first lie they planted.</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Memory Manipulation</span><span class="archive-item__genre" title="Survival story, resourcefulness under pressure">Survival story</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-02-15-the-listening-chair/" class="archive-item">
     <div class="archive-item__number">017</div>
     <div class="archive-item__content">
