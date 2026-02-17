@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-02-17-edition-019/" class="archive-item">
+    <div class="archive-item__number">019</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">February 17, 2026</span>
+      <h3 class="archive-item__title">Edition #019</h3>
+      <p class="archive-item__excerpt">Lost Civilizations · “You shouldn’t be here,” she said.</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Lost Civilizations</span><span class="archive-item__genre" title="Noir detective, hard-boiled voice">Noir detective</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-02-16-edition-018/" class="archive-item">
     <div class="archive-item__number">018</div>
     <div class="archive-item__content">

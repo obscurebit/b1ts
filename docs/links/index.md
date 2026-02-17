@@ -10,6 +10,15 @@ description: Daily curated discoveries from the hidden corners of the web
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-02-17-daily-links/" class="archive-item archive-item--links">
+    <div class="archive-item__number">019</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">February 17, 2026</span>
+      <div class="archive-item__tags"><span class="archive-item__theme">Lost Civilizations</span></div>
+    </div>
+    <span class="archive-item__category">2 Links</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-02-16-daily-links/" class="archive-item archive-item--links">
     <div class="archive-item__number">018</div>
     <div class="archive-item__content">

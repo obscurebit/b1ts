@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-02-17-the-silent-archive/" class="archive-item">
+    <div class="archive-item__number">019</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">February 17, 2026</span>
+      <h3 class="archive-item__title">The Silent Archive</h3>
+      <p class="archive-item__excerpt">“You shouldn’t be here,” she said.</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Lost Civilizations</span><span class="archive-item__genre" title="Noir detective, hard-boiled voice">Noir detective</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-02-16-the-blue-that-wasnt/" class="archive-item">
     <div class="archive-item__number">018</div>
     <div class="archive-item__content">
