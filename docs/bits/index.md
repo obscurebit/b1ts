@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-02-19-basement-lattice/" class="archive-item">
+    <div class="archive-item__number">021</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">February 19, 2026</span>
+      <h3 class="archive-item__title">**Basement Lattice**</h3>
+      <p class="archive-item__excerpt">Rule 4.2: No organic substrate may interface with archival memory cores without prior sterilization and multi-spectral verification.</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Biological Computing</span><span class="archive-item__genre" title="Ghost story, atmospheric and slow">Ghost story</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-02-17-the-silent-archive/" class="archive-item">
     <div class="archive-item__number">019</div>
     <div class="archive-item__content">
