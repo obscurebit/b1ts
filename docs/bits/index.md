@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-02-20-the-balcony-transmission/" class="archive-item">
+    <div class="archive-item__number">022</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">February 20, 2026</span>
+      <h3 class="archive-item__title">The Balcony Transmission</h3>
+      <p class="archive-item__excerpt">What’s the point of cleaning a place that’s just going to get dirty again?</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Signal From Nowhere</span><span class="archive-item__genre" title="Fable or parable, simple surface hiding depth">Fable or parable</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-02-19-basement-lattice/" class="archive-item">
     <div class="archive-item__number">021</div>
     <div class="archive-item__content">

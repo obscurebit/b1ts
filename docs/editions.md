@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-02-20-edition-022/" class="archive-item">
+    <div class="archive-item__number">022</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">February 20, 2026</span>
+      <h3 class="archive-item__title">Edition #022</h3>
+      <p class="archive-item__excerpt">Signal From Nowhere · What’s the point of cleaning a place that’s just going to get dirty again?</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Signal From Nowhere</span><span class="archive-item__genre" title="Fable or parable, simple surface hiding depth">Fable or parable</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-02-19-edition-021/" class="archive-item">
     <div class="archive-item__number">021</div>
     <div class="archive-item__content">
