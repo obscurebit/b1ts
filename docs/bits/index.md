@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-02-22-the-bureaucracy-of-ghosts/" class="archive-item">
+    <div class="archive-item__number">024</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">February 22, 2026</span>
+      <h3 class="archive-item__title">The Bureaucracy of Ghosts</h3>
+      <p class="archive-item__excerpt">He arrived at the cemetery when the fog was still drunk on dawn. The gate hung like a slack jaw, rusted hinges groaning as he shouldered through. Head...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Edge Of Maps</span><span class="archive-item__genre" title="Satire of technology culture">Satire of technology culture</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-02-21-the-archivists-ledger/" class="archive-item">
     <div class="archive-item__number">023</div>
     <div class="archive-item__content">
