@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-02-23-bureaucratic-superposition/" class="archive-item">
+    <div class="archive-item__number">025</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">February 23, 2026</span>
+      <h3 class="archive-item__title">**Bureaucratic Superposition**</h3>
+      <p class="archive-item__excerpt">I don’t believe in time travel, which is why they hired me.</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Quantum Mysteries</span><span class="archive-item__genre" title="Body horror, transformation, the flesh is wrong">Body horror</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-02-22-the-bureaucracy-of-ghosts/" class="archive-item">
     <div class="archive-item__number">024</div>
     <div class="archive-item__content">
