@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-02-24-edition-026/" class="archive-item">
+    <div class="archive-item__number">026</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">February 24, 2026</span>
+      <h3 class="archive-item__title">Edition #026</h3>
+      <p class="archive-item__excerpt">Forgotten Technology · [Transcript Excerpt: Interview #472-B, Redacted]</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Forgotten Technology</span><span class="archive-item__genre" title="Ghost story, atmospheric and slow">Ghost story</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-02-23-edition-025/" class="archive-item">
     <div class="archive-item__number">025</div>
     <div class="archive-item__content">
