@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-02-25-edition-027/" class="archive-item">
+    <div class="archive-item__number">027</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">February 25, 2026</span>
+      <h3 class="archive-item__title">Edition #027</h3>
+      <p class="archive-item__excerpt">Digital Archaeology · Burnt plastic. A scorched sweetness clinging to the air, sharp as a warning.</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Digital Archaeology</span><span class="archive-item__genre" title="Political allegory, thinly veiled">Political allegory</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-02-24-edition-026/" class="archive-item">
     <div class="archive-item__number">026</div>
     <div class="archive-item__content">

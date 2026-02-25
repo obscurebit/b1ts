@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-02-25-circuit-graves/" class="archive-item">
+    <div class="archive-item__number">027</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">February 25, 2026</span>
+      <h3 class="archive-item__title">**Circuit Graves**</h3>
+      <p class="archive-item__excerpt">Burnt plastic. A scorched sweetness clinging to the air, sharp as a warning.</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Digital Archaeology</span><span class="archive-item__genre" title="Political allegory, thinly veiled">Political allegory</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-02-24-the-aerialists-requiem/" class="archive-item">
     <div class="archive-item__number">026</div>
     <div class="archive-item__content">
