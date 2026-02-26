@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-02-26-edition-028/" class="archive-item">
+    <div class="archive-item__number">028</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">February 26, 2026</span>
+      <h3 class="archive-item__title">Edition #028</h3>
+      <p class="archive-item__excerpt">Consciousness Frontiers · RECEIPT #4827</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Consciousness Frontiers</span><span class="archive-item__genre" title="Workplace comedy with a sci-fi twist">Workplace comedy with a sci-fi twist</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-02-25-edition-027/" class="archive-item">
     <div class="archive-item__number">027</div>
     <div class="archive-item__content">

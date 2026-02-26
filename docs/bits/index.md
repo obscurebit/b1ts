@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-02-26-backup-lectures/" class="archive-item">
+    <div class="archive-item__number">028</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">February 26, 2026</span>
+      <h3 class="archive-item__title">Backup Lectures</h3>
+      <p class="archive-item__excerpt">RECEIPT #4827</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Consciousness Frontiers</span><span class="archive-item__genre" title="Workplace comedy with a sci-fi twist">Workplace comedy with a sci-fi twist</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-02-25-circuit-graves/" class="archive-item">
     <div class="archive-item__number">027</div>
     <div class="archive-item__content">
