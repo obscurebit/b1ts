@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-02-27-chrono-caper/" class="archive-item">
+    <div class="archive-item__number">029</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">February 27, 2026</span>
+      <h3 class="archive-item__title">Chrono Caper</h3>
+      <p class="archive-item__excerpt">The cemetery’s iron gate creaks in the dusk, its wrought-iron skeletons rusting into the shape of a question mark. You adjust your backpack, the one w...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Time Anomalies</span><span class="archive-item__genre" title="Heist or caper, clever and kinetic">Heist or caper</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-02-26-backup-lectures/" class="archive-item">
     <div class="archive-item__number">028</div>
     <div class="archive-item__content">

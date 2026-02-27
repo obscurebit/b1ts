@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-02-27-edition-029/" class="archive-item">
+    <div class="archive-item__number">029</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">February 27, 2026</span>
+      <h3 class="archive-item__title">Edition #029</h3>
+      <p class="archive-item__excerpt">Time Anomalies · The cemetery’s iron gate creaks in the dusk, its wrought-iron skeletons rusting into the shape of a question mark. You adjust your backpack, the one with the st...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Time Anomalies</span><span class="archive-item__genre" title="Heist or caper, clever and kinetic">Heist or caper</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-02-26-edition-028/" class="archive-item">
     <div class="archive-item__number">028</div>
     <div class="archive-item__content">
