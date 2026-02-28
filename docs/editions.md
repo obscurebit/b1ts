@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-02-28-edition-030/" class="archive-item">
+    <div class="archive-item__number">030</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">February 28, 2026</span>
+      <h3 class="archive-item__title">Edition #030</h3>
+      <p class="archive-item__excerpt">Parallel Dimensions · The scent of fresh earth clung to the air, sharper than the usual sweetness of cut grass. Renzo paused his push mower, wiping his brow with a rag. At the cemete...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Parallel Dimensions</span><span class="archive-item__genre" title="Political allegory, thinly veiled">Political allegory</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-02-27-edition-029/" class="archive-item">
     <div class="archive-item__number">029</div>
     <div class="archive-item__content">
