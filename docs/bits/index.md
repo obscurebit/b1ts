@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-03-01-the-glass-hive/" class="archive-item">
+    <div class="archive-item__number">031</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">March 01, 2026</span>
+      <h3 class="archive-item__title">The Glass Hive</h3>
+      <p class="archive-item__excerpt">What did we expect, carving life from wax and salt?</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Synthetic Life</span><span class="archive-item__genre" title="Heist or caper, clever and kinetic">Heist or caper</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-02-28-the-other-half/" class="archive-item">
     <div class="archive-item__number">030</div>
     <div class="archive-item__content">

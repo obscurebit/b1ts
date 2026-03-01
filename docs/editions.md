@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-03-01-edition-031/" class="archive-item">
+    <div class="archive-item__number">031</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">March 01, 2026</span>
+      <h3 class="archive-item__title">Edition #031</h3>
+      <p class="archive-item__excerpt">Synthetic Life · What did we expect, carving life from wax and salt?</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Synthetic Life</span><span class="archive-item__genre" title="Heist or caper, clever and kinetic">Heist or caper</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-02-28-edition-030/" class="archive-item">
     <div class="archive-item__number">030</div>
     <div class="archive-item__content">
