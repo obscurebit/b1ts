@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-03-02-edition-032/" class="archive-item">
+    <div class="archive-item__number">032</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">March 02, 2026</span>
+      <h3 class="archive-item__title">Edition #032</h3>
+      <p class="archive-item__excerpt">Cryptographic Secrets · The fluorescent lights in Ward C flickered in a rhythm that no one could explain, their buzz swallowed by the thicker silence of midnight.</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Cryptographic Secrets</span><span class="archive-item__genre" title="Ghost story, atmospheric and slow">Ghost story</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-03-01-edition-031/" class="archive-item">
     <div class="archive-item__number">031</div>
     <div class="archive-item__content">
