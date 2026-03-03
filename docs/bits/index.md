@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-03-03-the-weeping-cogs-of-naqshab/" class="archive-item">
+    <div class="archive-item__number">033</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">March 03, 2026</span>
+      <h3 class="archive-item__title">The Weeping Cogs of Naqshab</h3>
+      <p class="archive-item__excerpt">I lied when I said I didn’t find anything.</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Abandoned Stations</span><span class="archive-item__genre" title="Survival story, resourcefulness under pressure">Survival story</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-03-02-the-silent-ward/" class="archive-item">
     <div class="archive-item__number">032</div>
     <div class="archive-item__content">
