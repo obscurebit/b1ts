@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-03-05-edition-035/" class="archive-item">
+    <div class="archive-item__number">035</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">March 05, 2026</span>
+      <h3 class="archive-item__title">Edition #035</h3>
+      <p class="archive-item__excerpt">Emergent Intelligence · The smell of fried circuit boards and bergamot tea always brought her back to the day the archive collapsed, though she couldn’t remember which smell had been w...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Emergent Intelligence</span><span class="archive-item__genre" title="Ghost story, atmospheric and slow">Ghost story</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-03-04-edition-034/" class="archive-item">
     <div class="archive-item__number">034</div>
     <div class="archive-item__content">

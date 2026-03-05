@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-03-05-the-tin-labyrinth/" class="archive-item">
+    <div class="archive-item__number">035</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">March 05, 2026</span>
+      <h3 class="archive-item__title">The Tin Labyrinth</h3>
+      <p class="archive-item__excerpt">The smell of fried circuit boards and bergamot tea always brought her back to the day the archive collapsed, though she couldn’t remember which smell ...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Emergent Intelligence</span><span class="archive-item__genre" title="Ghost story, atmospheric and slow">Ghost story</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-03-04-the-spoon-that-remembered/" class="archive-item">
     <div class="archive-item__number">034</div>
     <div class="archive-item__content">
