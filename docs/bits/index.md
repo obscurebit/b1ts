@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-03-08-dead-drop/" class="archive-item">
+    <div class="archive-item__number">038</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">March 08, 2026</span>
+      <h3 class="archive-item__title">Dead Drop</h3>
+      <p class="archive-item__excerpt">“They’re lifting the veil in twelve minutes.”</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Underground Networks</span><span class="archive-item__genre" title="Fable or parable, simple surface hiding depth">Fable or parable</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-03-07-the-bakelite-dial/" class="archive-item">
     <div class="archive-item__number">037</div>
     <div class="archive-item__content">
