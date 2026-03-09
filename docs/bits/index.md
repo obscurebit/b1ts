@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-03-09-the-sock-archive/" class="archive-item">
+    <div class="archive-item__number">039</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">March 09, 2026</span>
+      <h3 class="archive-item__title">The Sock Archive</h3>
+      <p class="archive-item__excerpt">The sock itched against his palm, cotton threaded with something colder than winter. He was twelve again, watching his mother hem the thing, needle da...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Biological Computing</span><span class="archive-item__genre" title="Romantic subplot driving a speculative premise">Romantic subplot driving a speculative premise</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-03-08-dead-drop/" class="archive-item">
     <div class="archive-item__number">038</div>
     <div class="archive-item__content">

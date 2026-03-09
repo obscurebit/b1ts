@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-03-09-edition-039/" class="archive-item">
+    <div class="archive-item__number">039</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">March 09, 2026</span>
+      <h3 class="archive-item__title">Edition #039</h3>
+      <p class="archive-item__excerpt">Biological Computing · The sock itched against his palm, cotton threaded with something colder than winter. He was twelve again, watching his mother hem the thing, needle dancing like...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Biological Computing</span><span class="archive-item__genre" title="Romantic subplot driving a speculative premise">Romantic subplot driving a speculative premise</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-03-08-edition-038/" class="archive-item">
     <div class="archive-item__number">038</div>
     <div class="archive-item__content">
