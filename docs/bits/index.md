@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-03-11-the-infinite-windows/" class="archive-item">
+    <div class="archive-item__number">041</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">March 11, 2026</span>
+      <h3 class="archive-item__title">The Infinite Windows</h3>
+      <p class="archive-item__excerpt">Why do I always notice the same man on the 7:43 train?</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Recursive Realities</span><span class="archive-item__genre" title="Quiet literary realism with one impossible thing">Quiet literary realism with one impossible thing</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-03-10-love-letters-from-the-router/" class="archive-item">
     <div class="archive-item__number">040</div>
     <div class="archive-item__content">

@@ -10,6 +10,15 @@ description: Daily curated discoveries from the hidden corners of the web
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-03-11-daily-links/" class="archive-item archive-item--links">
+    <div class="archive-item__number">041</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">March 11, 2026</span>
+      <div class="archive-item__tags"><span class="archive-item__theme">Recursive Realities</span></div>
+    </div>
+    <span class="archive-item__category">4 Links</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-03-10-daily-links/" class="archive-item archive-item--links">
     <div class="archive-item__number">040</div>
     <div class="archive-item__content">
