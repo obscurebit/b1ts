@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-03-14-the-last-rehearsal/" class="archive-item">
+    <div class="archive-item__number">044</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">March 14, 2026</span>
+      <h3 class="archive-item__title">The Last Rehearsal</h3>
+      <p class="archive-item__excerpt">[REDACTED] adjusted the microphone, their voice cracking like the old theater’s paint. “We found it beneath the stage—buried under floorboards warped ...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Forgotten Technology</span><span class="archive-item__genre" title="Epistolary mystery, pieced together from fragments">Epistolary mystery</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-03-13-dialup-entanglement/" class="archive-item">
     <div class="archive-item__number">043</div>
     <div class="archive-item__content">
