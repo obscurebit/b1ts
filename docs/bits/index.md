@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-03-16-the-glass-transcription/" class="archive-item">
+    <div class="archive-item__number">046</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">March 16, 2026</span>
+      <h3 class="archive-item__title">The Glass Transcription</h3>
+      <p class="archive-item__excerpt">PATIENT INVENTORY</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Consciousness Frontiers</span><span class="archive-item__genre" title="Domestic drama with one speculative element">Domestic drama with one speculative element</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-03-15-the-archivists-cat/" class="archive-item">
     <div class="archive-item__number">045</div>
     <div class="archive-item__content">
