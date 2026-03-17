@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-03-17-timekeeping-for-the-distracted/" class="archive-item">
+    <div class="archive-item__number">047</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">March 17, 2026</span>
+      <h3 class="archive-item__title">Timekeeping for the Distracted</h3>
+      <p class="archive-item__excerpt">You adjust the watch on your wrist, its face cracked like the kitchen tile where your wife dropped the rolling pin that morning. The subway car shudde...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Time Anomalies</span><span class="archive-item__genre" title="Epistolary mystery, pieced together from fragments">Epistolary mystery</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-03-16-the-glass-transcription/" class="archive-item">
     <div class="archive-item__number">046</div>
     <div class="archive-item__content">

@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-03-17-edition-047/" class="archive-item">
+    <div class="archive-item__number">047</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">March 17, 2026</span>
+      <h3 class="archive-item__title">Edition #047</h3>
+      <p class="archive-item__excerpt">Time Anomalies · You adjust the watch on your wrist, its face cracked like the kitchen tile where your wife dropped the rolling pin that morning. The subway car shudders, though...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Time Anomalies</span><span class="archive-item__genre" title="Epistolary mystery, pieced together from fragments">Epistolary mystery</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-03-16-edition-046/" class="archive-item">
     <div class="archive-item__number">046</div>
     <div class="archive-item__content">
