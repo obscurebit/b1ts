@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-03-21-the-ghost-ship-gambit/" class="archive-item">
+    <div class="archive-item__number">051</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">March 21, 2026</span>
+      <h3 class="archive-item__title">The Ghost Ship Gambit</h3>
+      <p class="archive-item__excerpt">The terminal’s PA system crackled, announcing a delay for the Mars transit. Same flickering lights, same stale coffee smell. I was stirring creamer in...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Abandoned Stations</span><span class="archive-item__genre" title="Heist or caper, clever and kinetic">Heist or caper</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-03-20-the-ciphers-edge/" class="archive-item">
     <div class="archive-item__number">050</div>
     <div class="archive-item__content">
