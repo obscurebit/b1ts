@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-03-31-edition-061/" class="archive-item">
+    <div class="archive-item__number">061</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">March 31, 2026</span>
+      <h3 class="archive-item__title">Edition #061</h3>
+      <p class="archive-item__excerpt">Quantum Mysteries · The chalkboard lay shattered, equations half-erased, and the telephone receiver hung off its cradle, still warm. Ji-Yeon stepped back into the pool of light, he...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Quantum Mysteries</span><span class="archive-item__genre" title="Ghost story, atmospheric and slow">Ghost story</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-03-30-edition-060/" class="archive-item">
     <div class="archive-item__number">060</div>
     <div class="archive-item__content">
