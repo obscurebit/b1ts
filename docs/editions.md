@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-04-02-edition-063/" class="archive-item">
+    <div class="archive-item__number">063</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">April 02, 2026</span>
+      <h3 class="archive-item__title">Edition #063</h3>
+      <p class="archive-item__excerpt">Digital Archaeology · We confess we were not the first to bleed data.</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Digital Archaeology</span><span class="archive-item__genre" title="Body horror, transformation, the flesh is wrong">Body horror</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-04-01-edition-062/" class="archive-item">
     <div class="archive-item__number">062</div>
     <div class="archive-item__content">

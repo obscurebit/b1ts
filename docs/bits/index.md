@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-04-02-the-flesh-archives/" class="archive-item">
+    <div class="archive-item__number">063</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">April 02, 2026</span>
+      <h3 class="archive-item__title">The Flesh Archives</h3>
+      <p class="archive-item__excerpt">We confess we were not the first to bleed data.</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Digital Archaeology</span><span class="archive-item__genre" title="Body horror, transformation, the flesh is wrong">Body horror</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-04-01-the-stage-managers-notes/" class="archive-item">
     <div class="archive-item__number">062</div>
     <div class="archive-item__content">
