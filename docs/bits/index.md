@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-04-03-stages-of-absence/" class="archive-item">
+    <div class="archive-item__number">064</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">April 03, 2026</span>
+      <h3 class="archive-item__title">Stages of Absence</h3>
+      <p class="archive-item__excerpt">The theater seats hummed with the static of a thousand idling neural interfaces. Piotr adjusted his wrist display, the holographic program flickering ...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Consciousness Frontiers</span><span class="archive-item__genre" title="Domestic drama with one speculative element">Domestic drama with one speculative element</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-04-02-the-flesh-archives/" class="archive-item">
     <div class="archive-item__number">063</div>
     <div class="archive-item__content">

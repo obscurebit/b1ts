@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-04-03-edition-064/" class="archive-item">
+    <div class="archive-item__number">064</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">April 03, 2026</span>
+      <h3 class="archive-item__title">Edition #064</h3>
+      <p class="archive-item__excerpt">Consciousness Frontiers · The theater seats hummed with the static of a thousand idling neural interfaces. Piotr adjusted his wrist display, the holographic program flickering as it sync...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Consciousness Frontiers</span><span class="archive-item__genre" title="Domestic drama with one speculative element">Domestic drama with one speculative element</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-04-02-edition-063/" class="archive-item">
     <div class="archive-item__number">063</div>
     <div class="archive-item__content">
