@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-04-06-synthetic-dawn-at-checkpoint-twelve/" class="archive-item">
+    <div class="archive-item__number">067</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">April 06, 2026</span>
+      <h3 class="archive-item__title">Synthetic Dawn at Checkpoint Twelve</h3>
+      <p class="archive-item__excerpt">Twelve hours until the protocol.</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Synthetic Life</span><span class="archive-item__genre" title="Body horror, transformation, the flesh is wrong">Body horror</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-04-05-the-glassmongers-bargain/" class="archive-item">
     <div class="archive-item__number">066</div>
     <div class="archive-item__content">
