@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-04-09-edition-070/" class="archive-item">
+    <div class="archive-item__number">070</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">April 09, 2026</span>
+      <h3 class="archive-item__title">Edition #070</h3>
+      <p class="archive-item__excerpt">Reality Glitches · “You’re saying the sky changed color three times yesterday?”</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Reality Glitches</span><span class="archive-item__genre" title="Fable or parable, simple surface hiding depth">Fable or parable</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-04-08-edition-069/" class="archive-item">
     <div class="archive-item__number">069</div>
     <div class="archive-item__content">
