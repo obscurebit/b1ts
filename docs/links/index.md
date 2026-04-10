@@ -10,6 +10,15 @@ description: Daily curated discoveries from the hidden corners of the web
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-04-10-daily-links/" class="archive-item archive-item--links">
+    <div class="archive-item__number">071</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">April 10, 2026</span>
+      <div class="archive-item__tags"><span class="archive-item__theme">Emergent Intelligence</span></div>
+    </div>
+    <span class="archive-item__category">3 Links</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-04-09-daily-links/" class="archive-item archive-item--links">
     <div class="archive-item__number">070</div>
     <div class="archive-item__content">

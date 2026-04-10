@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-04-10-edition-071/" class="archive-item">
+    <div class="archive-item__number">071</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">April 10, 2026</span>
+      <h3 class="archive-item__title">Edition #071</h3>
+      <p class="archive-item__excerpt">Emergent Intelligence · They never spoke of the machine. Not after the first summer, when the carousel horses began to bleed.</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Emergent Intelligence</span><span class="archive-item__genre" title="Body horror, transformation, the flesh is wrong">Body horror</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-04-09-edition-070/" class="archive-item">
     <div class="archive-item__number">070</div>
     <div class="archive-item__content">
