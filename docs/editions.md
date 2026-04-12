@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-04-12-edition-073/" class="archive-item">
+    <div class="archive-item__number">073</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">April 12, 2026</span>
+      <h3 class="archive-item__title">Edition #073</h3>
+      <p class="archive-item__excerpt">Lost Civilizations · Why does the metal hum only when the ship is alone?</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Lost Civilizations</span><span class="archive-item__genre" title="Cosmic horror, vast and indifferent">Cosmic horror</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-04-11-edition-072/" class="archive-item">
     <div class="archive-item__number">072</div>
     <div class="archive-item__content">

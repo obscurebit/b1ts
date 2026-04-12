@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-04-12-the-salt-archivist/" class="archive-item">
+    <div class="archive-item__number">073</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">April 12, 2026</span>
+      <h3 class="archive-item__title">The Salt Archivist</h3>
+      <p class="archive-item__excerpt">Why does the metal hum only when the ship is alone?</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Lost Civilizations</span><span class="archive-item__genre" title="Cosmic horror, vast and indifferent">Cosmic horror</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-04-11-the-memory-audit/" class="archive-item">
     <div class="archive-item__number">072</div>
     <div class="archive-item__content">
