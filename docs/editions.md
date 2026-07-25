@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-07-25-edition-177/" class="archive-item">
+    <div class="archive-item__number">177</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">July 25, 2026</span>
+      <h3 class="archive-item__title">Edition #177</h3>
+      <p class="archive-item__excerpt">Signal From Nowhere · The shortest path always costs the most. Rosa knew this as she adjusted her delivery satchel, its straps frayed from years of shouldering packages through the c...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Signal From Nowhere</span><span class="archive-item__genre" title="Caper energy at a human scale">Caper energy at a human scale</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-07-24-edition-176/" class="archive-item">
     <div class="archive-item__number">176</div>
     <div class="archive-item__content">

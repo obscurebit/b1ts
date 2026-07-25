@@ -1,8 +1,11 @@
 {
   "date": "2026-07-25",
   "links_file": "docs/links/posts/2026-07-25-daily-links.md",
-  "status": "prepared",
+  "published_at": "2026-07-25T08:53:00Z",
+  "published_links_file": "docs/links/posts/2026-07-25-daily-links.md",
+  "published_story_file": "docs/bits/posts/2026-07-25-the-detours-tax.md",
+  "status": "published",
   "story_file": "docs/bits/posts/2026-07-25-the-detours-tax.md",
   "theme": "signal from nowhere",
-  "updated_at": "2026-07-24T08:33:48Z"
+  "updated_at": "2026-07-25T08:13:33Z"
 }
