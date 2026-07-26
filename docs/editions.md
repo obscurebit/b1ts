@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-07-26-edition-178/" class="archive-item">
+    <div class="archive-item__number">178</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">July 26, 2026</span>
+      <h3 class="archive-item__title">Edition #178</h3>
+      <p class="archive-item__excerpt">Recursive Realities · The first time the ledger refused to turn a page, I thought it was another glitch in the old system. The kind of thing that made the permanent staff throw their...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Recursive Realities</span><span class="archive-item__genre" title="Noir-ish social observation rather than detective plotting">Noir-ish social observation rather than detective plotting</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-07-25-edition-177/" class="archive-item">
     <div class="archive-item__number">177</div>
     <div class="archive-item__content">

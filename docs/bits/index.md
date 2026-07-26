@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-07-26-the-silent-ledger/" class="archive-item">
+    <div class="archive-item__number">178</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">July 26, 2026</span>
+      <h3 class="archive-item__title">The Silent Ledger</h3>
+      <p class="archive-item__excerpt">The first time the ledger refused to turn a page, I thought it was another glitch in the old system. The kind of thing that made the permanent staff t...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Recursive Realities</span><span class="archive-item__genre" title="Noir-ish social observation rather than detective plotting">Noir-ish social observation rather than detective plotting</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-07-25-the-detours-tax/" class="archive-item">
     <div class="archive-item__number">177</div>
     <div class="archive-item__content">
