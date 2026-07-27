@@ -1,8 +1,11 @@
 {
   "date": "2026-07-27",
   "links_file": "docs/links/posts/2026-07-27-daily-links.md",
-  "status": "prepared",
+  "published_at": "2026-07-27T10:11:53Z",
+  "published_links_file": "docs/links/posts/2026-07-27-daily-links.md",
+  "published_story_file": "docs/bits/posts/2026-07-27-the-spare-edition.md",
+  "status": "published",
   "story_file": "docs/bits/posts/2026-07-27-the-spare-edition.md",
   "theme": "edge of maps",
-  "updated_at": "2026-07-26T08:32:51Z"
+  "updated_at": "2026-07-27T10:00:06Z"
 }
