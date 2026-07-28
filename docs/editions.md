@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-07-28-edition-180/" class="archive-item">
+    <div class="archive-item__number">180</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">July 28, 2026</span>
+      <h3 class="archive-item__title">Edition #180</h3>
+      <p class="archive-item__excerpt">Maintenance Myths · The first time the scale lied, I was fetching linens from Storage B. The door jammed, as always, and when I yanked it open, a moth the size of a postcard flutte...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Maintenance Myths</span><span class="archive-item__genre" title="Caper energy at a human scale">Caper energy at a human scale</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-07-27-edition-179/" class="archive-item">
     <div class="archive-item__number">179</div>
     <div class="archive-item__content">

@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-07-28-the-scale-in-the-hall/" class="archive-item">
+    <div class="archive-item__number">180</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">July 28, 2026</span>
+      <h3 class="archive-item__title">The Scale in the Hall</h3>
+      <p class="archive-item__excerpt">The first time the scale lied, I was fetching linens from Storage B. The door jammed, as always, and when I yanked it open, a moth the size of a postc...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Maintenance Myths</span><span class="archive-item__genre" title="Caper energy at a human scale">Caper energy at a human scale</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-07-27-the-spare-edition/" class="archive-item">
     <div class="archive-item__number">179</div>
     <div class="archive-item__content">
