@@ -1,8 +1,11 @@
 {
   "date": "2026-07-29",
   "links_file": "docs/links/posts/2026-07-29-daily-links.md",
-  "status": "prepared",
+  "published_at": "2026-07-29T09:20:43Z",
+  "published_links_file": "docs/links/posts/2026-07-29-daily-links.md",
+  "published_story_file": "docs/bits/posts/2026-07-29-the-ledgers-toll.md",
+  "status": "published",
   "story_file": "docs/bits/posts/2026-07-29-the-ledgers-toll.md",
   "theme": "counterfeit realities",
-  "updated_at": "2026-07-28T08:43:02Z"
+  "updated_at": "2026-07-29T08:47:43Z"
 }

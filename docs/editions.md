@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-07-29-edition-181/" class="archive-item">
+    <div class="archive-item__number">181</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">July 29, 2026</span>
+      <h3 class="archive-item__title">Edition #181</h3>
+      <p class="archive-item__excerpt">Counterfeit Realities · SCHEDULE ENTRY 14-B: All third-class passengers must present their transit vouchers before boarding. Failure to comply will result in immediate removal by stati...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Counterfeit Realities</span><span class="archive-item__genre" title="Caper energy at a human scale">Caper energy at a human scale</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-07-28-edition-180/" class="archive-item">
     <div class="archive-item__number">180</div>
     <div class="archive-item__content">
