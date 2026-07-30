@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-07-30-edition-182/" class="archive-item">
+    <div class="archive-item__number">182</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">July 30, 2026</span>
+      <h3 class="archive-item__title">Edition #182</h3>
+      <p class="archive-item__excerpt">Paper Archives · The first time the garment tags started rearranging themselves, I was already thirty minutes late for my shift at the County Records Annex, thanks to my brother...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Paper Archives</span><span class="archive-item__genre" title="Caper energy at a human scale">Caper energy at a human scale</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-07-29-edition-181/" class="archive-item">
     <div class="archive-item__number">181</div>
     <div class="archive-item__content">

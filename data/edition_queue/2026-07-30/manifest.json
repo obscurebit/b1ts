@@ -1,8 +1,11 @@
 {
   "date": "2026-07-30",
   "links_file": "docs/links/posts/2026-07-30-daily-links.md",
-  "status": "prepared",
+  "published_at": "2026-07-30T09:09:02Z",
+  "published_links_file": "docs/links/posts/2026-07-30-daily-links.md",
+  "published_story_file": "docs/bits/posts/2026-07-30-the-tagging-of-f-norris-henshaw.md",
+  "status": "published",
   "story_file": "docs/bits/posts/2026-07-30-the-tagging-of-f-norris-henshaw.md",
   "theme": "paper archives",
-  "updated_at": "2026-07-29T08:47:43Z"
+  "updated_at": "2026-07-30T08:35:35Z"
 }

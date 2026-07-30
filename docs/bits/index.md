@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-07-30-the-tagging-of-f-norris-henshaw/" class="archive-item">
+    <div class="archive-item__number">182</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">July 30, 2026</span>
+      <h3 class="archive-item__title">The Tagging of F. Norris Henshaw</h3>
+      <p class="archive-item__excerpt">The first time the garment tags started rearranging themselves, I was already thirty minutes late for my shift at the County Records Annex, thanks to ...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Paper Archives</span><span class="archive-item__genre" title="Caper energy at a human scale">Caper energy at a human scale</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-07-29-the-ledgers-toll/" class="archive-item">
     <div class="archive-item__number">181</div>
     <div class="archive-item__content">
