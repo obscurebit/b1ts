@@ -1,8 +1,11 @@
 {
   "date": "2026-07-31",
   "links_file": "docs/links/posts/2026-07-31-daily-links.md",
-  "status": "prepared",
+  "published_at": "2026-07-31T09:28:51Z",
+  "published_links_file": "docs/links/posts/2026-07-31-daily-links.md",
+  "published_story_file": "docs/bits/posts/2026-07-31-the-altered-notice.md",
+  "status": "published",
   "story_file": "docs/bits/posts/2026-07-31-the-altered-notice.md",
   "theme": "small gods of commerce",
-  "updated_at": "2026-07-30T08:35:35Z"
+  "updated_at": "2026-07-31T08:56:23Z"
 }

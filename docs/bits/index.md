@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-07-31-the-altered-notice/" class="archive-item">
+    <div class="archive-item__number">183</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">July 31, 2026</span>
+      <h3 class="archive-item__title">The Altered Notice</h3>
+      <p class="archive-item__excerpt">The first lie of the day was a good one: Mrs. Peet from 4B claiming her cat hadn’t scratched the delivery boy, though the boy’s torn sleeve and the ca...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Small Gods Of Commerce</span><span class="archive-item__genre" title="Domestic drama bent by one technological or metaphysical fact">Domestic drama bent by one technological or metaphysical fact</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-07-30-the-tagging-of-f-norris-henshaw/" class="archive-item">
     <div class="archive-item__number">182</div>
     <div class="archive-item__content">

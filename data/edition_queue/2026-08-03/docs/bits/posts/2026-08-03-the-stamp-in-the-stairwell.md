@@ -1,0 +1,66 @@
+---
+date: 2026-08-03
+title: "The Stamp in the Stairwell"
+description: "A daily AI-generated story exploring speculative fiction"
+author: "https://integrate.api.nvidia.com/v1 / nvidia/llama-3.3-nemotron-super-49b-v1.5"
+theme: "digital archaeology"
+genre: "Character study where the strange thing stays partly offstage"
+voice_profile: "Spare procedural dread: short factual movement, systems described calmly until the human cost appears"
+---
+
+# The Stamp in the Stairwell
+
+Margo found the stamp on the third-floor landing, half-buried under a folded leaflet about recycling rules. It was a dull teal color, the kind of institutional hue that seemed to absorb blame. The handle was worn smooth, the rubber face etched with a serial number and the words *VALIDATE HERE*. She ought to have turned it in to the management office, but the weekly complaints about the broken elevator and the mold in Unit 4B had left her with a headache that throbbed in time with the flickering emergency light.  
+
+Darryl appeared the next morning as she was descending with her lunch—a thermos of lukewarm soup and a stack of tenant association flyers. He’d moved out six months prior, after the committee voted to privatize the laundry room, but here he was, clutching a sheaf of paper that might have been official if not for the coffee stains.  
+
+“I need you to stamp this,” he said, like they hadn’t spent three meetings arguing about whether the building could afford a new dumpster.  
+
+Margo’s rehearsed response—*All maintenance requests must go through the online portal*—died on her tongue. The stamp in her pocket felt suddenly heavy. “What’s it for?”  
+
+“Eviction moratorium appeal. The county’s still using the old system, the one that got hacked. My credit’s in the toilet because of some unpaid fines from 2019.” He hesitated. “You know I’d have called first, but the portal keeps rejecting my ID.”  
+
+She remembered the way he’d stormed out of the last meeting, knocking over a chair that had been donated by the woman in 7A, who always left her potted herbs on the windowsill. The stamp’s serial number glowed faintly in her peripheral vision.  
+
+In the stairwell’s dim light, she pressed the stamp to his form. The paper shuddered, ink blooming in precise blocks: *PENALTY ASSESSED FOR LATE PAYMENT: $327.50. DUE IMMEDIATELY.*  
+
+Darryl paled. “That’s… not what I asked for.”  
+
+“Neither is this,” Margo said, nodding at the line beneath: *TENANT MARGO M. HAS UNTIL 5:00 PM TO RESPOND TO COMPLAINT #2203.*  
+
+The stamp, she learned, didn’t just validate. It excavated. Paperwork from the future, or past, or some overlapping stratum where the building’s online ghost still enforced rules nobody living remembered. The next day, she tested it on a flyer for the holiday potluck. The stamp turned the event into a *mandatory safety briefing*, attendance tracked by unit number.  
+
+By week’s end, she’d fielded three requests: a mother in 3C needing a “certificate of quiet enjoyment” to placate her landlord brother, a retiree in 5D who wanted to erase a noise complaint from 2007, and the janitor, whose application for a storage locker kept being denied due to a phantom infestation report. Each stamp left her with a new obligation, a new document that might as well have been written in her own handwriting.  
+
+Darryl returned, unsurprisingly. “They sent a sheriff’s notice. The stamp didn’t fix it.”  
+
+Margo handed him a form she’d prepared, already stamped. *APPEAL GRANTED. ALL FINES FORFEIT.* The paper was warm to the touch.  
+
+He didn’t thank her. Just folded it carefully and said, “You know it’s going to come for you, right?”  
+
+It already had. That morning, the management office had emailed a reminder about her unpaid share of the lobby renovation—$850, due in 48 hours. The amount matched the penalty Darryl had received, minus a digit.  
+
+The stamp now lived in her desk drawer, beneath a stack of unopened tenant surveys. Margo could toss it, but then who would handle the next person with a problem the world refused to let go of?  
+
+She used it one last time that evening, alone in the stairwell. The form it produced was addressed to her, dated three years prior: *TENANT MARGO M. TERMINATED FOR CAUSING DISRUPTION. PERSONAL BELONGINGS TO BE REMOVED BY 5:00 PM.*  
+
+The ink smelled like wet concrete.  
+
+When the new committee chair knocked the next morning, Margo handed her the stamp without a word. The woman’s eyes narrowed, but she took it.  
+
+“Thanks,” the chair said, as if they’d discussed it.  
+
+Margo went home, where her husband was already packing their daughter’s toys into boxes. The eviction notice on the kitchen table was printed on paper she recognized.  
+
+She didn’t cry. She thought about the stamp, now warm in someone else’s pocket, and wondered who’d get the next bill.
+
+---
+
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem;">
+  <button class="share-btn" data-url="{% raw %}{{ page.canonical_url }}{% endraw %}" data-title="The Stamp in the Stairwell">
+    Share this story
+  </button>
+  <a href="https://github.com/obscurebit/b1ts/tree/6976fcf" target="_blank" rel="noopener" class="story-gen-link">
+    gen:6976fcf
+  </a>
+</div>
