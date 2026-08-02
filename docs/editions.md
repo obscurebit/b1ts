@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-08-02-edition-185/" class="archive-item">
+    <div class="archive-item__number">185</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">August 02, 2026</span>
+      <h3 class="archive-item__title">Edition #185</h3>
+      <p class="archive-item__excerpt">Forgotten Technology · “You’re *still* using that thing?” Marjorie’s voice cracks like the dry summer air. She looms over the cedar shed, her apron stiff with flour, pointing at the s...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Forgotten Technology</span><span class="archive-item__genre" title="Workplace comedy with a speculative inconvenience">Workplace comedy with a speculative inconvenience</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-08-01-edition-184/" class="archive-item">
     <div class="archive-item__number">184</div>
     <div class="archive-item__content">

@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-08-02-the-scale-in-the-cedar-shed/" class="archive-item">
+    <div class="archive-item__number">185</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">August 02, 2026</span>
+      <h3 class="archive-item__title">The Scale in the Cedar Shed</h3>
+      <p class="archive-item__excerpt">“You’re *still* using that thing?” Marjorie’s voice cracks like the dry summer air. She looms over the cedar shed, her apron stiff with flour, pointin...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Forgotten Technology</span><span class="archive-item__genre" title="Workplace comedy with a speculative inconvenience">Workplace comedy with a speculative inconvenience</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-08-01-the-responsibility-box/" class="archive-item">
     <div class="archive-item__number">184</div>
     <div class="archive-item__content">
