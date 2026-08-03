@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-08-03-edition-186/" class="archive-item">
+    <div class="archive-item__number">186</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">August 03, 2026</span>
+      <h3 class="archive-item__title">Edition #186</h3>
+      <p class="archive-item__excerpt">Digital Archaeology · Margo found the stamp on the third-floor landing, half-buried under a folded leaflet about recycling rules. It was a dull teal color, the kind of institutional...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Digital Archaeology</span><span class="archive-item__genre" title="Character study where the strange thing stays partly offstage">Character study where the strange thing stays partly offstage</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-08-02-edition-185/" class="archive-item">
     <div class="archive-item__number">185</div>
     <div class="archive-item__content">

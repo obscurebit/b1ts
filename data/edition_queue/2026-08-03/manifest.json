@@ -1,8 +1,11 @@
 {
   "date": "2026-08-03",
   "links_file": "docs/links/posts/2026-08-03-daily-links.md",
-  "status": "prepared",
+  "published_at": "2026-08-03T10:25:40Z",
+  "published_links_file": "docs/links/posts/2026-08-03-daily-links.md",
+  "published_story_file": "docs/bits/posts/2026-08-03-the-stamp-in-the-stairwell.md",
+  "status": "published",
   "story_file": "docs/bits/posts/2026-08-03-the-stamp-in-the-stairwell.md",
   "theme": "digital archaeology",
-  "updated_at": "2026-08-02T08:30:19Z"
+  "updated_at": "2026-08-03T09:55:21Z"
 }
