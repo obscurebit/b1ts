@@ -1,0 +1,87 @@
+---
+date: 2026-08-04
+title: "The Last Responsible"
+description: "A daily AI-generated story exploring speculative fiction"
+author: "https://integrate.api.nvidia.com/v1 / nvidia/llama-3.3-nemotron-super-49b-v1.5"
+theme: "consciousness frontiers"
+genre: "Ghost story energy without old haunted-house defaults"
+voice_profile: "Quiet post-disaster routine: aftermath is background; maintenance, trade, and care carry the drama"
+---
+
+# The Last Responsible
+
+The fluorescent lights hum like a toothache. You’re on your third round of wiping down Mrs. V’s nightstand, though the disinfectant streaks are already flawless. She insists the previous temp left “cooties” in the wood grain. Her voice cracks like a classroom ruler. You smile, jaw tight.  
+
+**Inventory of Responsibilities, Shift 3–11:**  
+- **Item 1:** Mrs. V’s Complaint Log (digital, auto-sent to management daily). Current entry: *“Aide argued with me about pudding. Aide has bad breath.”*  
+- **Item 2:** Your badge. Plastic, chipped at the corner, glowing green. Issued by Westhaven Care Home. Updates ownership hourly. Currently: YOU.  
+- **Item 3:** The pen. Signed over during orientation. *“I accept responsibility for all assigned tasks, emotional labor, and biohazard spills.”* Ink smudged.  
+
+Mrs. V’s son visited yesterday. He wore a suit like he’d rather be anywhere else. Watched you adjust her pillows. Said, “She’s losing it, right?” You nodded. He didn’t ask about the badge.  
+
+Ownership shifted to you at 9:47 PM. You were the last one to feel responsible.  
+
+**Policy Addendum 14.7:** *“Ownership assigns to the staff member who most recently acknowledged emotional or physical care duty. No appeals.”*  
+
+You tried passing it off. Left the badge on the lunch cart. Gave it to Janine when she brought Mrs. V’s meds. But it always crawls back. The glow gets paler when you avoid eye contact, but never fades.  
+
+Mrs. V’s hands shake. Parkinson’s, or maybe just rage. She throws her tray sometimes. You clean it up. The badge itches. You want to rip it off, but then Security would tag you as *uncooperative*. They’d revoke your weekend hours.  
+
+**Incident Report Draft (unsent):**  
+- **Time:** 10:03 PM  
+- **Details:** Mrs. V refused to swallow her lithium. Spit it at you. You wiped your face. She laughed. Ownership transferred immediately. Glow: neon.  
+
+You want to protect Janine. She’s permanent staff. Has a kid with asthma. If the badge lands on her, she’ll have to stay late, miss her bus, pay for another sitter. You’ve seen her cry in the supply closet over less.  
+
+But Mrs. V is right about the pudding. It’s tapioca. She’s allergic. The system won’t let you swap it. Protocol 12.3: *“All dietary requests require a doctor’s note. No exceptions.”* You mentioned it to the nurse. She said, *“Since when do temps get opinionated?”*  
+
+Ownership glows brighter when you lie.  
+
+**Memory (unlogged):**  
+Your mother’s hospital room. You were sixteen. She asked you to hide her morphine pump so the nurses wouldn’t “rob her.” You did. She coded at 3 AM. Ownership transferred to you at 2:59.  
+
+Mrs. V stops laughing. Her eyes narrow. “You’re the one who keeps moving my chair.”  
+You freeze. The badge burns.  
+“I sit where I want,” she hisses. “Not where you *feel responsible*.”  
+
+You look at the camera. It blinks red. Policy 14.7 has an update today: *“Ownership transfers now require supervisor authorization.”* The workaround is dead.  
+
+Mrs. V’s son calls at 10:15. “They told me she’s refusing treatment.”  
+You listen to him sigh. “Just make her eat.”  
+The line dies.  
+
+You adjust her chair. She spits. The badge glows.  
+
+Ownership is permanent now.  
+
+You miss the temp job before this one. You sorted laundry at a halfway house. No badges. Just socks.  
+
+Mrs. V’s hand brushes yours. Accidental. Her skin is cold. You don’t move.  
+
+The glow dims.  
+
+Ownership transfers to her.  
+
+You peel off the badge. Let it fall.  
+
+The camera blinks.  
+
+It will tag you as *uncooperative*.  
+
+Worth it.  
+
+**Final Inventory:**  
+- **Item 1:** One less responsibility.  
+- **Item 2:** A stain on the floor.  
+- **Item 3:** The pen. Still smudged.
+
+---
+
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem;">
+  <button class="share-btn" data-url="{% raw %}{{ page.canonical_url }}{% endraw %}" data-title="The Last Responsible">
+    Share this story
+  </button>
+  <a href="https://github.com/obscurebit/b1ts/tree/e1bb999" target="_blank" rel="noopener" class="story-gen-link">
+    gen:e1bb999
+  </a>
+</div>

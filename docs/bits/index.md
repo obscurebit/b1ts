@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-08-04-the-last-responsible/" class="archive-item">
+    <div class="archive-item__number">187</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">August 04, 2026</span>
+      <h3 class="archive-item__title">The Last Responsible</h3>
+      <p class="archive-item__excerpt">The fluorescent lights hum like a toothache. You’re on your third round of wiping down Mrs. V’s nightstand, though the disinfectant streaks are alread...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Consciousness Frontiers</span><span class="archive-item__genre" title="Ghost story energy without old haunted-house defaults">Ghost story energy without old haunted-house defaults</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-08-03-the-stamp-in-the-stairwell/" class="archive-item">
     <div class="archive-item__number">186</div>
     <div class="archive-item__content">
