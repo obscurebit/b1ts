@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-08-05-the-jar-in-the-supply-closet/" class="archive-item">
+    <div class="archive-item__number">188</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">August 05, 2026</span>
+      <h3 class="archive-item__title">The Jar in the Supply Closet</h3>
+      <p class="archive-item__excerpt">Mabel stampede REJECTED across the mason jar’s label as she listened to Mrs. Halvorsen complain about the new forms. The jar sat on the shelf behind h...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Time Anomalies</span><span class="archive-item__genre" title="Satire of systems, credentials, or institutional language">Satire of systems</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-08-04-the-last-responsible/" class="archive-item">
     <div class="archive-item__number">187</div>
     <div class="archive-item__content">

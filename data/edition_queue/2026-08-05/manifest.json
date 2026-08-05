@@ -1,8 +1,11 @@
 {
   "date": "2026-08-05",
   "links_file": "docs/links/posts/2026-08-05-daily-links.md",
-  "status": "prepared",
+  "published_at": "2026-08-05T09:35:18Z",
+  "published_links_file": "docs/links/posts/2026-08-05-daily-links.md",
+  "published_story_file": "docs/bits/posts/2026-08-05-the-jar-in-the-supply-closet.md",
+  "status": "published",
   "story_file": "docs/bits/posts/2026-08-05-the-jar-in-the-supply-closet.md",
   "theme": "time anomalies",
-  "updated_at": "2026-08-04T08:46:21Z"
+  "updated_at": "2026-08-05T08:43:18Z"
 }
