@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-08-06-the-meter-that-counted-sins-in/" class="archive-item">
+    <div class="archive-item__number">189</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">August 06, 2026</span>
+      <h3 class="archive-item__title">The Meter That Counted Sins in Kerosene</h3>
+      <p class="archive-item__excerpt">The notice above the Debt Meter was straightforward: *All Debts Must Be Measured Before Forgiven – Civic Ordinance 47-B.* But the meter itself had oth...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Parallel Dimensions</span><span class="archive-item__genre" title="Domestic drama bent by one technological or metaphysical fact">Domestic drama bent by one technological or metaphysical fact</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-08-05-the-jar-in-the-supply-closet/" class="archive-item">
     <div class="archive-item__number">188</div>
     <div class="archive-item__content">

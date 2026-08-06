@@ -1,8 +1,11 @@
 {
   "date": "2026-08-06",
   "links_file": "docs/links/posts/2026-08-06-daily-links.md",
-  "status": "prepared",
+  "published_at": "2026-08-06T09:19:59Z",
+  "published_links_file": "docs/links/posts/2026-08-06-daily-links.md",
+  "published_story_file": "docs/bits/posts/2026-08-06-the-meter-that-counted-sins-in.md",
+  "status": "published",
   "story_file": "docs/bits/posts/2026-08-06-the-meter-that-counted-sins-in.md",
   "theme": "parallel dimensions",
-  "updated_at": "2026-08-05T08:43:18Z"
+  "updated_at": "2026-08-06T08:45:02Z"
 }
