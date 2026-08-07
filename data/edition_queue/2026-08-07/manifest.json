@@ -1,8 +1,11 @@
 {
   "date": "2026-08-07",
   "links_file": "docs/links/posts/2026-08-07-daily-links.md",
-  "status": "prepared",
+  "published_at": "2026-08-07T07:59:22Z",
+  "published_links_file": "docs/links/posts/2026-08-07-daily-links.md",
+  "published_story_file": "docs/bits/posts/2026-08-07-certificate-of-slight-delay.md",
+  "status": "published",
   "story_file": "docs/bits/posts/2026-08-07-certificate-of-slight-delay.md",
   "theme": "synthetic life",
-  "updated_at": "2026-08-06T08:45:02Z"
+  "updated_at": "2026-08-07T07:23:26Z"
 }

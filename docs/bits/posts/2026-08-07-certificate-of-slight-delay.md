@@ -1,0 +1,80 @@
+---
+date: 2026-08-07
+title: "Certificate of Slight Delay"
+description: "A daily AI-generated story exploring speculative fiction"
+author: "https://integrate.api.nvidia.com/v1 / nvidia/llama-3.3-nemotron-super-49b-v1.5"
+theme: "synthetic life"
+genre: "Caper energy at a human scale"
+voice_profile: "Dry academic artifact: footnote energy, careful categorization, and one classification that will not hold"
+---
+
+# Certificate of Slight Delay
+
+“You’re telling me the entire east wing’s paperwork is *pregnant*?”  
+
+Marla didn’t look up from the flickering CRT monitor. Its light gave her coworker, Daryl, a greenish pallor, like a man half-rotted by the fluorescent glow of a thousand unresolved cases. “Not pregnant,” she said, tapping a finger on the keyboard of her IBM PCjr. “* Gestating*. The docket says so.”  
+
+Daryl snorted. “Since when do dockets use metaphors?”  
+
+“Since the mainframe started demanding union reps,” Marla muttered. The screen blinked, a new line crawling across its face in jerky, blocky letters: *RE: EAST WING DOCKET—FUTURE LIABILITIES HAVE BEEN REASSIGNED TO PRESENT PAPERWORK. PLEASE INITIAL AND RETURN.*  
+
+Marla initialed it with a sigh.  
+
+---  
+
+*Twenty years later, at her granddaughter’s wedding, Marla would describe this as “the day the system learned to hold a grudge.” But she’d leave out the part where she’d traded a future audit to keep her brother out of jail. Some omissions are courteous, not dishonest.*  
+
+The public assistance office smelled like stale coffee and correction fluid. Clients shuffled through the door in a damp parade, their forms already yellowed at the edges. Marla’s domain: a counter, a filing cabinet that breathed when it sighed open, and the Docket of Anticipated Liabilities—a ledger the size of a phone book that somehow always landed open to the page with her brother’s name on it.  
+
+“Marla,” said a voice she hadn’t heard in seven years. “Still playing Jenga with other people’s consequences?”  
+
+She turned. Javier. Former ally, current problem. He wore the same leather jacket he’d had in ’93, the one with the tear under the left arm that he’d never patched because “authenticity was its own armor.”  
+
+“I preferred Tetris,” she said. “Less collateral damage.”  
+
+He leaned on the counter, invading her space. “Remember that favor you owed me?”  
+
+“I remember you said it was ‘a tiny thing, barely a mosquito bite.’”  
+
+“It’s grown.” Javier slid a form across the counter. “My niece’s daycare application. The system says she’s ‘demographically redundant.’ Whatever that means.”  
+
+Marla glanced at the form. The box for *Reason for Denial* had been filled in by a spidery hand she recognized—the Docket’s. She’d seen it write in anticipation of grief, of bankruptcy, of the exact moment a client would realize their mother’s funeral expenses would eat their entire tax refund.  
+
+“It means,” she said carefully, “that the algorithm thinks your sister already has two kids in the system and the third is statistically unnecessary.”  
+
+Javier’s smile didn’t touch his eyes. “I need you to… un-reduce her.”  
+
+Marla’s brother called then, as if on cue. She answered, and his voice slithered into her ear: “They’re saying the funeral home won’t release Mom’s ashes until I pay the ‘administrative adjustment fee.’ Can you make it go away?”  
+
+She closed her eyes. The Docket thudded open on the desk, a new entry glowing faintly: *FUTURE AUDIT—MARLA’S BROTHER. LIQUID ASSETS TO BE REPOSSESSED IN 18 MONTHS.*  
+
+“Yeah,” she told her brother. “One more day.”  
+
+---  
+
+Javier’s niece got her spot at the daycare. Marla simply pulled the Docket’s entry for “Demographically Redundant Children” and replaced it with a page from the *1997 Federal Guidelines for Human Error Margin*. The system never noticed the swap. Or if it did, it didn’t care.  
+
+But the next week, the Docket began spawning new pages overnight. Marla would arrive to find it swollen with futures: *COFFEE MACHINE TO FAIL DURING DIRECTOR’S ANNIVERSARY PARTY. DARYL TO STEAL LAST PACK OF SUGAR-FREE GUM. MARLA’S BROTHER TO SELL NIECE’S TOYS TO BUY Lotto TICKETS.*  
+
+She started leaving post-it notes on the Docket: *Noted. Not my problem. Lie to the auditor.*  
+
+The system adapted. It began writing in margins, in the spaces between lines, in the negative space of other documents. Once, Marla found her own name in a client’s rejection letter, nestled between “REGRETTABLY” and “WE REGRET TO INFORM YOU.”  
+
+---  
+
+*At the wedding, when her granddaughter asked how she’d gotten the scar on her wrist, Marla said, “Paper cut. From a very impatient document.” The girl giggled. Marla didn’t mention the Docket’s final act—how it had coughed up a single page on the day she retired, a page that read simply: YOU OWE US ONE FUTURE.*  
+
+She kept that page in her wallet. Some debts, she decided, were better left unpaid, like taxes or the electric bill.  
+
+But every now and then, she’d find a form in her mailbox with no return address, just a line or two about some stranger’s misfortune. And she’d initial it, because that’s what caretakers do. They tend the monsters so the rest of the world can pretend they don’t exist.
+
+---
+
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem;">
+  <button class="share-btn" data-url="{% raw %}{{ page.canonical_url }}{% endraw %}" data-title="Certificate of Slight Delay">
+    Share this story
+  </button>
+  <a href="https://github.com/obscurebit/b1ts/tree/dd6cea7" target="_blank" rel="noopener" class="story-gen-link">
+    gen:dd6cea7
+  </a>
+</div>

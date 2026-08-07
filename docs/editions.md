@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-08-07-edition-190/" class="archive-item">
+    <div class="archive-item__number">190</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">August 07, 2026</span>
+      <h3 class="archive-item__title">Edition #190</h3>
+      <p class="archive-item__excerpt">Synthetic Life · “You’re telling me the entire east wing’s paperwork is *pregnant*?”</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Synthetic Life</span><span class="archive-item__genre" title="Caper energy at a human scale">Caper energy at a human scale</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-08-06-edition-189/" class="archive-item">
     <div class="archive-item__number">189</div>
     <div class="archive-item__content">
