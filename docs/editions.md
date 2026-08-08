@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-08-08-edition-191/" class="archive-item">
+    <div class="archive-item__number">191</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">August 08, 2026</span>
+      <h3 class="archive-item__title">Edition #191</h3>
+      <p class="archive-item__excerpt">Cryptographic Secrets · I polished the token with my sleeve as the line grew. It was a dull bronze disc, warm from my pocket, stamped with a symbol no one could quite place—like a cros...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Cryptographic Secrets</span><span class="archive-item__genre" title="Noir-ish social observation rather than detective plotting">Noir-ish social observation rather than detective plotting</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-08-07-edition-190/" class="archive-item">
     <div class="archive-item__number">190</div>
     <div class="archive-item__content">

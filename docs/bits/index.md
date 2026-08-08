@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-08-08-the-token-window/" class="archive-item">
+    <div class="archive-item__number">191</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">August 08, 2026</span>
+      <h3 class="archive-item__title">The Token Window</h3>
+      <p class="archive-item__excerpt">I polished the token with my sleeve as the line grew. It was a dull bronze disc, warm from my pocket, stamped with a symbol no one could quite place—l...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Cryptographic Secrets</span><span class="archive-item__genre" title="Noir-ish social observation rather than detective plotting">Noir-ish social observation rather than detective plotting</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-08-07-certificate-of-slight-delay/" class="archive-item">
     <div class="archive-item__number">190</div>
     <div class="archive-item__content">
