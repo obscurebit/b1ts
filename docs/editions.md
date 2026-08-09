@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-08-09-edition-192/" class="archive-item">
+    <div class="archive-item__number">192</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">August 09, 2026</span>
+      <h3 class="archive-item__title">Edition #192</h3>
+      <p class="archive-item__excerpt">Abandoned Stations · The token was warm when it landed in my palm, like it had been sitting in someone’s pocket next to their skin. I didn’t thank Mrs. Peet. She never took thanks....</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Abandoned Stations</span><span class="archive-item__genre" title="Tender romance complicated by one impossible condition">Tender romance complicated by one impossible condition</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-08-08-edition-191/" class="archive-item">
     <div class="archive-item__number">191</div>
     <div class="archive-item__content">
