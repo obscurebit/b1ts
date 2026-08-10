@@ -1,8 +1,11 @@
 {
   "date": "2026-08-10",
   "links_file": "docs/links/posts/2026-08-10-daily-links.md",
-  "status": "prepared",
+  "published_at": "2026-08-10T08:35:05Z",
+  "published_links_file": "docs/links/posts/2026-08-10-daily-links.md",
+  "published_story_file": "docs/bits/posts/2026-08-10-the-spare-edition.md",
+  "status": "published",
   "story_file": "docs/bits/posts/2026-08-10-the-spare-edition.md",
   "theme": "reality glitches",
-  "updated_at": "2026-08-09T07:03:17Z"
+  "updated_at": "2026-08-10T07:49:54Z"
 }
