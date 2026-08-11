@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-08-11-edition-194/" class="archive-item">
+    <div class="archive-item__number">194</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">August 11, 2026</span>
+      <h3 class="archive-item__title">Edition #194</h3>
+      <p class="archive-item__excerpt">Emergent Intelligence · Edie never understood why the grocery store’s ledger cared about what people *meant* to buy. But there it was, every morning, the thing perched on the counter l...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Emergent Intelligence</span><span class="archive-item__genre" title="Workplace comedy with a speculative inconvenience">Workplace comedy with a speculative inconvenience</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-08-10-edition-193/" class="archive-item">
     <div class="archive-item__number">193</div>
     <div class="archive-item__content">
