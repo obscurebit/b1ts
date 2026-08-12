@@ -1,8 +1,11 @@
 {
   "date": "2026-08-12",
   "links_file": "docs/links/posts/2026-08-12-daily-links.md",
-  "status": "prepared",
+  "published_at": "2026-08-12T08:27:43Z",
+  "published_links_file": "docs/links/posts/2026-08-12-daily-links.md",
+  "published_story_file": "docs/bits/posts/2026-08-12-the-tag-that-measured-halftruths.md",
+  "status": "published",
   "story_file": "docs/bits/posts/2026-08-12-the-tag-that-measured-halftruths.md",
   "theme": "memory manipulation",
-  "updated_at": "2026-08-11T07:15:13Z"
+  "updated_at": "2026-08-12T07:39:24Z"
 }

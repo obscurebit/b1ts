@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-08-12-the-tag-that-measured-halftruths/" class="archive-item">
+    <div class="archive-item__number">195</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">August 12, 2026</span>
+      <h3 class="archive-item__title">The Tag That Measured Half-Truths</h3>
+      <p class="archive-item__excerpt">You’re halfway through your lunch break when the tag on Mrs. Okoro’s collar starts blinking crimson, and she says, “Don’t tell me it’s *another* error...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Memory Manipulation</span><span class="archive-item__genre" title="Workplace comedy with a speculative inconvenience">Workplace comedy with a speculative inconvenience</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-08-11-the-ticket-that-knew-too-much/" class="archive-item">
     <div class="archive-item__number">194</div>
     <div class="archive-item__content">
