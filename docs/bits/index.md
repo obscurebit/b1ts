@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-08-13-the-wax-that-held-the-line/" class="archive-item">
+    <div class="archive-item__number">196</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">August 13, 2026</span>
+      <h3 class="archive-item__title">The Wax That Held the Line</h3>
+      <p class="archive-item__excerpt">The receipt hummed faintly as it emerged from the slot, its edges still soft from the press. I snipped it free with the silver scissors my sister had ...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Lost Civilizations</span><span class="archive-item__genre" title="Moral fable disguised as a very specific modern problem">Moral fable disguised as a very specific modern problem</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-08-12-the-tag-that-measured-halftruths/" class="archive-item">
     <div class="archive-item__number">195</div>
     <div class="archive-item__content">

@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-08-13-edition-196/" class="archive-item">
+    <div class="archive-item__number">196</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">August 13, 2026</span>
+      <h3 class="archive-item__title">Edition #196</h3>
+      <p class="archive-item__excerpt">Lost Civilizations · The receipt hummed faintly as it emerged from the slot, its edges still soft from the press. I snipped it free with the silver scissors my sister had gifted me—...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Lost Civilizations</span><span class="archive-item__genre" title="Moral fable disguised as a very specific modern problem">Moral fable disguised as a very specific modern problem</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-08-12-edition-195/" class="archive-item">
     <div class="archive-item__number">195</div>
     <div class="archive-item__content">

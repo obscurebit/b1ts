@@ -1,8 +1,11 @@
 {
   "date": "2026-08-13",
   "links_file": "docs/links/posts/2026-08-13-daily-links.md",
-  "status": "prepared",
+  "published_at": "2026-08-13T08:26:24Z",
+  "published_links_file": "docs/links/posts/2026-08-13-daily-links.md",
+  "published_story_file": "docs/bits/posts/2026-08-13-the-wax-that-held-the-line.md",
+  "status": "published",
   "story_file": "docs/bits/posts/2026-08-13-the-wax-that-held-the-line.md",
   "theme": "lost civilizations",
-  "updated_at": "2026-08-12T07:39:24Z"
+  "updated_at": "2026-08-13T07:41:05Z"
 }
