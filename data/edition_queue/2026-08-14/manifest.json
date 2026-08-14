@@ -1,8 +1,11 @@
 {
   "date": "2026-08-14",
   "links_file": "docs/links/posts/2026-08-14-daily-links.md",
-  "status": "prepared",
+  "published_at": "2026-08-14T08:20:46Z",
+  "published_links_file": "docs/links/posts/2026-08-14-daily-links.md",
+  "published_story_file": "docs/bits/posts/2026-08-14-the-spoon-that-told-fortunes.md",
+  "status": "published",
   "story_file": "docs/bits/posts/2026-08-14-the-spoon-that-told-fortunes.md",
   "theme": "underground networks",
-  "updated_at": "2026-08-13T07:41:05Z"
+  "updated_at": "2026-08-14T07:38:54Z"
 }

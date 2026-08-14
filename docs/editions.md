@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-08-14-edition-197/" class="archive-item">
+    <div class="archive-item__number">197</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">August 14, 2026</span>
+      <h3 class="archive-item__title">Edition #197</h3>
+      <p class="archive-item__excerpt">Underground Networks · The first time the spoon lied, it was telling the truth.</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Underground Networks</span><span class="archive-item__genre" title="Workplace comedy with a speculative inconvenience">Workplace comedy with a speculative inconvenience</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-08-13-edition-196/" class="archive-item">
     <div class="archive-item__number">196</div>
     <div class="archive-item__content">
