@@ -1,0 +1,96 @@
+---
+date: 2026-08-15
+title: "The Spoon That Tallied Sins"
+description: "A daily AI-generated story exploring speculative fiction"
+author: "https://integrate.api.nvidia.com/v1 / nvidia/llama-3.3-nemotron-super-49b-v1.5"
+theme: "biological computing"
+genre: "Character study where the strange thing stays partly offstage"
+voice_profile: "Tenderly skeptical first person: the narrator doubts themselves but notices others with compassion"
+---
+
+# The Spoon That Tallied Sins
+
+The third time my brother slipped into line behind me, I knew he’d forgotten how queues work. Not the order—everyone knows the order—but the unspoken tax. You carry your spoon, you present it when asked, and you don’t flinch when the notch deepens. His was still smooth, virgin metal. A newborn’s spoon.  
+
+“Mara,” he hissed, breath hot on my neck. “I need a favor.”  
+
+I didn’t turn. The woman ahead of us, Mrs. Okoro, had just handed her spoon to the attendant. It chimed like a bell, three sharp dents blooming along its shaft. Her debt, displayed. She left without meeting anyone’s eyes.  
+
+“You didn’t pay the clinic,” I said.  
+
+“Heart medication,” he muttered. “It’s a clerical error. They’ll fix it. But until then—”  
+
+“—your spoon’s blank. They’ll send you to the back.”  
+
+“Or worse. Mara, please.” His fingers brushed my wrist, and I remembered him at twelve, begging me to forge Mom’s signature on a field trip waiver. Same desperation, same crack in his voice.  
+
+The spoon in my pocket throbbed. Not literally. That’s the thing people get wrong. It’s not magic. It’s just that everyone agrees: the notches mean something. A moral calculus etched in stainless steel.  
+
+I turned. His face was the same—same scar above the brow from a bike crash, same uneven eyebrows—but his clothes hung wrong, like he’d borrowed them from a stranger.  
+
+“You want me to transfer my balance to you,” I said.  
+
+He nodded. “Just until next week. I’ll pay you back.”  
+
+“You don’t have the money to pay for your pills, let alone—”  
+
+“Please.”  
+
+The line inched forward. A man in a frayed vest handed his spoon to the attendant, a teenager with acne and a name tag that read *Jared (Trainee)*. The spoon clanged twice. The man stepped aside, head low.  
+
+“Do you even know what you’re asking?” I whispered. “If I transfer, my spoon shows your sins. Everyone’ll see.”  
+
+“They won’t know they’re yours.”  
+
+“They will. It’s always obvious.”  
+
+He flinched.  
+
+I thought of the clinic’s basement garden, where they grow herbs to mask the smell of antiseptic. Rosemary, thyme, and the damp earth that clings to your shoes. I thought of the union meeting last month, where we voted to cap debt transfers at three per member. “It encourages dependency,” I’d said, and everyone nodded, sipping chamomile from dented mugs.  
+
+The attendant called my name.  
+
+I pulled my spoon from my pocket. It was warm, as always. The notches—four, from covering my niece’s school fees and a coworker’s emergency root canal—glinted under the fluorescent lights.  
+
+“Mara,” my brother said.  
+
+I handed the spoon to Jared. “Transfer balance to this one.” I nodded at my brother.  
+
+Jared blinked. “Protocol requires verbal consent from both parties.”  
+
+My brother opened his mouth, but I cut in: “He consents.”  
+
+Jared hesitated, then clamped the spoons together. A sound like ice cracking. My brother’s spoon leapt in his hand, now pocked with my four notches.  
+
+The line murmured. A woman with a scarred cheek turned to stare.  
+
+My brother’s eyes welled. “I’ll pay you back. I swear.”  
+
+“Don’t,” I said. “Just don’t get sick again.”  
+
+He melted into the crowd.  
+
+Jared handed me my spoon. Smooth. Clean.  
+
+But the queue had seen. I felt their glances like sunburn.  
+
+At the exit, a sign hung: *YOUR DEBT IS YOUR OWN. HANDWRITTEN CORRECTIONS VOID AFTER 24 HRS.* Beneath it, someone had scrawled *LIARS* in red marker, partially scrubbed away.  
+
+I slipped my spoon into my pocket. It felt lighter. Wrong.  
+
+Outside, the air smelled of rain and rosemary. I considered the bus fare home, then pulled a folded bill from my shoe—emergency money, for teeth or taxes—and bought a coffee from the cart by the curb. The vendor, a woman with a spoon pendant dangling from her neck, didn’t ask about the notches.  
+
+Some transactions are private.  
+
+Even in a world that carves them into metal.
+
+---
+
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem;">
+  <button class="share-btn" data-url="{% raw %}{{ page.canonical_url }}{% endraw %}" data-title="The Spoon That Tallied Sins">
+    Share this story
+  </button>
+  <a href="https://github.com/obscurebit/b1ts/tree/fdeb450" target="_blank" rel="noopener" class="story-gen-link">
+    gen:fdeb450
+  </a>
+</div>

@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-08-15-the-spoon-that-tallied-sins/" class="archive-item">
+    <div class="archive-item__number">198</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">August 15, 2026</span>
+      <h3 class="archive-item__title">The Spoon That Tallied Sins</h3>
+      <p class="archive-item__excerpt">The third time my brother slipped into line behind me, I knew he’d forgotten how queues work. Not the order—everyone knows the order—but the unspoken ...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Biological Computing</span><span class="archive-item__genre" title="Character study where the strange thing stays partly offstage">Character study where the strange thing stays partly offstage</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-08-14-the-spoon-that-told-fortunes/" class="archive-item">
     <div class="archive-item__number">197</div>
     <div class="archive-item__content">

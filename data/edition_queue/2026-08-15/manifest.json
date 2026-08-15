@@ -1,8 +1,11 @@
 {
   "date": "2026-08-15",
   "links_file": "docs/links/posts/2026-08-15-daily-links.md",
-  "status": "prepared",
+  "published_at": "2026-08-15T07:27:54Z",
+  "published_links_file": "docs/links/posts/2026-08-15-daily-links.md",
+  "published_story_file": "docs/bits/posts/2026-08-15-the-spoon-that-tallied-sins.md",
+  "status": "published",
   "story_file": "docs/bits/posts/2026-08-15-the-spoon-that-tallied-sins.md",
   "theme": "biological computing",
-  "updated_at": "2026-08-14T07:38:54Z"
+  "updated_at": "2026-08-15T06:45:55Z"
 }

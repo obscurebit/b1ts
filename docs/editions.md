@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-08-15-edition-198/" class="archive-item">
+    <div class="archive-item__number">198</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">August 15, 2026</span>
+      <h3 class="archive-item__title">Edition #198</h3>
+      <p class="archive-item__excerpt">Biological Computing · The third time my brother slipped into line behind me, I knew he’d forgotten how queues work. Not the order—everyone knows the order—but the unspoken tax. You c...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Biological Computing</span><span class="archive-item__genre" title="Character study where the strange thing stays partly offstage">Character study where the strange thing stays partly offstage</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-08-14-edition-197/" class="archive-item">
     <div class="archive-item__number">197</div>
     <div class="archive-item__content">
