@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-08-16-edition-199/" class="archive-item">
+    <div class="archive-item__number">199</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">August 16, 2026</span>
+      <h3 class="archive-item__title">Edition #199</h3>
+      <p class="archive-item__excerpt">Signal From Nowhere · The door hissed shut behind Maribelle, late again, her raincoat dripping onto the linoleum. We stiffened. The supervisors from County Hall were early, their cli...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Signal From Nowhere</span><span class="archive-item__genre" title="Workplace comedy with a speculative inconvenience">Workplace comedy with a speculative inconvenience</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-08-15-edition-198/" class="archive-item">
     <div class="archive-item__number">198</div>
     <div class="archive-item__content">

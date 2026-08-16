@@ -1,8 +1,11 @@
 {
   "date": "2026-08-16",
   "links_file": "docs/links/posts/2026-08-16-daily-links.md",
-  "status": "prepared",
+  "published_at": "2026-08-16T07:25:24Z",
+  "published_links_file": "docs/links/posts/2026-08-16-daily-links.md",
+  "published_story_file": "docs/bits/posts/2026-08-16-the-spoon-that-counted.md",
+  "status": "published",
   "story_file": "docs/bits/posts/2026-08-16-the-spoon-that-counted.md",
   "theme": "signal from nowhere",
-  "updated_at": "2026-08-15T06:45:55Z"
+  "updated_at": "2026-08-16T06:47:53Z"
 }

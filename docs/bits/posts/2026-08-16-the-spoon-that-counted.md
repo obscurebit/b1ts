@@ -1,0 +1,56 @@
+---
+date: 2026-08-16
+title: "The Spoon That Counted"
+description: "A daily AI-generated story exploring speculative fiction"
+author: "https://integrate.api.nvidia.com/v1 / nvidia/llama-3.3-nemotron-super-49b-v1.5"
+theme: "signal from nowhere"
+genre: "Workplace comedy with a speculative inconvenience"
+voice_profile: "Compressed thriller logistics: time pressure, constrained options, and one physical object everyone needs"
+---
+
+# The Spoon That Counted
+
+The door hissed shut behind Maribelle, late again, her raincoat dripping onto the linoleum. We stiffened. The supervisors from County Hall were early, their clipboards sharp as chisels. Maribelle slid into the last folding chair, her knee knocking the communal coffee pot. No one apologized. The spoon began its circuit.  
+
+It was dented, silver, once part of a set sold at the five-and-dime. Now it lived in the third drawer of the filing cabinet, beside the staple remover and yellowed meeting minutes. We passed it with two hands, like a relic. Each person stirred their coffee three times—once for listening, once for speaking, once for holding the room when someone’s voice cracked. The spoon’s bowl darkened with each stir, a stain only we could see. By the end of the meeting, it told us who’d carried the weight.  
+
+“We’ve streamlined the process,” said Supervisor Haskins, standing too close to the whiteboard. His cologne fought with the smell of toner and Maribelle’s damp cardigan. “No more… *folk methods*.” He tapped a metal box wired to the wall, a clock face with a dial. “Punch in, punch out. Emotional labor is not a quantifiable metric.”  
+
+The room went still. Linda, who’d brought her niece’s asthma inhaler to every meeting for six months, gripped the armrests. The spoon, halfway around the circle, faltered in its arc.  
+
+Maribelle leaned forward. “The spoon isn’t about metrics,” she said. “It’s how we know who’s drowning.”  
+
+Haskins smiled like he’d been trained to. “Your subjective experiences aren’t our concern. The county needs efficiency.”  
+
+We looked at one another. The clock ticked. The spoon sat forgotten in someone’s lap, its stains fading.  
+
+Then Jerry, who never spoke first, stood. “We’re not using it.”  
+
+The word hung. Linda and three others nodded. Maribelle pulled the spoon from her pocket—she’d palmed it when Haskins wasn’t looking—and placed it on the table. It glinted, defiant.  
+
+Haskins’s smile thinned. “Refusal to comply will be noted in your evaluations.”  
+
+Jerry sat back down. “Then note this: We’ll use the spoon. Or we’ll empty these chairs tomorrow.”  
+
+The supervisors left at 5:02 PM, their heels echoing like threats. We waited until the door sealed. Then we passed the spoon. It darkened instantly in Linda’s hands, a deep indigo. She let out a breath that sounded like forgiveness.  
+
+Maribelle stayed late, rewriting the meeting minutes. She added a column for the spoon’s tally, next to “Community Resources Allocated.” The supervisors wouldn’t read it. They never did.  
+
+We didn’t need them to.  
+
+The next week, the metal box vanished. In its place, a note: *Budget cuts. Continue as before.*  
+
+We didn’t cheer. The spoon was heavier now. But we knew its weight.  
+
+And we knew how to count.
+
+---
+
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem;">
+  <button class="share-btn" data-url="{% raw %}{{ page.canonical_url }}{% endraw %}" data-title="The Spoon That Counted">
+    Share this story
+  </button>
+  <a href="https://github.com/obscurebit/b1ts/tree/9b8c500" target="_blank" rel="noopener" class="story-gen-link">
+    gen:9b8c500
+  </a>
+</div>
