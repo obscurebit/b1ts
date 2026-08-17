@@ -1,8 +1,11 @@
 {
   "date": "2026-08-17",
   "links_file": "docs/links/posts/2026-08-17-daily-links.md",
-  "status": "prepared",
+  "published_at": "2026-08-17T07:44:23Z",
+  "published_links_file": "docs/links/posts/2026-08-17-daily-links.md",
+  "published_story_file": "docs/bits/posts/2026-08-17-the-responsibility-spoon.md",
+  "status": "published",
   "story_file": "docs/bits/posts/2026-08-17-the-responsibility-spoon.md",
   "theme": "recursive realities",
-  "updated_at": "2026-08-16T06:47:53Z"
+  "updated_at": "2026-08-17T07:04:28Z"
 }

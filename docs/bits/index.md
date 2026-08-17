@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-08-17-the-responsibility-spoon/" class="archive-item">
+    <div class="archive-item__number">200</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">August 17, 2026</span>
+      <h3 class="archive-item__title">The Responsibility Spoon</h3>
+      <p class="archive-item__excerpt">Mara bent over the atrium’s central fountain, screwing the casing back onto the water recycler. A man’s voice hissed behind her: “Fix it so the spoon’...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Recursive Realities</span><span class="archive-item__genre" title="Satire of systems, credentials, or institutional language">Satire of systems</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-08-16-the-spoon-that-counted/" class="archive-item">
     <div class="archive-item__number">199</div>
     <div class="archive-item__content">
