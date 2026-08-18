@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-08-18-the-pager-that-knew-when-to/" class="archive-item">
+    <div class="archive-item__number">201</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">August 18, 2026</span>
+      <h3 class="archive-item__title">The Pager That Knew When to Fold</h3>
+      <p class="archive-item__excerpt">You’re twenty minutes late to the co-op board meeting when the pager in your jacket pocket starts vibrating in that specific rhythm—three short bursts...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Edge Of Maps</span><span class="archive-item__genre" title="Quiet literary realism with one impossible pressure point">Quiet literary realism with one impossible pressure point</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-08-17-the-responsibility-spoon/" class="archive-item">
     <div class="archive-item__number">200</div>
     <div class="archive-item__content">

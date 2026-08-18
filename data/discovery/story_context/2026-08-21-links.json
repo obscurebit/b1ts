@@ -1,0 +1,64 @@
+{
+  "date": "2026-08-21",
+  "theme": "biological computing",
+  "links_direction": "biocomputing research, DNA data storage, organic electronics",
+  "motifs": [
+    "Electronics",
+    "Market",
+    "Organic",
+    "Organic Electronics",
+    "\"Portable Freezers & refrigerators\"",
+    "6.3 Billion",
+    "7.52 Billion",
+    "Consumer",
+    "Consumer Electronics Market",
+    "63.1 Billion",
+    "310.92 Billion",
+    "in 2024"
+  ],
+  "interesting_bits": [
+    "\"Portable Freezers & refrigerators\"",
+    "6.3 Billion",
+    "7.52 Billion",
+    "63.1 Billion",
+    "310.92 Billion",
+    "in 2024",
+    "63.94 Billion",
+    "337.98 Billion"
+  ],
+  "links": [
+    {
+      "title": "Organic Electronics Companies | Market Research Future",
+      "url": "https://www.marketresearchfuture.com/reports/organic-electronics-market/companies",
+      "concepts": [
+        "Electronics",
+        "Market",
+        "Organic",
+        "Organic Electronics"
+      ],
+      "reason": "fallback heuristic"
+    },
+    {
+      "title": "IoT in Consumer Electronics Market Report- Forecast to 2035",
+      "url": "https://www.marketresearchfuture.com/reports/iot-consumer-electronics-market-997",
+      "concepts": [
+        "Market",
+        "Consumer",
+        "Consumer Electronics Market",
+        "Electronics"
+      ],
+      "reason": "fallback heuristic"
+    },
+    {
+      "title": "Printed Electronics Market Size, Share Report and Trends 2035",
+      "url": "https://www.marketresearchfuture.com/reports/printed-electronics-market-7053",
+      "concepts": [
+        "Market",
+        "Electronics",
+        "Printed",
+        "Printed Electronics"
+      ],
+      "reason": "fallback heuristic"
+    }
+  ]
+}
