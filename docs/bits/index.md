@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-08-19-the-sash-that-scored/" class="archive-item">
+    <div class="archive-item__number">202</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">August 19, 2026</span>
+      <h3 class="archive-item__title">The Sash That Scored</h3>
+      <p class="archive-item__excerpt">The sash was supposed to be a relic—ceremonial, they said, like the velvet ropes at old theaters that meant *keep out* but looked fancy doing it. Ours...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Maintenance Myths</span><span class="archive-item__genre" title="Ghost story energy without old haunted-house defaults">Ghost story energy without old haunted-house defaults</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-08-18-the-pager-that-knew-when-to/" class="archive-item">
     <div class="archive-item__number">201</div>
     <div class="archive-item__content">

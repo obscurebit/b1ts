@@ -1,8 +1,11 @@
 {
   "date": "2026-08-19",
   "links_file": "docs/links/posts/2026-08-19-daily-links.md",
-  "status": "prepared",
+  "published_at": "2026-08-19T07:31:19Z",
+  "published_links_file": "docs/links/posts/2026-08-19-daily-links.md",
+  "published_story_file": "docs/bits/posts/2026-08-19-the-sash-that-scored.md",
+  "status": "published",
   "story_file": "docs/bits/posts/2026-08-19-the-sash-that-scored.md",
   "theme": "maintenance myths",
-  "updated_at": "2026-08-18T06:51:49Z"
+  "updated_at": "2026-08-19T06:52:08Z"
 }
