@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-08-20-edition-203/" class="archive-item">
+    <div class="archive-item__number">203</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">August 20, 2026</span>
+      <h3 class="archive-item__title">Edition #203</h3>
+      <p class="archive-item__excerpt">Counterfeit Realities · The tag bled ink in precise swirls, each droplet a future citation. I pressed the fabric between my thumbs, watching crimson letters form: *Unverified. Expired....</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Counterfeit Realities</span><span class="archive-item__genre" title="Noir-ish social observation rather than detective plotting">Noir-ish social observation rather than detective plotting</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-08-19-edition-202/" class="archive-item">
     <div class="archive-item__number">202</div>
     <div class="archive-item__content">

@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-08-20-the-tag-that-bled-ink/" class="archive-item">
+    <div class="archive-item__number">203</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">August 20, 2026</span>
+      <h3 class="archive-item__title">The Tag That Bled Ink</h3>
+      <p class="archive-item__excerpt">The tag bled ink in precise swirls, each droplet a future citation. I pressed the fabric between my thumbs, watching crimson letters form: *Unverified...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Counterfeit Realities</span><span class="archive-item__genre" title="Noir-ish social observation rather than detective plotting">Noir-ish social observation rather than detective plotting</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-08-19-the-sash-that-scored/" class="archive-item">
     <div class="archive-item__number">202</div>
     <div class="archive-item__content">
