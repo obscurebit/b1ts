@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-08-21-the-chlorophyll-ledger/" class="archive-item">
+    <div class="archive-item__number">204</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">August 21, 2026</span>
+      <h3 class="archive-item__title">The Chlorophyll Ledger</h3>
+      <p class="archive-item__excerpt">The first time the leaf-print receipt curled at my fingers and whispered *not you*, I mistook it for a glitch. The second, I pressed my palm harder to...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Biological Computing</span><span class="archive-item__genre" title="Moral fable disguised as a very specific modern problem">Moral fable disguised as a very specific modern problem</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-08-20-the-tag-that-bled-ink/" class="archive-item">
     <div class="archive-item__number">203</div>
     <div class="archive-item__content">

@@ -1,8 +1,11 @@
 {
   "date": "2026-08-21",
   "links_file": "docs/links/posts/2026-08-21-daily-links.md",
-  "status": "prepared",
+  "published_at": "2026-08-21T07:55:41Z",
+  "published_links_file": "docs/links/posts/2026-08-21-daily-links.md",
+  "published_story_file": "docs/bits/posts/2026-08-21-the-chlorophyll-ledger.md",
+  "status": "published",
   "story_file": "docs/bits/posts/2026-08-21-the-chlorophyll-ledger.md",
   "theme": "biological computing",
-  "updated_at": "2026-08-20T06:53:41Z"
+  "updated_at": "2026-08-21T06:54:47Z"
 }
