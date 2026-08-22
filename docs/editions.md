@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-08-22-edition-205/" class="archive-item">
+    <div class="archive-item__number">205</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">August 22, 2026</span>
+      <h3 class="archive-item__title">Edition #205</h3>
+      <p class="archive-item__excerpt">Small Gods Of Commerce · Your shift starts at 5 AM. The vending room’s fluorescents buzz like a trapped wasp. You slide the token into the machine’s throat. It glows green, spitting out...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Small Gods Of Commerce</span><span class="archive-item__genre" title="Moral fable disguised as a very specific modern problem">Moral fable disguised as a very specific modern problem</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-08-21-edition-204/" class="archive-item">
     <div class="archive-item__number">204</div>
     <div class="archive-item__content">

@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-08-22-the-tokens-lie/" class="archive-item">
+    <div class="archive-item__number">205</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">August 22, 2026</span>
+      <h3 class="archive-item__title">The Token's Lie</h3>
+      <p class="archive-item__excerpt">Your shift starts at 5 AM. The vending room’s fluorescents buzz like a trapped wasp. You slide the token into the machine’s throat. It glows green, sp...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Small Gods Of Commerce</span><span class="archive-item__genre" title="Moral fable disguised as a very specific modern problem">Moral fable disguised as a very specific modern problem</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-08-21-the-chlorophyll-ledger/" class="archive-item">
     <div class="archive-item__number">204</div>
     <div class="archive-item__content">
