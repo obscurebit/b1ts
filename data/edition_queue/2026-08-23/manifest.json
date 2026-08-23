@@ -1,8 +1,11 @@
 {
   "date": "2026-08-23",
   "links_file": "docs/links/posts/2026-08-23-daily-links.md",
-  "status": "prepared",
+  "published_at": "2026-08-23T07:20:34Z",
+  "published_links_file": "docs/links/posts/2026-08-23-daily-links.md",
+  "published_story_file": "docs/bits/posts/2026-08-23-the-badge-that-anchored-time.md",
+  "status": "published",
   "story_file": "docs/bits/posts/2026-08-23-the-badge-that-anchored-time.md",
   "theme": "quantum mysteries",
-  "updated_at": "2026-08-22T06:48:19Z"
+  "updated_at": "2026-08-23T06:49:06Z"
 }
