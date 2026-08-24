@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-08-24-edition-207/" class="archive-item">
+    <div class="archive-item__number">207</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">August 24, 2026</span>
+      <h3 class="archive-item__title">Edition #207</h3>
+      <p class="archive-item__excerpt">Forgotten Technology · **Posted Notice:** *All personnel must cease manual saline adjustments. Automated system compliance mandatory. Violators subject to review.*</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Forgotten Technology</span><span class="archive-item__genre" title="Noir-ish social observation rather than detective plotting">Noir-ish social observation rather than detective plotting</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-08-23-edition-206/" class="archive-item">
     <div class="archive-item__number">206</div>
     <div class="archive-item__content">

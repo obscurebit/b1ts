@@ -1,8 +1,11 @@
 {
   "date": "2026-08-24",
   "links_file": "docs/links/posts/2026-08-24-daily-links.md",
-  "status": "prepared",
+  "published_at": "2026-08-24T07:48:40Z",
+  "published_links_file": "docs/links/posts/2026-08-24-daily-links.md",
+  "published_story_file": "docs/bits/posts/2026-08-24-the-thermos-that-remembered-salts.md",
+  "status": "published",
   "story_file": "docs/bits/posts/2026-08-24-the-thermos-that-remembered-salts.md",
   "theme": "forgotten technology",
-  "updated_at": "2026-08-23T06:49:06Z"
+  "updated_at": "2026-08-24T07:07:11Z"
 }
