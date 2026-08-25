@@ -1,8 +1,11 @@
 {
   "date": "2026-08-25",
   "links_file": "docs/links/posts/2026-08-25-daily-links.md",
-  "status": "prepared",
+  "published_at": "2026-08-25T07:38:48Z",
+  "published_links_file": "docs/links/posts/2026-08-25-daily-links.md",
+  "published_story_file": "docs/bits/posts/2026-08-25-receipt-for-one-unclaimed-garment.md",
+  "status": "published",
   "story_file": "docs/bits/posts/2026-08-25-receipt-for-one-unclaimed-garment.md",
   "theme": "digital archaeology",
-  "updated_at": "2026-08-24T07:07:11Z"
+  "updated_at": "2026-08-25T06:55:37Z"
 }

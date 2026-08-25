@@ -1,0 +1,73 @@
+---
+date: 2026-08-25
+title: "Receipt for One Unclaimed Garment"
+description: "A daily AI-generated story exploring speculative fiction"
+author: "https://integrate.api.nvidia.com/v1 / nvidia/llama-3.3-nemotron-super-49b-v1.5"
+theme: "digital archaeology"
+genre: "Caper energy at a human scale"
+voice_profile: "Anthropological future realism: customs, taboos, work routines, and status rules explained through action"
+---
+
+# Receipt for One Unclaimed Garment
+
+The receipt listed three items: a wool scarf, a denim jacket, and a stain that had "refused treatment." At the bottom, a line snaked in indigo ink: *Late fee applied due to narrative discrepancy.*  
+
+Rosa folded it into her delivery log, her truck’s heater wheezing like a tired dog. She drove the 7:15 a.m. run from the laundry mat to the transit terminal, a route she’d mapped by the cracks in the road and the migration patterns of pigeons fleeing the airport’s security drones. Today, the terminal’s waiting room held a man in a moth-eaten peacoat, hunched over a vending machine that sold both caffeine tablets and antihistamines. His care label—stitched into the collar of his shirt—glowed faintly, the threads rearranging themselves to spell *Compliant* in a font that blinked like a poorly maintained billboard.  
+
+Rosa’s own label, hidden under her collar, itched. It had read *Reliable* for three years until last month, when her sister’s hospital bills forced her to reroute a delivery to pawn off a client’s vintage parka. The system had downgraded her to *Unverified.* Rent on her micro-loft had spiked accordingly.  
+
+The man looked up as she approached. “You the one who handles the ‘delicate’ items?” His voice was the kind that had been smoked, like old leather. He held out a garment bag. Inside, a child’s snowsuit hung, its care label pulsing *Innocent.* “My daughter left this at the airport. Or—” He hesitated, the way people did when quoting the platform’s version of events. “Or that’s what the timeline says. Thing is, she’s been dead two years. Leukemia. But the memorial page still charges me rent for her ‘digital residence.’”  
+
+Rosa’s fingers brushed the snowsuit’s label. It showed a video snippet: a girl in the suit, laughing under a Christmas tree. But the background glitched—a hospital room flickered beneath the holiday lights. The label stored the version of events the family had *performed,* not what had happened.  
+
+“I can make it stop,” Rosa said. “For a fee.”  
+
+He nodded. They both knew the drill. The platform’s abandoned worlds still billed the living.  
+
+Their alliance was a tissue of mutual delusion. Rosa needed the money to keep her sister’s med-doll from expiring its subscription. The man needed to believe he was doing it for his daughter, not to clear his credit score. They met in the limbo of early mornings, exchanging packages and lies.  
+
+One day, he handed her a package wrapped in anti-static film. “Found this in her things. Thinks it’s a backup drive, but…” He shrugged. “Label says *Forgiven.* You ever seen that one?”  
+
+Inside was a care label the size of a postage stamp, its text scrolling a loop: *All debts forgiven. All oaths honored.* Rosa’s hands trembled. If this was real, it could wipe her sister’s bills, restore her own rating to *Reliable.*  
+
+But it was a relic. A placebo. The platform had collapsed years ago, its servers scavenged for parts.  
+
+She could sell it to him. He’d pay triple.  
+
+Instead, she peeled the label from its backing and stuck it over his shirt’s *Compliant.* The glow brightened. His eyes welled. “How much?”  
+
+“Keep it,” she said.  
+
+He blinked. “Why?”  
+
+“You’ve got a daughter to mourn. I’ve got a sister to bury.” Rosa turned away, her voice sharpening. “Next time, lie better.”  
+
+The next morning, the receipt in her log changed. The stain had been “treated successfully.” Her rate was *Reliable* again.  
+
+At the terminal, the man sat with a coffee tablet, his label now reading *Anchored.* He didn’t look up, but he’d left a package on the seat beside him. Inside: a snowsuit, clean and tagged *For the living.*  
+
+Rosa burned the backup drive in a storm drain. The firelight caught the man’s eyes across the room. He nodded once.  
+
+They never spoke again.  
+
+The system never noticed.  
+
+---  
+**Objects in order of appearance:**  
+1. Receipt with narrative discrepancy  
+2. Peacoat’s *Compliant* label  
+3. Snowsuit’s *Innocent* label  
+4. Backup drive labeled *Forgiven*  
+5. Burned remnants of the drive  
+6. Snowsuit retagged *For the living*
+
+---
+
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem;">
+  <button class="share-btn" data-url="{% raw %}{{ page.canonical_url }}{% endraw %}" data-title="Receipt for One Unclaimed Garment">
+    Share this story
+  </button>
+  <a href="https://github.com/obscurebit/b1ts/tree/5f52f54" target="_blank" rel="noopener" class="story-gen-link">
+    gen:5f52f54
+  </a>
+</div>

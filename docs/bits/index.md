@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-08-25-receipt-for-one-unclaimed-garment/" class="archive-item">
+    <div class="archive-item__number">208</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">August 25, 2026</span>
+      <h3 class="archive-item__title">Receipt for One Unclaimed Garment</h3>
+      <p class="archive-item__excerpt">The receipt listed three items: a wool scarf, a denim jacket, and a stain that had "refused treatment." At the bottom, a line snaked in indigo ink: *L...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Digital Archaeology</span><span class="archive-item__genre" title="Caper energy at a human scale">Caper energy at a human scale</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-08-24-the-thermos-that-remembered-salts/" class="archive-item">
     <div class="archive-item__number">207</div>
     <div class="archive-item__content">

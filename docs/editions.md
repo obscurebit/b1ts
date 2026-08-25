@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-08-25-edition-208/" class="archive-item">
+    <div class="archive-item__number">208</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">August 25, 2026</span>
+      <h3 class="archive-item__title">Edition #208</h3>
+      <p class="archive-item__excerpt">Digital Archaeology · The receipt listed three items: a wool scarf, a denim jacket, and a stain that had "refused treatment." At the bottom, a line snaked in indigo ink: *Late fee ap...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Digital Archaeology</span><span class="archive-item__genre" title="Caper energy at a human scale">Caper energy at a human scale</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-08-24-edition-207/" class="archive-item">
     <div class="archive-item__number">207</div>
     <div class="archive-item__content">
