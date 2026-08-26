@@ -1,8 +1,11 @@
 {
   "date": "2026-08-26",
   "links_file": "docs/links/posts/2026-08-26-daily-links.md",
-  "status": "prepared",
+  "published_at": "2026-08-26T07:37:31Z",
+  "published_links_file": "docs/links/posts/2026-08-26-daily-links.md",
+  "published_story_file": "docs/bits/posts/2026-08-26-the-syrup-can.md",
+  "status": "published",
   "story_file": "docs/bits/posts/2026-08-26-the-syrup-can.md",
   "theme": "consciousness frontiers",
-  "updated_at": "2026-08-25T06:55:37Z"
+  "updated_at": "2026-08-26T06:56:38Z"
 }

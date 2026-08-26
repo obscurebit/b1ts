@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-08-26-edition-209/" class="archive-item">
+    <div class="archive-item__number">209</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">August 26, 2026</span>
+      <h3 class="archive-item__title">Edition #209</h3>
+      <p class="archive-item__excerpt">Consciousness Frontiers · The syrup can was empty, but it still fed the waffles.</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Consciousness Frontiers</span><span class="archive-item__genre" title="Workplace comedy with a speculative inconvenience">Workplace comedy with a speculative inconvenience</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-08-25-edition-208/" class="archive-item">
     <div class="archive-item__number">208</div>
     <div class="archive-item__content">
