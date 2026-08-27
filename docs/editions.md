@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-08-27-edition-210/" class="archive-item">
+    <div class="archive-item__number">210</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">August 27, 2026</span>
+      <h3 class="archive-item__title">Edition #210</h3>
+      <p class="archive-item__excerpt">Time Anomalies · You’re supposed to pick up the trophy from the engraver by 3 PM. Not because it’s valuable—hell, it’s just a dented bike wheel mounted on a plaque—but because M...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Time Anomalies</span><span class="archive-item__genre" title="Ghost story energy without old haunted-house defaults">Ghost story energy without old haunted-house defaults</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-08-26-edition-209/" class="archive-item">
     <div class="archive-item__number">209</div>
     <div class="archive-item__content">

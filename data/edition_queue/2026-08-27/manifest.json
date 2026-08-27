@@ -1,8 +1,11 @@
 {
   "date": "2026-08-27",
   "links_file": "docs/links/posts/2026-08-27-daily-links.md",
-  "status": "prepared",
+  "published_at": "2026-08-27T17:50:00Z",
+  "published_links_file": "docs/links/posts/2026-08-27-daily-links.md",
+  "published_story_file": "docs/bits/posts/2026-08-27-the-trophy-that-leaned.md",
+  "status": "published",
   "story_file": "docs/bits/posts/2026-08-27-the-trophy-that-leaned.md",
   "theme": "time anomalies",
-  "updated_at": "2026-08-26T06:56:38Z"
+  "updated_at": "2026-08-27T17:30:27Z"
 }
