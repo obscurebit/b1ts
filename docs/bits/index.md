@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-08-28-the-daylight-adjustment/" class="archive-item">
+    <div class="archive-item__number">211</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">August 28, 2026</span>
+      <h3 class="archive-item__title">The Daylight Adjustment</h3>
+      <p class="archive-item__excerpt">You ever worked a debt ledger that hums when it’s lying? This one did. Faint, like a refrigerator with bad nerves. I found it taped to the bulletin bo...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Parallel Dimensions</span><span class="archive-item__genre" title="Satire of systems, credentials, or institutional language">Satire of systems</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-08-27-the-trophy-that-leaned/" class="archive-item">
     <div class="archive-item__number">210</div>
     <div class="archive-item__content">

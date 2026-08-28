@@ -1,8 +1,11 @@
 {
   "date": "2026-08-28",
   "links_file": "docs/links/posts/2026-08-28-daily-links.md",
-  "status": "prepared",
+  "published_at": "2026-08-28T18:41:52Z",
+  "published_links_file": "docs/links/posts/2026-08-28-daily-links.md",
+  "published_story_file": "docs/bits/posts/2026-08-28-the-daylight-adjustment.md",
+  "status": "published",
   "story_file": "docs/bits/posts/2026-08-28-the-daylight-adjustment.md",
   "theme": "parallel dimensions",
-  "updated_at": "2026-08-27T17:30:27Z"
+  "updated_at": "2026-08-28T18:26:06Z"
 }
