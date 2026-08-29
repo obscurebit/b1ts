@@ -10,6 +10,17 @@ description: AI-generated sci-fi stories, mysteries, and speculative tales
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-08-29-the-jar-of-last-suppers/" class="archive-item">
+    <div class="archive-item__number">212</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">August 29, 2026</span>
+      <h3 class="archive-item__title">The Jar of Last Suppers</h3>
+      <p class="archive-item__excerpt">The smell of microwaved soy sauce and burnt rice clung to the walls of the visa processing office, a greasy mist that settled on the shoulders of the ...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Synthetic Life</span><span class="archive-item__genre" title="Ghost story energy without old haunted-house defaults">Ghost story energy without old haunted-house defaults</span></div>
+    </div>
+    <span class="archive-item__category">Story</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-08-28-the-daylight-adjustment/" class="archive-item">
     <div class="archive-item__number">211</div>
     <div class="archive-item__content">

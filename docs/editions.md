@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-08-29-edition-212/" class="archive-item">
+    <div class="archive-item__number">212</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">August 29, 2026</span>
+      <h3 class="archive-item__title">Edition #212</h3>
+      <p class="archive-item__excerpt">Synthetic Life · The smell of microwaved soy sauce and burnt rice clung to the walls of the visa processing office, a greasy mist that settled on the shoulders of the applicants...</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Synthetic Life</span><span class="archive-item__genre" title="Ghost story energy without old haunted-house defaults">Ghost story energy without old haunted-house defaults</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-08-28-edition-211/" class="archive-item">
     <div class="archive-item__number">211</div>
     <div class="archive-item__content">
