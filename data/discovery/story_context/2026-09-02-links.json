@@ -1,0 +1,59 @@
+{
+  "date": "2026-09-02",
+  "theme": "emergent intelligence",
+  "links_direction": "AI research frontiers, emergent behavior, machine learning mysteries",
+  "motifs": [
+    "Simulation",
+    "Years",
+    "Intelligence",
+    "The Simulation",
+    "8 years",
+    "9 years",
+    "on December 2, 2017",
+    "Arthur",
+    "Kimi",
+    "Claude",
+    "Come",
+    "Lisp"
+  ],
+  "interesting_bits": [
+    "8 years",
+    "9 years",
+    "on December 2, 2017"
+  ],
+  "links": [
+    {
+      "title": "A history of emergent intelligence",
+      "url": "https://drewdevault.com/blog/History-of-intelligent-observation/",
+      "concepts": [
+        "Simulation",
+        "Years",
+        "Intelligence",
+        "The Simulation"
+      ],
+      "reason": "fallback heuristic"
+    },
+    {
+      "title": "Jean-Claude Attractor - Ardens Emergent Intelligence Studies",
+      "url": "https://treemagic.org/Studies/Field-Studies/Jean-Claude-Attractor/Jean-Claude-Attractor/",
+      "concepts": [
+        "Arthur",
+        "Kimi",
+        "Claude",
+        "Come"
+      ],
+      "reason": "fallback heuristic"
+    },
+    {
+      "title": "The Soul in the Machine is a LISP | Mike Levin SEO AI Education",
+      "url": "https://mikelev.in/futureproof/lisp-ai-soul-persistent-state/",
+      "concepts": [
+        "Lisp",
+        "Like",
+        "Hardware",
+        "Code"
+      ],
+      "reason": "fallback heuristic"
+    }
+  ]
+}

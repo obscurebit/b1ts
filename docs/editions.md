@@ -10,6 +10,17 @@ description: Browse previous daily editions of Obscure Bit
 </div>
 
 <div class="archive-list">
+  <a href="posts/2026-08-30-edition-213/" class="archive-item">
+    <div class="archive-item__number">213</div>
+    <div class="archive-item__content">
+      <span class="archive-item__date">August 30, 2026</span>
+      <h3 class="archive-item__title">Edition #213</h3>
+      <p class="archive-item__excerpt">Cryptographic Secrets · By the time the daily machine admitted it had no story, the office had already opened.</p>
+      <div class="archive-item__tags"><span class="archive-item__theme">Cryptographic Secrets</span><span class="archive-item__genre" title="Fallback speculative vignette">Fallback speculative vignette</span></div>
+    </div>
+    <span class="archive-item__category">Edition</span>
+    <span class="archive-item__arrow">→</span>
+  </a>
   <a href="posts/2026-08-29-edition-212/" class="archive-item">
     <div class="archive-item__number">212</div>
     <div class="archive-item__content">

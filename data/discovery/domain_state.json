@@ -305,9 +305,9 @@
     "selected_count": 3
   },
   "drewdevault.com": {
-    "last_seen": "2026-08-18",
-    "last_selected": "",
-    "selected_count": 0
+    "last_seen": "2026-09-02",
+    "last_selected": "2026-09-02",
+    "selected_count": 1
   },
   "ebi.ac.uk": {
     "last_seen": "",
@@ -554,6 +554,11 @@
     "last_selected": "2026-02-01",
     "selected_count": 1
   },
+  "marginalia-search.com": {
+    "last_seen": "2026-09-02",
+    "last_selected": "",
+    "selected_count": 0
+  },
   "mariowiki.com": {
     "last_seen": "2026-08-28",
     "last_selected": "",
@@ -606,8 +611,8 @@
   },
   "mikelev.in": {
     "last_seen": "2026-07-03",
-    "last_selected": "",
-    "selected_count": 0
+    "last_selected": "2026-09-02",
+    "selected_count": 1
   },
   "militaryhistorynow.com": {
     "last_seen": "",
@@ -1087,6 +1092,11 @@
   "torrossa.com": {
     "last_seen": "",
     "last_selected": "2026-04-15",
+    "selected_count": 1
+  },
+  "treemagic.org": {
+    "last_seen": "2026-09-02",
+    "last_selected": "2026-09-02",
     "selected_count": 1
   },
   "ueaeprints.uea.ac.uk": {
