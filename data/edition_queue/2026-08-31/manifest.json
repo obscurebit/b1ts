@@ -1,8 +1,11 @@
 {
   "date": "2026-08-31",
   "links_file": "docs/links/posts/2026-08-31-daily-links.md",
-  "status": "prepared",
+  "published_at": "2026-08-31T13:32:27Z",
+  "published_links_file": "docs/links/posts/2026-08-31-daily-links.md",
+  "published_story_file": "docs/bits/posts/2026-08-31-the-spare-edition.md",
+  "status": "published",
   "story_file": "docs/bits/posts/2026-08-31-the-spare-edition.md",
   "theme": "abandoned stations",
-  "updated_at": "2026-08-30T11:38:55Z"
+  "updated_at": "2026-08-31T13:14:36Z"
 }
