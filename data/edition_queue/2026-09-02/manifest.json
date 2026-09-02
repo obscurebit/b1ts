@@ -1,8 +1,11 @@
 {
   "date": "2026-09-02",
   "links_file": "docs/links/posts/2026-09-02-daily-links.md",
-  "status": "prepared",
+  "published_at": "2026-09-02T11:15:22Z",
+  "published_links_file": "docs/links/posts/2026-09-02-daily-links.md",
+  "published_story_file": "docs/bits/posts/2026-09-02-the-spare-edition.md",
+  "status": "published",
   "story_file": "docs/bits/posts/2026-09-02-the-spare-edition.md",
   "theme": "emergent intelligence",
-  "updated_at": "2026-09-01T11:25:07Z"
+  "updated_at": "2026-09-02T10:58:55Z"
 }
