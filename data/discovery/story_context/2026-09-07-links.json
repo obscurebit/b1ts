@@ -1,0 +1,59 @@
+{
+  "date": "2026-09-07",
+  "theme": "signal from nowhere",
+  "links_direction": "specific number station recordings, individual unexplained signal incidents, detailed SETI discovery stories",
+  "motifs": [
+    "Signal",
+    "Radio",
+    "Earth",
+    "The Signal",
+    "In 1972",
+    "Reply",
+    "Canada",
+    "Shortwave",
+    "98 years",
+    "on June 22, 2026",
+    "August",
+    "Herman"
+  ],
+  "interesting_bits": [
+    "In 1972",
+    "98 years",
+    "on June 22, 2026"
+  ],
+  "links": [
+    {
+      "title": "The \u201cWow!\u201d Signal | Hidden History",
+      "url": "https://www.marginalia-search.com/r/11/19490427372532/crzzeqo5wh?hash=4lHW5C4WoqwfTEjE9eix-kY73g315Dp0y4P1wzsmICo",
+      "concepts": [
+        "Signal",
+        "Radio",
+        "Earth",
+        "The Signal"
+      ],
+      "reason": "fallback heuristic"
+    },
+    {
+      "title": "Canada\u2019s CHU Will Go Silent on Shortwave on June 22, 2026 | The SWLing Post",
+      "url": "https://swling.com/blog/2026/05/canadas-chu-will-go-silent-on-shortwave-on-june-22-2026/",
+      "concepts": [
+        "Reply",
+        "Canada",
+        "Radio",
+        "Shortwave"
+      ],
+      "reason": "fallback heuristic"
+    },
+    {
+      "title": "Shortwave music and library tickets | The SWLing Post",
+      "url": "https://swling.com/blog/2026/08/shortwave-music-and-library-tickets/",
+      "concepts": [
+        "August",
+        "Herman",
+        "Radio",
+        "Frederick"
+      ],
+      "reason": "fallback heuristic"
+    }
+  ]
+}
