@@ -1,0 +1,63 @@
+{
+  "date": "2026-09-10",
+  "theme": "biological computing",
+  "links_direction": "biocomputing research, DNA data storage, organic electronics",
+  "motifs": [
+    "Project",
+    "Class",
+    "October",
+    "September",
+    "3.4 Billion",
+    "Data",
+    "Excel",
+    "Nelle",
+    "Dave",
+    "\" prefix and the right files with an \"",
+    "10 million",
+    "People"
+  ],
+  "interesting_bits": [
+    "3.4 Billion",
+    "\" prefix and the right files with an \"",
+    "\" of data arrives better cleaning update external database High overhead of \"",
+    "10 million",
+    "\"S SHIT. x-ref eric bonabeau with robin dunbar... humans as social animals \"",
+    "\" as it was all original years earlier. (though Wolfram is a nice package of the ideas, ignoring the \"",
+    "10m"
+  ],
+  "links": [
+    {
+      "title": "Posts | Computational Biology / Biological Computing",
+      "url": "https://www.marginalia-search.com/r/11/4138206895276070/crxsal8z8q?hash=CxlW7lIuw7shjteww4FS5alaKKvYaN4YKGXQEqoRcGc",
+      "concepts": [
+        "Project",
+        "Class",
+        "October",
+        "September"
+      ],
+      "reason": "fallback heuristic"
+    },
+    {
+      "title": "Biological Computing User Stories | The Carpentries",
+      "url": "https://www.marginalia-search.com/r/5/18438831473922/fd2jak59t3?hash=sM9BrQtkwi8HGYPACe2yLy4vQdhk3yt6YYKKn4Mfmdc",
+      "concepts": [
+        "Data",
+        "Excel",
+        "Nelle",
+        "Dave"
+      ],
+      "reason": "fallback heuristic"
+    },
+    {
+      "title": "http://www.plasticbag.org/files/misc/annotating_biological_computing.txt",
+      "url": "http://www.plasticbag.org/files/misc/annotating_biological_computing.txt",
+      "concepts": [
+        "People",
+        "Social",
+        "Rules",
+        "Ants"
+      ],
+      "reason": "fallback heuristic"
+    }
+  ]
+}
