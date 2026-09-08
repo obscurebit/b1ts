@@ -1,8 +1,11 @@
 {
   "date": "2026-09-08",
   "links_file": "docs/links/posts/2026-09-08-daily-links.md",
-  "status": "prepared",
+  "published_at": "2026-09-08T11:16:35Z",
+  "published_links_file": "docs/links/posts/2026-09-08-daily-links.md",
+  "published_story_file": "docs/bits/posts/2026-09-08-the-spare-edition.md",
+  "status": "published",
   "story_file": "docs/bits/posts/2026-09-08-the-spare-edition.md",
   "theme": "recursive realities",
-  "updated_at": "2026-09-07T12:05:19Z"
+  "updated_at": "2026-09-08T10:58:06Z"
 }
